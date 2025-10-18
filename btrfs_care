@@ -204,6 +204,8 @@ def run_scrub(mp_info, max_age_days=SCRUB_MAX_AGE_DAYS):
                 return True
             except subprocess.CalledProcessError as e:
                 print(f"✗ Error resuming scrub: {e}")
+                if e.stdout:
+                    print(f"Stdout: {e.stdout}")
                 if e.stderr:
                     print(f"Stderr: {e.stderr}")
                 return False
@@ -248,6 +250,8 @@ def run_scrub(mp_info, max_age_days=SCRUB_MAX_AGE_DAYS):
         
     except subprocess.CalledProcessError as e:
         print(f"✗ Error during scrub: {e}")
+        if e.stdout:
+            print(f"Stdout: {e.stdout}")
         if e.stderr:
             print(f"Stderr: {e.stderr}")
         return False
