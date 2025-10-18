@@ -116,11 +116,11 @@ def parse_scrub_status(mountpoint):
         
         # Check if scrub is running
         for line in status_lines:
-            line = line.lower().strip()
-            if line.startswith('scrub started'):
+            line_lower = line.lower().strip()
+            if line_lower.startswith('scrub started'):
                 # Parse last scrub date
                 # Format: "Scrub started:    Fri Oct 17 20:08:59 2025"
-                date_match = re.search(r'scrub started:\s+(.+?)(?:\n|$)', line)
+                date_match = re.search(r'scrub started:\s+(.+?)$', line_lower, re.IGNORECASE)
                 if date_match:
                     date_str = date_match.group(1).strip()
                     try:
@@ -128,26 +128,25 @@ def parse_scrub_status(mountpoint):
                         info['last_run'] = datetime.strptime(date_str, '%a %b %d %H:%M:%S %Y')
                     except ValueError:
                         pass
-            elif line.startswith('status'):
-                line = line.lower().strip()
-                if 'finished' in line:
+            elif line_lower.startswith('status'):
+                if 'finished' in line_lower:
                     info['status'] = 'finished'
-                elif 'running' in line:
+                elif 'running' in line_lower:
                     info['status'] = 'running'
                 # Check if scrub was aborted/stopped
-                elif 'aborted' in line or 'interrupted' in line  or 'paused' in line:
+                elif any(c  in line_lower for c in ('aborted', 'interrupted', 'paused')):
                     info['status'] = 'resumable'
                 else:
                     print(' Internal program error, unrecognized status: ',line)
-                    info['status'] = line.split()[-1]
+                    info['status'] = line_lower.split()[-1]
             # Check for errors
-            elif line.startswith('error summary:'):
-                if 'no errors found' not in line:
-                    info['errors'] = line.split()[-1]
-            elif line:
+            elif line_lower.startswith('error summary:'):
+                if 'no errors found' not in line_lower:
+                    info['errors'] = line.split(':',maxsplit=1)[-1].strip()
+            elif line_lower:
                 l = line.split(':', maxsplit=1)
                 if len(l)==2:
-                    info[l[0]] = l[1].strip()
+                    info[l[0].lower().strip()] = l[1].strip()
                 else:
                     print(' Ignored status line',l)
         #print(status_text)
