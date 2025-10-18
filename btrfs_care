@@ -316,7 +316,7 @@ def run_balance(mp_info):
     print(f"{'='*60}")
 
     def usage_levels():
-        """Generator for usage levels (10% to 90%)."""
+        """Generator for usage levels (0% to 90%)."""
         for j in range(0, 91, 10):
             yield '-dusage=' + str(j)
         for j in range(0, 91, 10):
