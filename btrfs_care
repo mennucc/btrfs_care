@@ -1,0 +1,340 @@
+#!/usr/bin/env python3
+"""
+Automatic maintenance script for Btrfs filesystems.
+Performs scrub and balance on all mounted Btrfs partitions.
+"""
+
+# https://claude.ai/share/82c11573-908c-4b94-95af-700ff4a6d158
+
+import subprocess
+import sys
+import re
+import json
+from datetime import datetime, timedelta
+
+# Configuration
+SCRUB_MAX_AGE_DAYS = 50  # Skip scrub if last one was less than this many days ago
+
+NOACT = []
+#NOACT = ['echo']
+
+def extract_mountpoints_recursive(fs_entry, mountpoints):
+    """Recursively extracts all mountpoints from a findmnt JSON entry."""
+    if 'target' in fs_entry and 'source' in fs_entry:
+        mountpoints.append({
+            'target': fs_entry['target'],
+            'source': fs_entry['source']
+        })
+    
+    if 'children' in fs_entry:
+        for child in fs_entry['children']:
+            extract_mountpoints_recursive(child, mountpoints)
+
+def get_filesystem_uuid(mountpoint):
+    """Retrieves the UUID of the mounted filesystem."""
+    try:
+        result = subprocess.run(
+            ['btrfs', 'filesystem', 'show', mountpoint],
+            capture_output=True,
+            text=True,
+            check=True
+        )
+        # Search for UUID in output
+        match = re.search(r'uuid:\s+([a-f0-9-]+)', result.stdout, re.IGNORECASE)
+        if match:
+            return match.group(1)
+    except subprocess.CalledProcessError:
+        pass
+    return None
+
+def get_btrfs_mountpoints():
+    """Retrieves all btrfs mountpoints, avoiding duplicates."""
+    try:
+        result = subprocess.run(
+            ['findmnt', '--json', '-t', 'btrfs'],
+            capture_output=True,
+            text=True,
+            check=True
+        )
+        data = json.loads(result.stdout)
+        
+        all_mountpoints = []
+        if 'filesystems' in data:
+            for fs in data['filesystems']:
+                extract_mountpoints_recursive(fs, all_mountpoints)
+        
+        # Filter duplicates based on UUID
+        seen_uuids = set()
+        unique_mountpoints = []
+        
+        for mp in all_mountpoints:
+            uuid = get_filesystem_uuid(mp['target'])
+            if uuid and uuid not in seen_uuids:
+                seen_uuids.add(uuid)
+                unique_mountpoints.append({
+                    'target': mp['target'],
+                    'source': mp['source'],
+                    'uuid': uuid
+                })
+            elif not uuid:
+                # If we can't get UUID, include it anyway
+                unique_mountpoints.append({
+                    'target': mp['target'],
+                    'source': mp['source'],
+                    'uuid': None
+                })
+        
+        return unique_mountpoints
+    except subprocess.CalledProcessError as e:
+        print(f"Error retrieving btrfs mountpoints: {e}")
+        return []
+    except json.JSONDecodeError as e:
+        print(f"JSON parsing error: {e}")
+        return []
+
+def parse_scrub_status(mountpoint):
+    """Parses the scrub status and returns status info."""
+    result = None
+    try:
+        result = subprocess.run(
+            ['btrfs', 'scrub', 'status', mountpoint],
+            capture_output=True,
+            text=True,
+            check=True
+        )
+        
+        status_text = result.stdout
+        status_lines = status_text.split('\n')
+
+        info = {
+            'status': None,
+            'last_run': None,
+            'errors': False,
+            'raw_output': status_text
+        }
+                
+        
+        # Check if scrub is running
+        for line in status_lines:
+            line = line.lower().strip()
+            if line.startswith('scrub started'):
+                # Parse last scrub date
+                # Format: "Scrub started:    Fri Oct 17 20:08:59 2025"
+                date_match = re.search(r'scrub started:\s+(.+?)(?:\n|$)', line)
+                if date_match:
+                    date_str = date_match.group(1).strip()
+                    try:
+                        # Try to parse the date
+                        info['last_run'] = datetime.strptime(date_str, '%a %b %d %H:%M:%S %Y')
+                    except ValueError:
+                        pass
+            elif line.startswith('status'):
+                line = line.lower().strip()
+                if 'finished' in line:
+                    info['status'] = 'finished'
+                elif 'running' in line:
+                    info['status'] = 'running'
+                # Check if scrub was aborted/stopped
+                elif 'aborted' in line or 'interrupted' in line  or 'paused' in line:
+                    info['status'] = 'resumable'
+                else:
+                    print(' Internal program error, unrecognized status: ',line)
+                    info['status'] = line.split()[-1]
+            # Check for errors
+            elif line.startswith('error summary:'):
+                if 'no errors found' not in line:
+                    info['errors'] = line.split()[-1]
+            elif line:
+                l = line.split(':', maxsplit=1)
+                if len(l)==2:
+                    info[l[0]] = l[1].strip()
+                else:
+                    print(' Ignored status line',l)
+        #print(status_text)
+        #print(json.dumps(info,indent=2,default=str))
+        return info
+        
+    except subprocess.CalledProcessError as e:
+        print(f"✗ Error when reading scrub status on {mountpoint} : {e}")
+        if e.stderr:
+            print(f"Stderr: {e.stderr}")
+        return None
+
+def run_scrub(mp_info, max_age_days=SCRUB_MAX_AGE_DAYS):
+    """Performs scrub on a btrfs mountpoint."""
+    mountpoint = mp_info['target']
+    uuid = mp_info.get('uuid', 'unknown')
+    
+    print(f"\n{'='*60}")
+    print(f"Starting scrub on: {mountpoint}")
+    print(f"Device: {mp_info['source']}")
+    print(f"UUID: {uuid}")
+    print(f"{'='*60}")
+    
+    # Check current scrub status
+    info = parse_scrub_status(mountpoint)
+    status = info['status']
+    if info:
+        # If scrub is running, skip
+        if status == 'running':
+            print("⚠️  A scrub is already running on this filesystem")
+            if "time left" in info:
+                print("     and will end in ",info["time left"])
+            print("   Skipping scrub and balance for this filesystem.")
+            return 'skip'
+        
+        # If scrub was aborted, resume it
+        if 'resumable' ==  status:
+            print("⚠️  Previous scrub was aborted. Resuming...")
+            try:
+                result = subprocess.run(
+                    NOACT + ['btrfs', 'scrub', 'resume', '-B', mountpoint],
+                    capture_output=True,
+                    text=True,
+                    check=True
+                )
+                print(result.stdout)
+                print("✓ Scrub resumed and completed")
+                
+                # Check for errors after resume
+                info = parse_scrub_status(mountpoint)
+                if info and info['errors']:
+                    print("⚠️  WARNING: Scrub reported errors!")
+                    return False
+                
+                return True
+            except subprocess.CalledProcessError as e:
+                print(f"✗ Error resuming scrub: {e}")
+                if e.stderr:
+                    print(f"Stderr: {e.stderr}")
+                return False
+        
+        # Check if last scrub was recent
+        if info['last_run']:
+            age = datetime.now() - info['last_run']
+            print(f"ℹ️  Last scrub: {info['last_run'].strftime('%Y-%m-%d %H:%M:%S')} ({age.days} days ago)")
+            
+            if age.days < max_age_days:
+                print(f"✓ Scrub is recent (< {max_age_days} days), skipping...")
+                
+                # Check if there were errors in last scrub
+                if info['errors']:
+                    print("⚠️  WARNING: Last scrub reported errors!")
+                    return False
+                
+                return True
+    
+    # Run scrub
+    print("Starting new scrub...")
+    try:
+        result = subprocess.run(
+            ['btrfs', 'scrub', 'start', '-B', mountpoint],
+            capture_output=True,
+            text=True,
+            check=True
+        )
+        
+        print(result.stdout)
+        
+        # Check for errors in scrub
+        if 'error' in result.stdout.lower() and 'no errors found' not in result.stdout.lower():
+            # Look for error count
+            errors = re.search(r'(\d+)\s+error', result.stdout, re.IGNORECASE)
+            if errors and int(errors.group(1)) > 0:
+                print(f"⚠️  WARNING: Found {errors.group(1)} errors!")
+                return False
+        
+        print("✓ Scrub completed without errors")
+        return True
+        
+    except subprocess.CalledProcessError as e:
+        print(f"✗ Error during scrub: {e}")
+        if e.stderr:
+            print(f"Stderr: {e.stderr}")
+        return False
+
+def run_balance(mp_info):
+    """Performs incremental balance on a btrfs mountpoint."""
+    mountpoint = mp_info['target']
+    
+    print(f"\n{'='*60}")
+    print(f"Starting balance on: {mountpoint}")
+    print(f"{'='*60}")
+
+    def usage_levels():
+        """Generator for usage levels (10% to 90%)."""
+        for j in range(0, 91, 10):
+            yield '-dusage=' + str(j)
+        for j in range(0, 91, 10):
+            yield '-musage=' + str(j)
+    
+    for opt in usage_levels():
+        try:
+            print(f"\n→ Running balance with {opt}...")
+            result = subprocess.run(
+                NOACT + ['btrfs', 'balance', 'start', opt, mountpoint],
+                capture_output=True,
+                text=True,
+                check=True
+            )
+            print(result.stdout,end='')
+            #print(f"✓ Balance {opt} completed successfully")
+        except subprocess.CalledProcessError as e:
+            print(f"✗ Error during balance {opt}: {e}")
+            if e.stderr:
+                print(f"Stderr: {e.stderr}")
+            return False
+    
+    print(f"\n✓ All balance operations completed for {mountpoint}")
+    return True
+
+def check_root():
+    """Verifies if the script is run as root."""
+    if subprocess.run(['id', '-u'], capture_output=True, text=True).stdout.strip() != '0':
+        print("⚠️  This script requires root privileges.")
+        print("Run it with: sudo python3 script.py")
+        return False
+    return True
+
+def main():
+    print("Btrfs Maintenance Script")
+    print("="*60)
+    print(f"Configuration: Skip scrub if last run was < {SCRUB_MAX_AGE_DAYS} days ago")
+    print("="*60)
+    
+    # Check root privileges
+    if not check_root():
+        sys.exit(1)
+    
+    # Get btrfs mountpoints
+    mountpoints = get_btrfs_mountpoints()
+    
+    if not mountpoints:
+        print("No mounted Btrfs partitions found.")
+        sys.exit(0)
+    
+    print(f"\nFound {len(mountpoints)} unique Btrfs partitions:")
+    for mp in mountpoints:
+        print(f"  - {mp['target']} ({mp['source']}) UUID: {mp.get('uuid', 'N/A')}")
+    
+    # Process each mountpoint
+    for mp_info in mountpoints:
+        # Run scrub
+        scrub_ok = run_scrub(mp_info)
+        
+        # If scrub is ok, run balance
+        # If scrub returned 'skip', don't run balance
+        if scrub_ok == 'skip':
+            print(f"\n⚠️  Skipping balance for {mp_info['target']} (scrub is running)")
+        elif scrub_ok:
+            run_balance(mp_info)
+        else:
+            print(f"\n⚠️  Balance skipped for {mp_info['target']} due to scrub errors")
+    
+    print("\n" + "="*60)
+    print("Maintenance completed")
+    print("="*60)
+
+if __name__ == "__main__":
+    main()
+ 
