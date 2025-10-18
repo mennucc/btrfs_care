@@ -3,7 +3,10 @@
 Automatic maintenance script for Btrfs filesystems.
 Performs scrub and balance on all mounted Btrfs partitions.
 """
+## also published as Claude Artifact 
+# https://claude.ai/public/artifacts/a178507e-afac-45f9-ba32-bb29d767f17a
 
+## my private discussion with claude.ai
 # https://claude.ai/share/82c11573-908c-4b94-95af-700ff4a6d158
 
 import subprocess
