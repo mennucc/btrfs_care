@@ -172,59 +172,62 @@ def run_scrub(mp_info, max_age_days=SCRUB_MAX_AGE_DAYS):
     
     # Check current scrub status
     info = parse_scrub_status(mountpoint)
+    if not info:
+        print("✗ Could not read scrub status")
+        return False
+        
     status = info['status']
-    if info:
-        # If scrub is running, skip
-        if status == 'running':
-            print("⚠️  A scrub is already running on this filesystem")
-            if "time left" in info:
-                print("     and will end in ",info["time left"])
-            print("   Skipping scrub and balance for this filesystem.")
-            return 'skip'
-        
-        # If scrub was aborted, resume it
-        if 'resumable' ==  status:
-            print("⚠️  Previous scrub was aborted. Resuming...")
-            try:
-                result = subprocess.run(
-                    NOACT + ['btrfs', 'scrub', 'resume', '-B', mountpoint],
-                    capture_output=True,
-                    text=True,
-                    check=True
-                )
-                print(result.stdout)
-                print("✓ Scrub resumed and completed")
-                
-                # Check for errors after resume
-                info = parse_scrub_status(mountpoint)
-                if info and info['errors']:
-                    print("⚠️  WARNING: Scrub reported errors!")
-                    return False
-                
-                return True
-            except subprocess.CalledProcessError as e:
-                print(f"✗ Error resuming scrub: {e}")
-                if e.stdout:
-                    print(f"Stdout: {e.stdout}")
-                if e.stderr:
-                    print(f"Stderr: {e.stderr}")
-                return False
-        
-        # Check if last scrub was recent
-        if info['last_run']:
-            age = datetime.now() - info['last_run']
-            print(f"ℹ️  Last scrub: {info['last_run'].strftime('%Y-%m-%d %H:%M:%S')} ({age.days} days ago)")
-            
-            if age.days < max_age_days:
-                print(f"✓ Scrub is recent (< {max_age_days} days), skipping...")
-                
-                # Check if there were errors in last scrub
-                if info['errors']:
-                    print("⚠️  WARNING: Last scrub reported errors!")
-                    return False
-                
-                return True
+    # If scrub is running, skip
+    if status == 'running':
+        print("⚠️  A scrub is already running on this filesystem")
+        if "time left" in info:
+            print("     and will end in ",info["time left"])
+        print("   Skipping scrub and balance for this filesystem.")
+        return 'skip'
     
+    # If scrub was aborted, resume it
+    if 'resumable' ==  status:
+        print("⚠️  Previous scrub was aborted. Resuming...")
+        try:
+            result = subprocess.run(
+                NOACT + ['btrfs', 'scrub', 'resume', '-B', mountpoint],
+                capture_output=True,
+                text=True,
+                check=True
+            )
+            print(result.stdout)
+            print("✓ Scrub resumed and completed")
+            
+            # Check for errors after resume
+            info = parse_scrub_status(mountpoint)
+            if info and info['errors']:
+                print("⚠️  WARNING: Scrub reported errors!")
+                return False
+            
+            return True
+        except subprocess.CalledProcessError as e:
+            print(f"✗ Error resuming scrub: {e}")
+            if e.stdout:
+                print(f"Stdout: {e.stdout}")
+            if e.stderr:
+                print(f"Stderr: {e.stderr}")
+            return False
+    
+    # Check if last scrub was recent
+    if info['last_run']:
+        age = datetime.now() - info['last_run']
+        print(f"ℹ️  Last scrub: {info['last_run'].strftime('%Y-%m-%d %H:%M:%S')} ({age.days} days ago)")
+        
+        if age.days < max_age_days:
+            print(f"✓ Scrub is recent (< {max_age_days} days), skipping...")
+            
+            # Check if there were errors in last scrub
+            if info['errors']:
+                print("⚠️  WARNING: Last scrub reported errors!")
+                return False
+            
+            return True
+
     # Run scrub
     print("Starting new scrub...")
     try:
