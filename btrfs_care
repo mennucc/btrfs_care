@@ -168,7 +168,7 @@ def parse_scrub_status(mountpoint):
             if line_lower.startswith('scrub started'):
                 # Parse last scrub date
                 # Format: "Scrub started:    Fri Oct 17 20:08:59 2025"
-                date_match = re.search(r'scrub started:\s+(.+?)$', line_lower, re.IGNORECASE)
+                date_match = re.search(r'scrub started:\s+(.+?)$', line.strip(), re.IGNORECASE)
                 if date_match:
                     date_str = date_match.group(1).strip()
                     try:
