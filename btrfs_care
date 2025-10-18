@@ -10,6 +10,7 @@ import subprocess
 import sys
 import re
 import json
+import time
 from datetime import datetime, timedelta
 
 # Configuration
@@ -324,7 +325,12 @@ def main():
         print(f"  - {mp['target']} ({mp['source']}) UUID: {mp.get('uuid', 'N/A')}")
     
     # Process each mountpoint
+    scrub_ok = True
     for mp_info in mountpoints:
+        # if the previous scrub had problems, maybe host is shutting down,
+        # or disks have a problem... let's wait a bit
+        if not scrub_ok:
+            time.sleep(5)
         # Run scrub
         scrub_ok = run_scrub(mp_info)
         
