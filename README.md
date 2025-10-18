@@ -166,7 +166,7 @@ Add to root's crontab (`sudo crontab -e`):
 
 ### Systemd Timer
 
-Create `/etc/systemd/system/btrfs-maintenance.service`:
+Create `/etc/systemd/system/btrfs_care.service`:
 
 ```ini
 [Unit]
@@ -180,7 +180,7 @@ StandardOutput=journal
 StandardError=journal
 ```
 
-Create `/etc/systemd/system/btrfs-maintenance.timer`:
+Create `/etc/systemd/system/btrfs_care.timer`:
 
 ```ini
 [Unit]
@@ -198,8 +198,8 @@ Enable and start:
 
 ```bash
 sudo systemctl daemon-reload
-sudo systemctl enable btrfs-maintenance.timer
-sudo systemctl start btrfs-maintenance.timer
+sudo systemctl enable btrfs_care.timer
+sudo systemctl start btrfs_care.timer
 ```
 
 ## Best Practices
