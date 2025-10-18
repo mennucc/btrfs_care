@@ -11,6 +11,7 @@ import sys
 import re
 import json
 import time
+import os
 from datetime import datetime, timedelta
 
 # Configuration
@@ -92,6 +93,52 @@ def get_btrfs_mountpoints():
     except json.JSONDecodeError as e:
         print(f"JSON parsing error: {e}")
         return []
+
+def is_shutdown_in_progress():
+    """Checks if system shutdown/reboot is in progress."""
+    # Method 1: Check for shutdown.target being active
+    try:
+        result = subprocess.run(
+            ['systemctl', 'is-active', 'shutdown.target'],
+            capture_output=True,
+            text=True
+        )
+        if result.stdout.strip() == 'active':
+            return True
+    except (subprocess.CalledProcessError, FileNotFoundError):
+        pass
+    
+    # Method 2: Check systemd state
+    try:
+        result = subprocess.run(
+            ['systemctl', 'is-system-running'],
+            capture_output=True,
+            text=True
+        )
+        state = result.stdout.strip()
+        if state in ('stopping', 'offline'):
+            return True
+    except (subprocess.CalledProcessError, FileNotFoundError):
+        pass
+    
+    # Method 3: Check for /run/systemd/shutdown/scheduled file
+    if os.path.exists('/run/systemd/shutdown/scheduled'):
+        return True
+    
+    # Method 4: Check if runlevel is 0 or 6 (halt or reboot)
+    try:
+        result = subprocess.run(
+            ['runlevel'],
+            capture_output=True,
+            text=True
+        )
+        output = result.stdout.strip()
+        if output.endswith('0') or output.endswith('6'):
+            return True
+    except (subprocess.CalledProcessError, FileNotFoundError):
+        pass
+    
+    return False
 
 def parse_scrub_status(mountpoint):
     """Parses the scrub status and returns status info."""
@@ -327,6 +374,11 @@ def main():
     # Process each mountpoint
     scrub_ok = True
     for mp_info in mountpoints:
+        # Check if shutdown is in progress
+        if is_shutdown_in_progress():
+            print("\n⚠️  System shutdown detected! Exiting gracefully...")
+            sys.exit(0)
+        
         # if the previous scrub had problems, maybe host is shutting down,
         # or disks have a problem... let's wait a bit
         if not scrub_ok:
