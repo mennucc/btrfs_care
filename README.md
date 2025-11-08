@@ -257,7 +257,7 @@ sudo systemctl start btrfs_care.timer
 
 1. **Regular execution**: Run monthly or bi-monthly for optimal filesystem health
 2. **Monitor logs**: Check output for errors or warnings
-3. **Free space**: Ensure at least 10-20% free space before running balance
+3. **Free space**: Aim for 10‑20 % free before maintenance; when that isn’t possible, free at least a few GiB so the `-dusage=0` / `-musage=0` passes have breathing room
 4. **Test first**: Use dry-run mode on new systems
 5. **Backup important data**: Always maintain backups before maintenance operations
 
@@ -278,7 +278,7 @@ Check free space:
 ```bash
 sudo btrfs filesystem usage /mountpoint
 ```
-You may need to free up space or use `-dusage=5` for the first balance.
+If it still fails, free some space and rerun the script—its `-dusage=0` / `-musage=0` passes already target low-usage chunks automatically.
 
 ### Script exits during shutdown
 This is intentional behavior to prevent data corruption. The script will resume on next execution.
