@@ -266,10 +266,9 @@ MIT License - feel free to use and modify as needed.
 ## Links
 
 - Btrfs Wiki: https://btrfs.wiki.kernel.org/
-- Script development: https://claude.ai/share/82c11573-908c-4b94-95af-700ff4a6d158
 
 ## Credits
 
 Copyright (c) 2025 A C G Mennucci
 
-Developed collaboratively with Claude AI (Anthropic).
+Developed collaboratively with Claude AI (Anthropic) and Codex (OpenAI).
