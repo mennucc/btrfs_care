@@ -20,6 +20,7 @@ from datetime import datetime, timedelta
 
 # Configuration
 SCRUB_MAX_AGE_DAYS = 50  # Skip scrub if last one was less than this many days ago
+JOURNAL_MAX_LINES = 2000  # Kernel log lines to inspect for Btrfs errors
 
 NOACT = []
 
@@ -39,6 +40,20 @@ def parse_args():
         default=SCRUB_MAX_AGE_DAYS,
         metavar='DAYS',
         help=f'Skip scrub if last run was newer than DAYS (default {SCRUB_MAX_AGE_DAYS}).'
+    )
+    parser.add_argument(
+        '--error-log',
+        dest='error_log',
+        metavar='PATH',
+        help='If set, append parsed Btrfs errors from journalctl to PATH in addition to printing them.'
+    )
+    parser.add_argument(
+        '--error-log-format',
+        dest='error_log_format',
+        metavar='FORMAT',
+        choices=('text', 'json'),
+        default='text',
+        help='format for error log: text (default) or json'
     )
     return parser.parse_args()
 
@@ -197,6 +212,198 @@ def metadata_allocation_info(target):
         print("   ℹ️  Notice: metadata < 15% — consider balancing soon")
         return 1
     return 0
+
+
+########################################
+
+BTRFS_JOURNAL_RE = re.compile(
+    r'^(?P<prefix>.+?):\s+BTRFS\s+(?P<level>\w+)\s+\(device\s+(?P<device>[^\)]+)\):\s+(?P<body>.+)$'
+)
+ROOT_RE = re.compile(r'root\s+(\d+)', re.IGNORECASE)
+INODE_RE = re.compile(r'inode\s+(\d+)', re.IGNORECASE)
+PATH_RE = re.compile(r'\(path:\s*(?P<path>[^)]+)\)')
+LOGICAL_RE = re.compile(r'logical\s+(\d+)', re.IGNORECASE)
+PHYSICAL_RE = re.compile(r'physical\s+(\d+)', re.IGNORECASE)
+OFFSET_RE = re.compile(r'offset\s+(\d+)', re.IGNORECASE)
+LENGTH_RE = re.compile(r'length\s+(\d+)', re.IGNORECASE)
+SUBVOL_RE = re.compile(r'^ID\s+(\d+)\s+.*\spath\s+(.+)$')
+
+
+def fetch_btrfs_journal(max_lines=JOURNAL_MAX_LINES):
+    """Retrieve recent kernel log lines so we can search for Btrfs errors."""
+    rc, out = run_cmd([
+        'journalctl', '-k', '--no-pager', '--output=short-iso',
+        '-n', str(max_lines)
+    ])
+    ## to test...
+    #out=open(os.path.expanduser('~/src/btrfs_care/btrfs_error_journalctl.txt')).read()
+    
+    if rc != 0:
+        print("⚠️  Unable to read kernel journal; skipping error scan.")
+        return ""
+    return out
+
+
+def _normalize_block_device(source):
+    """Extract block-device identifiers used inside kernel log lines."""
+    if not source:
+        return None, [], []
+    device = source.split('[', 1)[0].strip()
+    token = device
+    markers = []
+    if device:
+        markers.append(f"device {device}")
+    if device.startswith('/dev/'):
+        token = os.path.basename(device)
+        markers.append(f"device {token}")
+    elif device and not device.startswith('/'):
+        markers.append(f"device /dev/{device}")
+    return device, token, markers
+
+
+def _append_error_log(path, line):
+    if not path:
+        return
+    try:
+        with open(path, 'a', encoding='utf-8') as handle:
+            handle.write(line + '\n')
+    except OSError as exc:
+        print(f"⚠️  Unable to write to error log {path}: {exc}")
+
+
+def parse_subvolume_paths(target):
+    """Return a mapping of root id -> subvolume path for the given mountpoint."""
+    rc, out = run_cmd(['btrfs', 'subvolume', 'list', target])
+    if rc != 0:
+        return {}
+    mapping = {}
+    for line in out.splitlines():
+        line = line.strip()
+        match = SUBVOL_RE.match(line)
+        if not match:
+            continue
+        root_id = int(match.group(1))
+        path = match.group(2).strip()
+        mapping[root_id] = path
+    return mapping
+
+
+def _maybe_extract_int(pattern, text):
+    match = pattern.search(text)
+    if match:
+        try:
+            return int(match.group(1))
+        except ValueError:
+            return None
+    return None
+
+
+def _maybe_extract_text(pattern, text):
+    match = pattern.search(text)
+    if match:
+        return match.group(1).strip()
+    return None
+
+
+def report_btrfs_kernel_errors(mp_info, journal_text, error_log=None, error_log_format=None):
+    """Scan journalctl output for Btrfs errors related to this mount's device."""
+    if not journal_text:
+        return
+
+    source = mp_info.get('source')
+    device_path, device_token, device_markers = _normalize_block_device(source)
+    if not device_markers:
+        return
+
+    entries = []
+    for line in journal_text.splitlines():
+        if 'BTRFS' not in line:
+            continue
+        if not any(marker in line for marker in device_markers):
+            continue
+        match = BTRFS_JOURNAL_RE.match(line.strip())
+        if not match:
+            continue
+        body = match.group('body')
+        prefix = match.group('prefix').strip()
+        timestamp = prefix
+        host = None
+        if prefix:
+            parts = prefix.split()
+            if parts:
+                timestamp = parts[0]
+                if len(parts) >= 2:
+                    host = parts[1]
+        root_id = _maybe_extract_int(ROOT_RE, body)
+        inode = _maybe_extract_int(INODE_RE, body)
+        logical = _maybe_extract_int(LOGICAL_RE, body)
+        physical = _maybe_extract_int(PHYSICAL_RE, body)
+        offset = _maybe_extract_int(OFFSET_RE, body)
+        length = _maybe_extract_int(LENGTH_RE, body)
+        rel_path = _maybe_extract_text(PATH_RE, body)
+        entry_level = match.group('level').upper()
+        if entry_level not in ('WARNING', 'ERROR', 'CRITICAL'):
+            continue
+        entries.append({
+            'timestamp': timestamp,
+            'host': host,
+            'level': entry_level,
+            'device': device_token,
+            'root': root_id,
+            'inode': inode,
+            'logical': logical,
+            'physical': physical,
+            'offset': offset,
+            'length': length,
+            'rel_path': rel_path,
+            'body': body,
+        })
+
+    if not entries:
+        return
+
+    subvol_map = None
+    if any(entry['root'] for entry in entries):
+        subvol_map = parse_subvolume_paths(mp_info['target'])
+
+    print(f"   ⚠️  Kernel reported {len(entries)} Btrfs event(s) on {device_token}:")
+    _append_error_log(error_log, f"# Errors on {device_token} ({mp_info.get('target')})")
+    for entry in entries:
+        subvol_desc = None
+        if entry['root'] is not None and subvol_map:
+            subvol_desc = subvol_map.get(entry['root'])
+        root_info = f"root {entry['root']}" if entry['root'] is not None else "root ?"
+        if subvol_desc:
+            root_info = f"{root_info} ({subvol_desc})"
+        rel_path = entry['rel_path'] or "-"
+        ts_parts = [entry['timestamp']]
+        if entry.get('host'):
+            ts_parts.append(entry['host'])
+        summary = (
+            f"      - [{' '.join(filter(None, ts_parts))}] {entry['level']} {root_info}, "
+            f"inode {entry['inode'] or '?'}, path {rel_path}"
+        )
+        detail_bits = []
+        if entry['logical'] is not None:
+            detail_bits.append(f"logical {entry['logical']}")
+        if entry['physical'] is not None:
+            detail_bits.append(f"physical {entry['physical']}")
+        if entry['offset'] is not None:
+            detail_bits.append(f"offset {entry['offset']}")
+        if entry['length'] is not None:
+            detail_bits.append(f"length {entry['length']}")
+        if detail_bits:
+            summary += " (" + ", ".join(detail_bits) + ")"
+        if entry['root'] is None and not detail_bits and (entry['rel_path'] in (None, '-', '')):
+            summary += f" — {entry['body']}"
+        print(summary)
+        if error_log_format == 'json':
+            _append_error_log(error_log,
+                              "## JSON START\n" +\
+                              json.dumps(entry,indent=2) +\
+                              "\n## JSON END\n")
+        else:
+            _append_error_log(error_log, summary)
 
 
 
@@ -557,6 +764,7 @@ def main():
     NOACT = ['echo'] if args.no_act else []
 
     scrub_max_age_days = args.scrub_max_age_days
+    error_log = args.error_log
 
     print("Btrfs Maintenance Script")
     print("="*60)
@@ -571,6 +779,7 @@ def main():
     
     # Get btrfs mountpoints
     mountpoints = get_btrfs_mountpoints()
+    journal_text = fetch_btrfs_journal()
     
     if not mountpoints:
         print("No mounted Btrfs partitions found.")
@@ -604,7 +813,8 @@ def main():
         print(f"UUID: {uuid}")
             
         metadata_allocation_info(target)
-            
+        report_btrfs_kernel_errors(mp_info, journal_text, error_log, args.error_log_format)
+
         # Run scrub
         scrub_ok = run_scrub(mp_info, max_age_days=scrub_max_age_days)
         

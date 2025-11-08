@@ -88,6 +88,10 @@ SCRUB_MAX_AGE_DAYS = 50
 
 `SCRUB_MAX_AGE_DAYS` only defines the default for the CLI; you can override it dynamically with `--scrub-max-age-days DAYS` as shown above.
 
+### Capture Kernel Error Context
+
+Every run scans recent kernel logs for Btrfs warnings/errors on each device, maps the reported `root` IDs back to their subvolume paths, and prints the affected files. To persist those findings, pass `--error-log /path/to/log`; add `--error-log-format json` if you prefer structured entries instead of the default text summary.
+
 ## How It Works
 
 ### 1. Filesystem Discovery
