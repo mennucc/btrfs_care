@@ -55,17 +55,15 @@ sudo python3 btrfs_care
 
 ### Dry-Run Mode
 
-To test the script without making changes, edit the configuration at the top of the file:
+To simulate the workflow without touching disks, run with `--no-act`:
 
-```python
-# Change this line:
-NOACT = []
-
-# To this:
-NOACT = ['echo']
+```bash
+sudo ./btrfs_care --no-act
+# or
+sudo python3 btrfs_care --no-act
 ```
 
-This will print commands instead of executing them.
+This echoes every `btrfs` command that would have run.
 
 ### Configuration
 
