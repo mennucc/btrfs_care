@@ -68,6 +68,141 @@ def no_lang_env():
     return env
 
 
+def run_cmd(cmd):
+    """Run a command and return (exitcode, stdout)."""
+    env = no_lang_env()
+    try:
+        out = subprocess.check_output(cmd, text=True, stderr=subprocess.STDOUT, env=env)
+        return 0, out
+    except subprocess.CalledProcessError as e:
+        return e.returncode, e.output
+
+
+def parse_btrfs_usage_k(mountpoint):
+    """
+    Parse `btrfs filesystem usage -k <mountpoint>` and return metadata info.
+
+    Returns:
+      {
+        "profile": "DUP" or "RAID1" or "single" or None,
+        "size_kib": float,
+        "used_kib": float,
+        "free_kib": float,
+        "free_ratio": float  # free_kib / size_kib
+      }
+    Or None on parse error.
+    """
+    rc, out = run_cmd(["btrfs", "filesystem", "usage", "-k", mountpoint])
+    if rc != 0:
+        print(f"✗ btrfs filesystem usage failed on {mountpoint}:")
+        if out:
+            print(out.strip())
+        return None
+
+    # Example lines to match:
+    # Metadata,DUP: Size:10429440.00KiB, Used:8083104.00KiB (77.50%)
+    # Metadata, RAID1: total=..., used=...  <-- older/different format sometimes
+    # We'll attempt to match the common "Size:..., Used:..." form first.
+    m = re.search(
+        r"^Metadata(?:,\s*([^:]+))?:\s*Size:([0-9.]+)KiB,\s*Used:([0-9.]+)KiB",
+        out,
+        flags=re.MULTILINE | re.IGNORECASE
+    )
+    # Fallback: sometimes the output uses `total=... used=...` format per profile
+    if not m:
+        m = re.search(
+            r"^Metadata(?:,\s*([^:]+))?:\s*total=([0-9.]+)KiB,\s*used=([0-9.]+)KiB",
+            out,
+            flags=re.MULTILINE | re.IGNORECASE
+        )
+
+    if not m:
+        print(f"✗ Could not find Metadata line in btrfs usage output for {mountpoint}.")
+        print("   Raw output:")
+        print(out)
+        return None
+
+    profile = m.group(1)
+    size_kib = float(m.group(2))
+    used_kib = float(m.group(3))
+    free_kib = size_kib - used_kib
+    free_ratio = (free_kib / size_kib) if size_kib > 0 else 0.0
+
+    # Normalize profile (strip whitespace/commas)
+    if profile:
+        profile = profile.strip().upper()
+
+    return {
+        "profile": profile,
+        "size_kib": size_kib,
+        "used_kib": used_kib,
+        "free_kib": free_kib,
+        "free_ratio": free_ratio,
+    }
+
+def human_size(kib):
+    """
+    Convert a size in KiB to a human-readable string (MiB or GiB).
+    """
+    try:
+        kib = float(kib)
+    except (TypeError, ValueError):
+        return str(kib)
+
+    mib = kib / 1024.0
+    gib = mib / 1024.0
+
+    if gib >= 1.5:
+        return f"{gib:.2f} GiB"
+    else:
+        return f"{mib:.2f} MiB"
+
+    
+def metadata_allocation_info(target):
+    info = parse_btrfs_usage_k(target)
+
+    if not info:
+        print('   ⚠️  metadata_allocation_info failed on', target)
+        return 0
+
+    ratio = info["free_ratio"]
+    pct = ratio * 100
+    profile = info.get("profile") or "unknown"
+
+    print(
+        "   ⓘ Metadata profile={profile} size={size} used={used} free={free} ({pct:.2f}% free)".format(
+            profile=profile,
+            size=human_size(info["size_kib"]),
+            used=human_size(info["used_kib"]),
+            free=human_size(info["free_kib"]),
+            pct=pct,
+        )
+    )
+
+    # Critical case
+    if ratio < 0.05:
+        print("   ❗ CRITICAL: Metadata < 5% — need expanding metadata chunks NOW")
+        #subprocess.call(["btrfs", "balance", "start",
+        #                 "-mconvert=raid1", "-dusage=50",
+        #                 mp_info["target"]])
+        return 3
+    # Warning case
+    elif ratio < 0.10:
+        print("   ⚠️  Warning: Metadata < 10% — metadata balance recommended")
+        #subprocess.call(["btrfs", "balance", "start",
+        #                 "-musage=75", mp_info["target"]])
+        return 2
+    # Info only
+    elif ratio < 0.15:
+        print("   ℹ️  Notice: metadata < 15% — consider balancing soon")
+        return 1
+    return 0
+
+
+
+
+########################################
+
 
 def extract_mountpoints_recursive(fs_entry, mountpoints):
     """Recursively extracts all mountpoints from a findmnt JSON entry."""
@@ -364,6 +499,8 @@ def run_scrub(mp_info, max_age_days=SCRUB_MAX_AGE_DAYS):
             print(f"Stderr: {e.stderr}")
         return False
 
+
+    
 def run_balance(mp_info):
     """Performs incremental balance on a btrfs mountpoint."""
     mountpoint = mp_info['target']
@@ -455,6 +592,19 @@ def main():
         # or disks have a problem... let's wait a bit
         if not scrub_ok:
             time.sleep(5)
+
+        mountpoint = mp_info['target']
+        uuid = mp_info.get('uuid', 'unknown')
+        target = mp_info['target']
+        source = mp_info['source']
+    
+        print(f"\n{'='*60}")
+        print(f"Working on: {target}")
+        print(f"Device: {source}")
+        print(f"UUID: {uuid}")
+            
+        metadata_allocation_info(target)
+            
         # Run scrub
         scrub_ok = run_scrub(mp_info, max_age_days=scrub_max_age_days)
         
