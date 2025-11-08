@@ -217,33 +217,7 @@ Add to root's crontab (`sudo crontab -e`):
 
 ### Systemd Timer
 
-Create `/etc/systemd/system/btrfs_care.service`:
-
-```ini
-[Unit]
-Description=Btrfs Maintenance (Scrub and Balance)
-After=local-fs.target
-
-[Service]
-Type=oneshot
-ExecStart=/usr/local/bin/btrfs_care
-StandardOutput=journal
-StandardError=journal
-```
-
-Create `/etc/systemd/system/btrfs_care.timer`:
-
-```ini
-[Unit]
-Description=Monthly Btrfs Maintenance
-
-[Timer]
-OnCalendar=monthly
-Persistent=true
-
-[Install]
-WantedBy=timers.target
-```
+Copy the service/timer definitions from `systemd/btrfs_care.service` and `systemd/btrfs_care.timer` into `/etc/systemd/system/`. The service runs `btrfs_care --error-log /var/log/btrfs_care.log --error-log-format json`; manage rotation via `logrotate` or your preferred tooling.
 
 Enable and start:
 
