@@ -33,6 +33,13 @@ def parse_args():
         action='store_true',
         help='Echo btrfs commands instead of executing them (dry-run).'
     )
+    parser.add_argument(
+        '--scrub-max-age-days',
+        type=int,
+        default=SCRUB_MAX_AGE_DAYS,
+        metavar='DAYS',
+        help=f'Skip scrub if last run was newer than DAYS (default {SCRUB_MAX_AGE_DAYS}).'
+    )
     return parser.parse_args()
 
 
@@ -369,12 +376,18 @@ def check_root():
 def main():
     args = parse_args()
 
+    if args.scrub_max_age_days < 0:
+        print("⚠️  --scrub-max-age-days must be zero or a positive integer.")
+        sys.exit(2)
+
     global NOACT
     NOACT = ['echo'] if args.no_act else []
 
+    scrub_max_age_days = args.scrub_max_age_days
+
     print("Btrfs Maintenance Script")
     print("="*60)
-    print(f"Configuration: Skip scrub if last run was < {SCRUB_MAX_AGE_DAYS} days ago")
+    print(f"Configuration: Skip scrub if last run was < {scrub_max_age_days} days ago")
     mode = "Dry-run (commands will be echoed)" if args.no_act else "Live execution"
     print(f"Mode: {mode}")
     print("="*60)
@@ -407,7 +420,7 @@ def main():
         if not scrub_ok:
             time.sleep(5)
         # Run scrub
-        scrub_ok = run_scrub(mp_info)
+        scrub_ok = run_scrub(mp_info, max_age_days=scrub_max_age_days)
         
         # If scrub is ok, run balance
         # If scrub returned 'skip', don't run balance
