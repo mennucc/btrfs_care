@@ -65,17 +65,28 @@ sudo python3 btrfs_care --no-act
 
 This echoes every `btrfs` command that would have run.
 
+### Customize Scrub Frequency
+
+Override the “skip scrub if already run recently” threshold per execution:
+
+```bash
+sudo ./btrfs_care --scrub-max-age-days 30
+```
+
+That example reruns scrubs whenever the previous pass is 30+ days old (default is 50 days).
+
 ### Configuration
 
-Edit these variables at the top of the script:
+Edit these defaults near the top of the script if you want different baseline behavior:
 
 ```python
 # Skip scrub if last one was less than this many days ago
 SCRUB_MAX_AGE_DAYS = 50
 
-# Dry-run mode (uncomment to enable)
-# NOACT = ['echo']
+# Dry-run mode is now controlled via --no-act / --noact CLI flag
 ```
+
+`SCRUB_MAX_AGE_DAYS` only defines the default for the CLI; you can override it dynamically with `--scrub-max-age-days DAYS` as shown above.
 
 ## How It Works
 
