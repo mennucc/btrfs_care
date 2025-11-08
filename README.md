@@ -90,7 +90,7 @@ SCRUB_MAX_AGE_DAYS = 50
 
 ### Capture Kernel Error Context
 
-Every run scans recent kernel logs for Btrfs warnings/errors on each device, maps the reported `root` IDs back to their subvolume paths, and prints the affected files. While a scrub/balance is in progress, the script also tails `journalctl -k` so new warnings show up immediately. To persist those findings, pass `--error-log /path/to/log`; add `--error-log-format json` if you prefer structured entries instead of the default text summary.
+Every run scans recent kernel logs for Btrfs warnings/errors on each device, maps the reported `root` IDs back to their subvolume paths, and prints the affected files. While a scrub/balance is in progress, the script also tails `journalctl -k` so new warnings show up immediately. To persist those findings, pass `--error-log /path/to/log`; add `--error-log-format json` if you prefer structured entries instead of the default text summary, and optionally `--error-log-rotate 10MiB` (accepts size suffixes like k/MB/MiB) to keep the log bounded with up to four backups.
 
 ### Tests
 
@@ -217,7 +217,7 @@ Add to root's crontab (`sudo crontab -e`):
 
 ### Systemd Timer
 
-Copy the service/timer definitions from `systemd/btrfs_care.service` and `systemd/btrfs_care.timer` into `/etc/systemd/system/`. The service runs `btrfs_care --error-log /var/log/btrfs_care.log --error-log-format json`; manage rotation via `logrotate` or your preferred tooling.
+Copy the service/timer definitions from `systemd/btrfs_care.service` and `systemd/btrfs_care.timer` into `/etc/systemd/system/`. The service runs `btrfs_care --error-log /var/log/btrfs_care.log --error-log-format json --error-log-rotate 10MiB`; adjust thresholds or rotation strategy as needed.
 
 Enable and start:
 
