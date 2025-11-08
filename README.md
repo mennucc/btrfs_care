@@ -92,6 +92,15 @@ SCRUB_MAX_AGE_DAYS = 50
 
 Every run scans recent kernel logs for Btrfs warnings/errors on each device, maps the reported `root` IDs back to their subvolume paths, and prints the affected files. While a scrub/balance is in progress, the script also tails `journalctl -k` so new warnings show up immediately. To persist those findings, pass `--error-log /path/to/log`; add `--error-log-format json` if you prefer structured entries instead of the default text summary.
 
+### Tests
+
+A growing set of unit tests exercises the journal-parsing helpers. Run them with:
+
+```bash
+python3 -m unittest tests.test_journal
+```
+
+Please add more tests next to this file whenever you touch parsing, logging, or other logic that doesn’t require root privileges.
 
 ## How It Works
 
