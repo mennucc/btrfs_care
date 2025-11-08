@@ -115,7 +115,7 @@ def parse_btrfs_usage_k(mountpoint):
             print(out.strip())
         return None
 
-    # Example lines to match:
+    # Metadata lines
     # Metadata,DUP: Size:10429440.00KiB, Used:8083104.00KiB (77.50%)
     # Metadata, RAID1: total=..., used=...  <-- older/different format sometimes
     # We'll attempt to match the common "Size:..., Used:..." form first.
@@ -148,8 +148,35 @@ def parse_btrfs_usage_k(mountpoint):
     if profile:
         profile = profile.strip().upper()
 
+    data_profile = None
+    data_size_kib = data_used_kib = data_free_kib = data_free_ratio = None
+    data_match = re.search(
+        r"^Data(?:,\s*([^:]+))?:\s*Size:([0-9.]+)KiB,\s*Used:([0-9.]+)KiB",
+        out,
+        flags=re.MULTILINE | re.IGNORECASE
+    )
+    if not data_match:
+        data_match = re.search(
+            r"^Data(?:,\s*([^:]+))?:\s*total=([0-9.]+)KiB,\s*used=([0-9.]+)KiB",
+            out,
+            flags=re.MULTILINE | re.IGNORECASE
+        )
+    if data_match:
+        data_profile = data_match.group(1)
+        if data_profile:
+            data_profile = data_profile.strip().upper()
+        data_size_kib = float(data_match.group(2))
+        data_used_kib = float(data_match.group(3))
+        data_free_kib = data_size_kib - data_used_kib
+        data_free_ratio = (data_free_kib / data_size_kib) if data_size_kib > 0 else 0.0
+
     return {
         "profile": profile,
+        "data_profile": data_profile,
+        "data_size_kib": data_size_kib,
+        "data_used_kib": data_used_kib,
+        "data_free_kib": data_free_kib,
+        "data_free_ratio": data_free_ratio,
         "size_kib": size_kib,
         "used_kib": used_kib,
         "free_kib": free_kib,
@@ -184,6 +211,7 @@ def metadata_allocation_info(target):
     ratio = info["free_ratio"]
     pct = ratio * 100
     profile = info.get("profile") or "unknown"
+    data_profile = info.get("data_profile") or "unknown"
 
     print(
         "   ⓘ Metadata profile={profile} size={size} used={used} free={free} ({pct:.2f}% free)".format(
@@ -194,6 +222,21 @@ def metadata_allocation_info(target):
             pct=pct,
         )
     )
+
+    data_size = info.get("data_size_kib")
+    if data_size:
+        data_free_ratio = info.get("data_free_ratio") or 0.0
+        print(
+            "   ⓘ Data profile={profile} size={size} used={used} free={free} ({pct:.2f}% free)".format(
+                profile=data_profile,
+                size=human_size(data_size),
+                used=human_size(info.get("data_used_kib")),
+                free=human_size(info.get("data_free_kib")),
+                pct=data_free_ratio * 100,
+            )
+        )
+    else:
+        print(f"   ⓘ Data profile={data_profile}")
 
     # Critical case
     if ratio < 0.05:

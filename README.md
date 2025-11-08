@@ -149,19 +149,28 @@ If shutdown is detected, the script exits gracefully.
 Btrfs Maintenance Script
 ============================================================
 Configuration: Skip scrub if last run was < 50 days ago
+Mode: Live execution
 ============================================================
 
-Found 3 unique Btrfs partitions:
-  - / (/dev/nvme0n1p6[/@rootfs]) UUID: a1b2c3d4-e5f6-...
-  - /media/root_nvme (/dev/nvme0n1p3) UUID: f1e2d3c4-b5a6-...
-  - /data (/dev/sdc2) UUID: 4e252947-b70f-...
+Found 2 unique Btrfs partitions:
+  - / (/dev/nvme0n1p5[/@ubuntu2204]) UUID: 5555f991-db31-45a1-b146-7e0f386aa59e
+  - /media/allext (/dev/sdh1[/mirrors]) UUID: 373b883a-fb68-4af4-9c3a-47e827c5899b
+
+============================================================
+Working on: /
+Device: /dev/nvme0n1p5[/@ubuntu2204]
+UUID: 5555f991-db31-45a1-b146-7e0f386aa59e
+   ⓘ Metadata profile=DUP size=9.95 GiB used=7.69 GiB free=2.26 GiB (22.68% free)
+   ⓘ Data profile=SINGLE size=431.61 GiB used=424.57 GiB free=7.03 GiB (1.63% free)
+   ⚠️  Kernel reported 1 Btrfs event(s) on nvme0n1p5:
+      - [2025-11-07T14:11:11+01:00 theserver2] WARNING root ?, inode ?, path - — space cache v1 is being deprecated and will be removed in a future release, please use -o space_cache=v2
 
 ============================================================
 Starting scrub on: /
-Device: /dev/nvme0n1p6[/@rootfs]
-UUID: a1b2c3d4-e5f6-...
+Device: /dev/nvme0n1p5[/@ubuntu2204]
+UUID: 5555f991-db31-45a1-b146-7e0f386aa59e
 ============================================================
-ℹ️  Last scrub: 2025-09-15 10:30:45 (33 days ago)
+ℹ️  Last scrub: 2025-10-18 11:40:32 (21 days ago)
 ✓ Scrub is recent (< 50 days), skipping...
 
 ============================================================
@@ -173,7 +182,26 @@ Done, had to relocate 0 out of 45 chunks
 → Running balance with -dusage=10...
 Done, had to relocate 3 out of 45 chunks
 ...
+→ Running balance with -musage=90...
+Done, had to relocate 0 out of 12 chunks
+
 ✓ All balance operations completed for /
+
+============================================================
+Working on: /media/allext
+Device: /dev/sdh1[/mirrors]
+UUID: 373b883a-fb68-4af4-9c3a-47e827c5899b
+   ⓘ Metadata profile=DUP size=29.00 GiB used=28.12 GiB free=897.39 MiB (3.02% free)
+   ⓘ Data profile=SINGLE size=3.63 TiB used=2.82 TiB free=845.59 GiB (19.75% free)
+   ⚠️  Kernel reported 0 Btrfs event(s) on sdh1:
+
+============================================================
+Starting scrub on: /media/allext
+Device: /dev/sdh1
+UUID: 373b883a-fb68-4af4-9c3a-47e827c5899b
+============================================================
+⚠️  Previous scrub was aborted. Resuming...
+...
 ```
 
 ## Scheduling with Cron/Systemd
