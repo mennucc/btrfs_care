@@ -16,6 +16,7 @@ import re
 import json
 import time
 import os
+import threading
 from datetime import datetime, timedelta
 
 # Configuration
@@ -305,6 +306,170 @@ def _maybe_extract_text(pattern, text):
     return None
 
 
+def _parse_btrfs_line(line, device_markers, device_token):
+    if 'BTRFS' not in line:
+        return None
+    if not any(marker in line for marker in device_markers):
+        return None
+    match = BTRFS_JOURNAL_RE.match(line.strip())
+    if not match:
+        return None
+    entry_level = match.group('level').upper()
+    if entry_level not in ('WARNING', 'ERROR', 'CRITICAL'):
+        return None
+
+    body = match.group('body')
+    prefix = match.group('prefix').strip()
+    timestamp = prefix
+    host = None
+    if prefix:
+        parts = prefix.split()
+        if parts:
+            timestamp = parts[0]
+            if len(parts) >= 2:
+                host = parts[1]
+
+    return {
+        'timestamp': timestamp,
+        'host': host,
+        'level': entry_level,
+        'device': device_token,
+        'root': _maybe_extract_int(ROOT_RE, body),
+        'inode': _maybe_extract_int(INODE_RE, body),
+        'logical': _maybe_extract_int(LOGICAL_RE, body),
+        'physical': _maybe_extract_int(PHYSICAL_RE, body),
+        'offset': _maybe_extract_int(OFFSET_RE, body),
+        'length': _maybe_extract_int(LENGTH_RE, body),
+        'rel_path': _maybe_extract_text(PATH_RE, body),
+        'body': body,
+    }
+
+
+def _summarize_btrfs_entry(entry, subvol_map):
+    subvol_desc = None
+    if entry['root'] is not None and subvol_map:
+        subvol_desc = subvol_map.get(entry['root'])
+    root_info = f"root {entry['root']}" if entry['root'] is not None else "root ?"
+    if subvol_desc:
+        root_info = f"{root_info} ({subvol_desc})"
+    rel_path = entry['rel_path'] or "-"
+    ts_parts = [entry['timestamp']]
+    if entry.get('host'):
+        ts_parts.append(entry['host'])
+    summary = (
+        f"      - [{' '.join(filter(None, ts_parts))}] {entry['level']} {root_info}, "
+        f"inode {entry['inode'] or '?'}, path {rel_path}"
+    )
+    detail_bits = []
+    if entry['logical'] is not None:
+        detail_bits.append(f"logical {entry['logical']}")
+    if entry['physical'] is not None:
+        detail_bits.append(f"physical {entry['physical']}")
+    if entry['offset'] is not None:
+        detail_bits.append(f"offset {entry['offset']}")
+    if entry['length'] is not None:
+        detail_bits.append(f"length {entry['length']}")
+    if detail_bits:
+        summary += " (" + ", ".join(detail_bits) + ")"
+    if entry['root'] is None and not detail_bits and (entry['rel_path'] in (None, '-', '')):
+        summary += f" — {entry['body']}"
+    return summary
+
+
+def _log_error_entry(entry, summary, error_log, error_log_format):
+    if not error_log:
+        return
+    if error_log_format == 'json':
+        payload = "## JSON START\n" + json.dumps(entry, indent=2) + "\n## JSON END"
+        _append_error_log(error_log, payload)
+    else:
+        _append_error_log(error_log, summary)
+
+
+class BtrfsJournalMonitor:
+    """Background journalctl follower for a single device."""
+
+    def __init__(self, mp_info, error_log, error_log_format):
+        self.mp_info = mp_info
+        self.error_log = error_log
+        self.error_log_format = error_log_format
+        self.device_path, self.device_token, self.device_markers = _normalize_block_device(
+            mp_info.get('source')
+        )
+        self.subvol_map = parse_subvolume_paths(mp_info['target'])
+        self.stop_event = threading.Event()
+        self.thread = None
+        self.proc = None
+        self.header_written = False
+
+    def start(self):
+        if not self.device_markers:
+            return
+        self.thread = threading.Thread(target=self._worker, name=f"btrfs-journal-{self.device_token}")
+        self.thread.daemon = True
+        self.thread.start()
+
+    def stop(self):
+        if not self.thread:
+            return
+        self.stop_event.set()
+        if self.proc and self.proc.poll() is None:
+            try:
+                self.proc.terminate()
+            except ProcessLookupError:
+                pass
+        if self.thread.is_alive():
+            self.thread.join(timeout=5)
+
+    def _worker(self):
+        start_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        cmd = [
+            'journalctl', '-k', '--output=short-iso', '-S', start_time, '-f', '--no-pager'
+        ]
+        try:
+            self.proc = subprocess.Popen(
+                cmd,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.DEVNULL,
+                text=True,
+                bufsize=1,
+                env=no_lang_env()
+            )
+        except (OSError, FileNotFoundError) as exc:
+            print(f"⚠️  Live journal monitoring unavailable ({exc}).")
+            return
+
+        try:
+            while not self.stop_event.is_set():
+                line = self.proc.stdout.readline()
+                if line == '':
+                    if self.proc.poll() is not None:
+                        break
+                    time.sleep(0.1)
+                    continue
+                entry = _parse_btrfs_line(line, self.device_markers, self.device_token)
+                if not entry:
+                    continue
+                if not self.header_written:
+                    _append_error_log(
+                        self.error_log,
+                        f"# Errors on {self.device_token} ({self.mp_info.get('target')})"
+                    )
+                    self.header_written = True
+                summary = _summarize_btrfs_entry(entry, self.subvol_map)
+                print(f"   ⚠️  Live kernel event on {self.device_token}:")
+                print(summary)
+                _log_error_entry(entry, summary, self.error_log, self.error_log_format)
+                if self.stop_event.is_set():
+                    break
+        finally:
+            if self.proc and self.proc.poll() is None:
+                try:
+                    self.proc.terminate()
+                except ProcessLookupError:
+                    pass
+
+
 def report_btrfs_kernel_errors(mp_info, journal_text, error_log=None, error_log_format=None):
     """Scan journalctl output for Btrfs errors related to this mount's device."""
     if not journal_text:
@@ -317,47 +482,9 @@ def report_btrfs_kernel_errors(mp_info, journal_text, error_log=None, error_log_
 
     entries = []
     for line in journal_text.splitlines():
-        if 'BTRFS' not in line:
-            continue
-        if not any(marker in line for marker in device_markers):
-            continue
-        match = BTRFS_JOURNAL_RE.match(line.strip())
-        if not match:
-            continue
-        body = match.group('body')
-        prefix = match.group('prefix').strip()
-        timestamp = prefix
-        host = None
-        if prefix:
-            parts = prefix.split()
-            if parts:
-                timestamp = parts[0]
-                if len(parts) >= 2:
-                    host = parts[1]
-        root_id = _maybe_extract_int(ROOT_RE, body)
-        inode = _maybe_extract_int(INODE_RE, body)
-        logical = _maybe_extract_int(LOGICAL_RE, body)
-        physical = _maybe_extract_int(PHYSICAL_RE, body)
-        offset = _maybe_extract_int(OFFSET_RE, body)
-        length = _maybe_extract_int(LENGTH_RE, body)
-        rel_path = _maybe_extract_text(PATH_RE, body)
-        entry_level = match.group('level').upper()
-        if entry_level not in ('WARNING', 'ERROR', 'CRITICAL'):
-            continue
-        entries.append({
-            'timestamp': timestamp,
-            'host': host,
-            'level': entry_level,
-            'device': device_token,
-            'root': root_id,
-            'inode': inode,
-            'logical': logical,
-            'physical': physical,
-            'offset': offset,
-            'length': length,
-            'rel_path': rel_path,
-            'body': body,
-        })
+        entry = _parse_btrfs_line(line, device_markers, device_token)
+        if entry:
+            entries.append(entry)
 
     if not entries:
         return
@@ -369,41 +496,9 @@ def report_btrfs_kernel_errors(mp_info, journal_text, error_log=None, error_log_
     print(f"   ⚠️  Kernel reported {len(entries)} Btrfs event(s) on {device_token}:")
     _append_error_log(error_log, f"# Errors on {device_token} ({mp_info.get('target')})")
     for entry in entries:
-        subvol_desc = None
-        if entry['root'] is not None and subvol_map:
-            subvol_desc = subvol_map.get(entry['root'])
-        root_info = f"root {entry['root']}" if entry['root'] is not None else "root ?"
-        if subvol_desc:
-            root_info = f"{root_info} ({subvol_desc})"
-        rel_path = entry['rel_path'] or "-"
-        ts_parts = [entry['timestamp']]
-        if entry.get('host'):
-            ts_parts.append(entry['host'])
-        summary = (
-            f"      - [{' '.join(filter(None, ts_parts))}] {entry['level']} {root_info}, "
-            f"inode {entry['inode'] or '?'}, path {rel_path}"
-        )
-        detail_bits = []
-        if entry['logical'] is not None:
-            detail_bits.append(f"logical {entry['logical']}")
-        if entry['physical'] is not None:
-            detail_bits.append(f"physical {entry['physical']}")
-        if entry['offset'] is not None:
-            detail_bits.append(f"offset {entry['offset']}")
-        if entry['length'] is not None:
-            detail_bits.append(f"length {entry['length']}")
-        if detail_bits:
-            summary += " (" + ", ".join(detail_bits) + ")"
-        if entry['root'] is None and not detail_bits and (entry['rel_path'] in (None, '-', '')):
-            summary += f" — {entry['body']}"
+        summary = _summarize_btrfs_entry(entry, subvol_map)
         print(summary)
-        if error_log_format == 'json':
-            _append_error_log(error_log,
-                              "## JSON START\n" +\
-                              json.dumps(entry,indent=2) +\
-                              "\n## JSON END\n")
-        else:
-            _append_error_log(error_log, summary)
+        _log_error_entry(entry, summary, error_log, error_log_format)
 
 
 
@@ -813,19 +908,25 @@ def main():
         print(f"UUID: {uuid}")
             
         metadata_allocation_info(target)
-        report_btrfs_kernel_errors(mp_info, journal_text, error_log, args.error_log_format)
 
-        # Run scrub
-        scrub_ok = run_scrub(mp_info, max_age_days=scrub_max_age_days)
-        
-        # If scrub is ok, run balance
-        # If scrub returned 'skip', don't run balance
-        if scrub_ok == 'skip':
-            print(f"\n⚠️  Skipping balance for {mp_info['target']} (scrub is running)")
-        elif scrub_ok:
-            run_balance(mp_info)
-        else:
-            print(f"\n⚠️  Balance skipped for {mp_info['target']} due to scrub errors")
+        monitor = BtrfsJournalMonitor(mp_info, error_log, args.error_log_format)
+        monitor.start()
+        try:
+            report_btrfs_kernel_errors(mp_info, journal_text, error_log, args.error_log_format)
+            
+            # Run scrub
+            scrub_ok = run_scrub(mp_info, max_age_days=scrub_max_age_days)
+            
+            # If scrub is ok, run balance
+            # If scrub returned 'skip', don't run balance
+            if scrub_ok == 'skip':
+                print(f"\n⚠️  Skipping balance for {mp_info['target']} (scrub is running)")
+            elif scrub_ok:
+                run_balance(mp_info)
+            else:
+                print(f"\n⚠️  Balance skipped for {mp_info['target']} due to scrub errors")
+        finally:
+            monitor.stop()
     
     print("\n" + "="*60)
     print("Maintenance completed")
