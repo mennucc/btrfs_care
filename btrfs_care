@@ -123,11 +123,12 @@ def run_cmd(cmd):
         return e.returncode, e.output
 
 
-def parse_btrfs_usage_k(mountpoint):
+def parse_btrfs_usage_k(mountpoint, uuid):
     """
     Parse `btrfs filesystem usage -k <mountpoint>` and return metadata info.
 
     Returns:
+      two dicts, one for metadata,one for data, each of the form
       {
         "profile": "DUP" or "RAID1" or "single" or None,
         "size_kib": float,
@@ -199,17 +200,27 @@ def parse_btrfs_usage_k(mountpoint):
         data_free_kib = data_size_kib - data_used_kib
         data_free_ratio = (data_free_kib / data_size_kib) if data_size_kib > 0 else 0.0
 
+    now = datetime.now().isoformat()
     return {
+        "timestamp" : now, 
+        "device" : mountpoint,
+        "uuid" : uuid,
+        'type': 'metadata', 
         "profile": profile,
-        "data_profile": data_profile,
-        "data_size_kib": data_size_kib,
-        "data_used_kib": data_used_kib,
-        "data_free_kib": data_free_kib,
-        "data_free_ratio": data_free_ratio,
         "size_kib": size_kib,
         "used_kib": used_kib,
         "free_kib": free_kib,
         "free_ratio": free_ratio,
+    }, {
+        "timestamp" : now, 
+        "device" : mountpoint,
+        'type': 'data', 
+        "uuid" : uuid,
+        "profile": data_profile,
+        "size_kib": data_size_kib,
+        "used_kib": data_used_kib,
+        "free_kib": data_free_kib,
+        "free_ratio": data_free_ratio,
     }
 
 def human_size(kib):
@@ -230,19 +241,25 @@ def human_size(kib):
         return f"{mib:.2f} MiB"
 
     
-def metadata_allocation_info(target):
-    info = parse_btrfs_usage_k(target)
+def metadata_allocation_info(target,
+                             uuid=None, 
+                             info = None, 
+                             log=None, log_format=None, log_rotate=None,
+                             ):
 
+    if not info:
+        info = parse_btrfs_usage_k(target, uuid)
     if not info:
         print('   ⚠️  metadata_allocation_info failed on', target)
         return 0
+    info, data_info = info
 
     ratio = info["free_ratio"]
     pct = ratio * 100
     profile = info.get("profile") or "unknown"
-    data_profile = info.get("data_profile") or "unknown"
+    data_profile = (data_info or {}).get("profile") or "unknown"
 
-    print(
+    output = (
         "   ⓘ Metadata profile={profile} size={size} used={used} free={free} ({pct:.2f}% free)".format(
             profile=profile,
             size=human_size(info["size_kib"]),
@@ -251,21 +268,25 @@ def metadata_allocation_info(target):
             pct=pct,
         )
     )
+    print(output)
+    _log_error_entry(entry=info, summary='# '+output + '\n', log=log, log_format=log_format, rotate_size=log_rotate)
 
-    data_size = info.get("data_size_kib")
+    data_size = (data_info or {}).get("size_kib")
     if data_size:
-        data_free_ratio = info.get("data_free_ratio") or 0.0
-        print(
+        data_free_ratio = (data_info.get("free_ratio") or 0.0)
+        output = (
             "   ⓘ Data profile={profile} size={size} used={used} free={free} ({pct:.2f}% free)".format(
                 profile=data_profile,
                 size=human_size(data_size),
-                used=human_size(info.get("data_used_kib")),
-                free=human_size(info.get("data_free_kib")),
+                used=human_size(data_info.get("used_kib")),
+                free=human_size(data_info.get("free_kib")),
                 pct=data_free_ratio * 100,
             )
         )
     else:
-        print(f"   ⓘ Data profile={data_profile}")
+        output = (f"   ⓘ Data profile={data_profile}")
+    print(output)
+    _log_error_entry(entry=data_info, summary='# '+output + '\n', log=log, log_format=log_format, rotate_size=log_rotate)
 
     # Critical case
     if ratio < 0.05:
@@ -1004,7 +1025,12 @@ def main():
         print(f"Device: {source}")
         print(f"UUID: {uuid}")
             
-        metadata_allocation_info(target)
+        metadata_allocation_info(target,
+                                 uuid=uuid, 
+                                 log=log,
+                                 log_format=args.log_format,
+                                 log_rotate=args.log_rotate,
+                                 )
 
         monitor = BtrfsJournalMonitor(
             mp_info,
