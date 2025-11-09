@@ -1,0 +1,48 @@
+.TH BTRFS_CARE 1 "November 2025" "btrfs_care 0.1.0" "User Commands"
+.SH NAME
+btrfs_care \- automated scrub/balance maintenance for Btrfs filesystems
+.SH SYNOPSIS
+.B btrfs_care
+.RI [ options ]
+.SH DESCRIPTION
+\fBbtrfs_care\fP iterates over every mounted Btrfs filesystem, checks recent
+scrub status and kernel warnings, resumes aborted scrubs, and runs a
+sequence of incremental balance operations.  It can log activity to a
+text or JSON file and ships a test mode that drives the logic against
+pre-recorded fixtures.
+.SH OPTIONS
+.TP
+.BR --no-act
+Echo every \(lqbtrfs\(rq command instead of running it.
+.TP
+.BR --scrub-max-age-days " " \fIDAYS\fP
+Skip scrubs that completed more recently than \fIDAYS\fP (default 50).
+.TP
+.BR --log " " \fIPATH\fP
+Append parsed kernel events and allocation summaries to \fIPATH\fP.
+.TP
+.BR --log-format " " \fItext\fP | \fIjson\fP
+Control the log format (default \fItext\fP).
+.TP
+.BR --log-rotate " " \fISIZE\fP
+Rotate the log when it exceeds \fISIZE\fP bytes (accepts suffixes such as
+\(lq10MiB\(rq, keeps up to four backups).
+.TP
+.BR --test-debug
+Force \fB--no-act\fP, prepend the bundled \fIfakebin/\fP directory to PATH, and
+skip root checks so you can exercise the workflow without touching
+real disks.
+.SH FILES
+.TP
+.I /usr/lib/btrfs_care/fakebin
+Helper fixtures used by \fB--test-debug\fP.
+.TP
+.I /lib/systemd/system/btrfs_care.service
+Systemd unit that runs \fBbtrfs_care\fP on demand.
+.TP
+.I /lib/systemd/system/btrfs_care.timer
+Timer unit that can schedule periodic maintenance.
+.SH AUTHOR
+Andrea C. G. Mennucci.
+.SH SEE ALSO
+.BR btrfs (8)

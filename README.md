@@ -112,6 +112,18 @@ python3 -m unittest tests.test_journal tests.test_cli
 
 The CLI tests invoke `python3 btrfs_care --test-debug` under the hood, so they don’t need sudo or live disks. Add more cases alongside these whenever you touch logging, argument parsing, or fixture behavior.
 
+### Debian/Ubuntu Packaging
+
+The repository includes a ready-to-build `debian/` directory. To produce a `.deb`:
+
+```bash
+./dpkg-buildpackage.sh
+```
+
+The helper script archives `git HEAD` into a temporary directory, runs `dpkg-buildpackage` with provided arguments, and copies the resulting `.deb/.dsc/.changes/.buildinfo` artifacts into `build/`.
+
+The installed package drops `btrfs_care` under `/usr/bin`, places the systemd service/timer units in `/lib/systemd/system/`, the fixtures under `/usr/lib/btrfs_care/fakebin/`, and the man page as `btrfs_care(1)`.
+
 ## How It Works
 
 ### 1. Filesystem Discovery

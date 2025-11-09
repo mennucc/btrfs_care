@@ -19,6 +19,7 @@ import os
 import threading
 import socket
 from datetime import datetime, timedelta
+from pathlib import Path
 
 # Configuration
 SCRUB_MAX_AGE_DAYS = 50  # Skip scrub if last one was less than this many days ago
@@ -52,6 +53,20 @@ def _now_host():
     stamp = datetime.now().astimezone().replace(microsecond=0).isoformat()
     host = socket.gethostname()
     return stamp, host
+
+
+def _find_fakebin_dir():
+    script_path = Path(__file__).resolve()
+    candidates = [
+        script_path.parent / 'fakebin',
+        #script_path.parent.parent / 'fakebin',
+        Path('/usr/lib/btrfs_care/fakebin'),
+    ]
+    for candidate in candidates:
+        if candidate.is_dir():
+            if (candidate / 'btrfs').exists():
+                return candidate
+    return None
 
 
 def parse_args():
@@ -994,7 +1009,12 @@ def main():
 
     global NOACT
     if args.test_debug:
-        os.environ['PATH'] = f"{os.path.join(os.path.dirname(__file__), 'fakebin')}:{os.environ['PATH']}"
+        fakebin_dir = _find_fakebin_dir()
+        if fakebin_dir:
+            os.environ['PATH'] = f"{fakebin_dir}{os.pathsep}{os.environ.get('PATH', '')}"
+        else:
+            print("⚠️  --test-debug requested but fakebin directory not found", file=sys.stderr)
+            sys.exit(2)
         args.no_act = True
     NOACT = ['echo'] if args.no_act else []
 

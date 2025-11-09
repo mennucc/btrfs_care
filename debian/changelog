@@ -1,0 +1,7 @@
+btrfs-care (0.1.0) unstable; urgency=medium
+
+  * Initial packaging for Debian/Ubuntu.
+    - install CLI, systemd units, fakebin fixtures, and man page.
+    - provide test mode via --test-debug.
+
+ -- A Mennucc1 <mennucc1@debian.org>  Sun, 09 Nov 2025 14:45:00 +0100
