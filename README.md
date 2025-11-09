@@ -271,6 +271,14 @@ This is intentional behavior to prevent data corruption. The script will resume 
 
 Contributions are welcome! Please feel free to submit issues or pull requests.
 
+
+If you wish to help in developing, please
+
+    git config --local core.hooksPath .githooks/
+
+so that each commit is pre tested.
+
+
 ## License
 
 MIT License - feel free to use and modify as needed.

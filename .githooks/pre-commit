@@ -1,0 +1,61 @@
+#!/bin/bash
+
+set -e
+
+if test ! -d ".git" ; then
+ echo Must be run from the base directory of the GIT repository
+ exit
+fi
+
+################
+
+
+if git diff --cached | egrep -2 '^(old.mode|new.mode)' ; then
+ echo 'Please do not change mode of files'
+ exit 1
+fi
+
+
+
+######### prepare test dir
+
+
+t=$(mktemp -d)
+
+test -d $t
+
+#trap "rm -fr \"$\"t" EXIT ERR HUP INT QUIT TERM
+
+git archive HEAD | ( cd $t ; tar xf - )
+
+
+git diff --cached | ( cd $t ; patch -p1 )
+
+########## flake, pylint
+
+pushd $t
+
+flake8 .  --select=E9,F63,F7,F82
+
+for s in tests/test*py ; do
+    if test -f "$s" ; then
+	python3 "$s" -v
+    fi
+done
+
+
+o=$(mktemp)
+
+l=$(mktemp)
+echo program output in  $o , log in $l
+
+if ! nohup ./btrfs_care --test-debug --log "$l" --log-format json > $o ; then
+    echo ERROR
+    exit 1
+fi
+
+# I hate pytest
+
+echo You should: rm -fr "$t"
+
+popd
