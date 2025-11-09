@@ -1,0 +1,5 @@
+Label: ubuntu
+    uuid: 5555f991-db31-45a1-b146-7e0f386aa59e
+    Total devices 1 FS bytes used 432.33GiB
+
+    devid    1 size 454.67GiB used 441.91GiB path /dev/nvme0n1p5

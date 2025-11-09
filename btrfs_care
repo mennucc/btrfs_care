@@ -92,6 +92,11 @@ def parse_args():
         type=_parse_size,
         help='If set, rotate the error log after it exceeds this size (accepts suffixes like 10MiB, 500k, etc.; single backup PATH.1).'
     )
+    parser.add_argument(
+        '--test-debug',
+        action='store_true',
+        help='Run in test mode: enable --no-act, use fakebin/ commands, and bypass root checks.'
+    )
     return parser.parse_args()
 
 #################
@@ -988,6 +993,9 @@ def main():
         sys.exit(2)
 
     global NOACT
+    if args.test_debug:
+        os.environ['PATH'] = f"{os.path.join(os.path.dirname(__file__), 'fakebin')}:{os.environ['PATH']}"
+        args.no_act = True
     NOACT = ['echo'] if args.no_act else []
 
     scrub_max_age_days = args.scrub_max_age_days
@@ -1001,8 +1009,9 @@ def main():
     print("="*60)
     
     # Check root privileges
-    if not check_root():
-        sys.exit(1)
+    if not args.test_debug:
+        if not check_root():
+            sys.exit(1)
     
     # Get btrfs mountpoints
     mountpoints = get_btrfs_mountpoints()

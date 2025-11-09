@@ -65,6 +65,16 @@ sudo python3 btrfs_care --no-act
 
 This echoes every `btrfs` command that would have run.
 
+### Test Mode (no sudo)
+
+To exercise the code paths without touching disks, use the bundled fixtures under `fakebin/`:
+
+```bash
+python3 btrfs_care --test-debug
+```
+
+This forces `--no-act`, injects `fakebin/` at the front of `PATH`, bypasses the root check, and logs against the captured `findmnt`, `btrfs`, and `journalctl` transcripts.
+
 ### Customize Scrub Frequency
 
 Override the “skip scrub if already run recently” threshold per execution:

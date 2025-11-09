@@ -1,0 +1,49 @@
+{
+   "filesystems": [
+      {
+         "target": "/",
+         "source": "/dev/nvme0n1p5[/@ubuntu2204]",
+         "fstype": "btrfs",
+         "options": "rw,relatime,ssd,discard=async,space_cache,subvolid=504,subvol=/@ubuntu2204",
+         "children": [
+            {
+               "target": "/var/snap/firefox/common/host-hunspell",
+               "source": "/dev/nvme0n1p5[/@ubuntu2204/usr/share/hunspell]",
+               "fstype": "btrfs",
+               "options": "ro,noexec,noatime,ssd,discard=async,space_cache,subvolid=504,subvol=/@ubuntu2204"
+            },{
+               "target": "/home",
+               "source": "/dev/nvme0n1p5[/@home]",
+               "fstype": "btrfs",
+               "options": "rw,relatime,ssd,discard=async,space_cache,subvolid=257,subvol=/@home"
+            }
+         ]
+      },
+      {
+         "target": "/media/mirrors",
+         "source": "/dev/sdh1[/mirrors]",
+         "fstype": "btrfs",
+         "options": "rw,nosuid,nodev,noexec,relatime,space_cache,subvolid=257,subvol=/mirrors"
+      },{
+         "target": "/media/home",
+         "source": "/dev/mapper/raid3lvm3-home_btrfs",
+         "fstype": "btrfs",
+         "options": "rw,relatime,space_cache,subvolid=5,subvol=/"
+      },{
+         "target": "/media/backups",
+         "source": "/dev/sdh1[/backups]",
+         "fstype": "btrfs",
+         "options": "rw,nosuid,nodev,noexec,relatime,space_cache,subvolid=258,subvol=/backups"
+      },{
+         "target": "/media/backup_cells",
+         "source": "/dev/sdh1[/backup_cells]",
+         "fstype": "btrfs",
+         "options": "rw,nosuid,nodev,noexec,relatime,space_cache,subvolid=259,subvol=/backup_cells"
+      },{
+         "target": "/media/allext",
+         "source": "/dev/sdh1",
+         "fstype": "btrfs",
+         "options": "rw,nosuid,nodev,noexec,relatime,space_cache,subvolid=5,subvol=/"
+      }
+   ]
+}

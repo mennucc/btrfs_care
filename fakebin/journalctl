@@ -1,0 +1,8 @@
+#!/bin/bash
+
+dir=$(dirname "$0")
+
+cat "$dir"/journalctl_a.txt
+cat "$dir"/journalctl_t.txt
+
+

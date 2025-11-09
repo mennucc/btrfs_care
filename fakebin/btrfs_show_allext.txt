@@ -1,0 +1,5 @@
+Label: allext
+    uuid: 373b883a-fb68-4af4-9c3a-47e827c5899b
+    Total devices 1 FS bytes used 2.94TiB
+
+    devid    1 size 3.63TiB used 3.45TiB path /dev/sdh1

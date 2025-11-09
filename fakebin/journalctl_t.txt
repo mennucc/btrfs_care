@@ -1,0 +1,1381 @@
+2025-11-06T01:58:58+01:00 tonellinoble kernel: Btrfs loaded, zoned=yes, fsverity=yes
+2025-11-06T01:58:58+01:00 tonellinoble systemd[1]: Expecting device dev-mapper-raid3lvm3\x2dhome_btrfs.device - /dev/mapper/raid3lvm3-home_btrfs...
+2025-11-06T01:59:00+01:00 tonellinoble kernel: BTRFS: device label BACKUPS2022 devid 1 transid 384931 /dev/sdh1 scanned by mount (583)
+2025-11-06T01:59:00+01:00 tonellinoble kernel: BTRFS info (device sdh1): first mount of filesystem 373b883a-fb68-4af4-9c3a-47e827c5899b
+2025-11-06T01:59:00+01:00 tonellinoble kernel: BTRFS info (device sdh1): using crc32c (crc32c-intel) checksum algorithm
+2025-11-06T01:59:00+01:00 tonellinoble kernel: BTRFS info (device sdh1): disk space caching is enabled
+2025-11-06T01:59:01+01:00 tonellinoble kernel: BTRFS info (device sdh1): bdev /dev/sdh1 errs: wr 0, rd 0, flush 0, corrupt 8, gen 0
+2025-11-06T01:59:02+01:00 tonellinoble kernel: BTRFS: device fsid 2efac8bf-de30-40b9-9076-882b4b666393 devid 1 transid 4470403 /dev/mapper/raid3lvm3-home_btrfs scanned by mount (819)
+2025-11-06T01:59:02+01:00 tonellinoble kernel: BTRFS info (device dm-7): first mount of filesystem 2efac8bf-de30-40b9-9076-882b4b666393
+2025-11-06T01:59:02+01:00 tonellinoble kernel: BTRFS info (device dm-7): using crc32c (crc32c-intel) checksum algorithm
+2025-11-06T01:59:02+01:00 tonellinoble kernel: BTRFS info (device dm-7): disk space caching is enabled
+2025-11-06T01:59:03+01:00 tonellinoble kernel: BTRFS info (device dm-7): bdev /dev/mapper/raid3lvm3-home_btrfs errs: wr 0, rd 0, flush 0, corrupt 5, gen 0
+2025-11-06T01:59:30+01:00 tonellinoble kernel: BTRFS: device label data5_ devid 1 transid 4054 /dev/mapper/raid1lvm1-data5_ scanned by lxc-autostart (2473)
+2025-11-06T01:59:30+01:00 tonellinoble kernel: BTRFS info (device dm-19): first mount of filesystem a24a966e-6266-4fc6-bc22-08e89f931045
+2025-11-06T01:59:30+01:00 tonellinoble kernel: BTRFS info (device dm-19): using crc32c (crc32c-intel) checksum algorithm
+2025-11-06T01:59:30+01:00 tonellinoble kernel: BTRFS info (device dm-19): disk space caching is enabled
+2025-11-06T09:36:52+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: start -dusage=0
+2025-11-06T09:36:52+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: ended with status: 0
+2025-11-06T09:36:52+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: start -dusage=10
+2025-11-06T09:36:52+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: ended with status: 0
+2025-11-06T09:36:53+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: start -dusage=20
+2025-11-06T09:36:53+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 270817820672 flags data
+2025-11-06T09:36:58+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 49 extents, stage: move data extents
+2025-11-06T09:37:00+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 49 extents, stage: update data pointers
+2025-11-06T09:37:01+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: ended with status: 0
+2025-11-06T09:37:01+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: start -dusage=30
+2025-11-06T09:37:01+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 277260271616 flags data
+2025-11-06T09:37:06+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 46 extents, stage: move data extents
+2025-11-06T09:37:07+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 46 extents, stage: update data pointers
+2025-11-06T09:37:08+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: ended with status: 0
+2025-11-06T09:37:08+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: start -dusage=40
+2025-11-06T09:37:08+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 278334013440 flags data
+2025-11-06T09:37:13+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 46 extents, stage: move data extents
+2025-11-06T09:37:14+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 46 extents, stage: update data pointers
+2025-11-06T09:37:16+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 276186529792 flags data
+2025-11-06T09:37:26+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 19 extents, stage: move data extents
+2025-11-06T09:37:27+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 19 extents, stage: update data pointers
+2025-11-06T09:37:28+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: ended with status: 0
+2025-11-06T09:37:28+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: start -dusage=50
+2025-11-06T09:37:28+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 280481497088 flags data
+2025-11-06T09:37:38+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 19 extents, stage: move data extents
+2025-11-06T09:37:39+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 19 extents, stage: update data pointers
+2025-11-06T09:37:40+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 279407755264 flags data
+2025-11-06T09:37:45+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 46 extents, stage: move data extents
+2025-11-06T09:37:46+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 46 extents, stage: update data pointers
+2025-11-06T09:37:47+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: ended with status: 0
+2025-11-06T09:37:47+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: start -dusage=60
+2025-11-06T09:37:47+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 282628980736 flags data
+2025-11-06T09:37:52+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 46 extents, stage: move data extents
+2025-11-06T09:37:53+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 46 extents, stage: update data pointers
+2025-11-06T09:37:54+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 281555238912 flags data
+2025-11-06T09:38:04+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 19 extents, stage: move data extents
+2025-11-06T09:38:05+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 19 extents, stage: update data pointers
+2025-11-06T09:38:06+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: ended with status: 0
+2025-11-06T09:38:06+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: start -dusage=70
+2025-11-06T09:38:06+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 284776464384 flags data
+2025-11-06T09:38:16+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 19 extents, stage: move data extents
+2025-11-06T09:38:17+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 19 extents, stage: update data pointers
+2025-11-06T09:38:18+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 283702722560 flags data
+2025-11-06T09:38:23+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 46 extents, stage: move data extents
+2025-11-06T09:38:24+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 46 extents, stage: update data pointers
+2025-11-06T09:38:25+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: ended with status: 0
+2025-11-06T09:38:25+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: start -dusage=80
+2025-11-06T09:38:25+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 286923948032 flags data
+2025-11-06T09:38:30+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 46 extents, stage: move data extents
+2025-11-06T09:38:31+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 46 extents, stage: update data pointers
+2025-11-06T09:38:32+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 285850206208 flags data
+2025-11-06T09:38:42+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 19 extents, stage: move data extents
+2025-11-06T09:38:43+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 19 extents, stage: update data pointers
+2025-11-06T09:38:44+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: ended with status: 0
+2025-11-06T09:38:44+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: start -dusage=90
+2025-11-06T09:38:44+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 289071431680 flags data
+2025-11-06T09:38:54+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 19 extents, stage: move data extents
+2025-11-06T09:38:55+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 19 extents, stage: update data pointers
+2025-11-06T09:38:56+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 287997689856 flags data
+2025-11-06T09:39:00+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 46 extents, stage: move data extents
+2025-11-06T09:39:02+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 46 extents, stage: update data pointers
+2025-11-06T09:39:02+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: ended with status: 0
+2025-11-06T09:39:03+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: start -musage=0 -susage=0
+2025-11-06T09:39:03+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: ended with status: 0
+2025-11-06T09:39:03+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: start -musage=10 -susage=10
+2025-11-06T09:39:03+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 267563040768 flags system|dup
+2025-11-06T09:39:04+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: ended with status: 0
+2025-11-06T09:39:04+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: start -musage=20 -susage=20
+2025-11-06T09:39:04+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 292292657152 flags system|dup
+2025-11-06T09:39:04+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: ended with status: 0
+2025-11-06T09:39:05+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: start -musage=30 -susage=30
+2025-11-06T09:39:05+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 292326211584 flags system|dup
+2025-11-06T09:39:05+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: ended with status: 0
+2025-11-06T09:39:06+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: start -musage=40 -susage=40
+2025-11-06T09:39:06+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 292359766016 flags system|dup
+2025-11-06T09:39:06+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: ended with status: 0
+2025-11-06T09:39:07+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: start -musage=50 -susage=50
+2025-11-06T09:39:07+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 292393320448 flags system|dup
+2025-11-06T09:39:07+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 267596595200 flags metadata|dup
+2025-11-06T09:41:27+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 29155 extents, stage: move data extents
+2025-11-06T09:41:35+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: ended with status: 0
+2025-11-06T09:41:36+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: start -musage=60 -susage=60
+2025-11-06T09:41:36+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 293534171136 flags metadata|dup
+2025-11-06T09:41:36+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 293500616704 flags metadata|dup
+2025-11-06T09:41:37+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 292997300224 flags metadata|dup
+2025-11-06T09:42:09+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 13194 extents, stage: move data extents
+2025-11-06T09:42:16+01:00 tonellinoble kernel: BTRFS info (device dm-7): 1 enospc errors during balance
+2025-11-06T09:42:16+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: ended with status: -28
+2025-11-06T09:53:16+01:00 tonellinoble kernel: BTRFS info (device sdh1): scrub: started on devid 1
+2025-11-06T15:29:30+01:00 tonellinoble kernel: BTRFS info (device sdh1): scrub: finished on devid 1 with status: 0
+2025-11-06T16:08:43+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: start -dusage=0
+2025-11-06T16:08:43+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: ended with status: 0
+2025-11-06T16:08:43+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: start -dusage=10
+2025-11-06T16:08:43+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 3291183316992 flags data
+2025-11-06T16:08:46+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 1 extents, stage: move data extents
+2025-11-06T16:08:48+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 1 extents, stage: update data pointers
+2025-11-06T16:08:49+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2900274184192 flags data
+2025-11-06T16:08:50+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 6 extents, stage: move data extents
+2025-11-06T16:09:16+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 6 extents, stage: update data pointers
+2025-11-06T16:09:19+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2897052958720 flags data
+2025-11-06T16:09:21+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 50 extents, stage: move data extents
+2025-11-06T16:10:07+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 50 extents, stage: update data pointers
+2025-11-06T16:10:15+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2889536765952 flags data
+2025-11-06T16:10:16+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 4 extents, stage: move data extents
+2025-11-06T16:10:23+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 4 extents, stage: update data pointers
+2025-11-06T16:10:27+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2882020573184 flags data
+2025-11-06T16:10:27+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 1 extents, stage: move data extents
+2025-11-06T16:10:33+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 1 extents, stage: update data pointers
+2025-11-06T16:10:37+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2871283154944 flags data
+2025-11-06T16:10:39+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 26 extents, stage: move data extents
+2025-11-06T16:10:57+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 26 extents, stage: update data pointers
+2025-11-06T16:11:09+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2860545736704 flags data
+2025-11-06T16:11:11+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 3 extents, stage: move data extents
+2025-11-06T16:11:14+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 3 extents, stage: update data pointers
+2025-11-06T16:11:15+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2857324511232 flags data
+2025-11-06T16:11:16+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 1 extents, stage: move data extents
+2025-11-06T16:11:18+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 1 extents, stage: update data pointers
+2025-11-06T16:11:19+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2853029543936 flags data
+2025-11-06T16:11:24+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 112 extents, stage: move data extents
+2025-11-06T16:12:17+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 112 extents, stage: update data pointers
+2025-11-06T16:12:26+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2833702191104 flags data
+2025-11-06T16:12:30+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 8 extents, stage: move data extents
+2025-11-06T16:12:40+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 8 extents, stage: update data pointers
+2025-11-06T16:12:44+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2787531292672 flags data
+2025-11-06T16:12:46+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 12 extents, stage: move data extents
+2025-11-06T16:13:08+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 12 extents, stage: update data pointers
+2025-11-06T16:13:14+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2783236325376 flags data
+2025-11-06T16:13:15+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 9 extents, stage: move data extents
+2025-11-06T16:13:26+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 9 extents, stage: update data pointers
+2025-11-06T16:13:30+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2778941358080 flags data
+2025-11-06T16:13:32+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 9 extents, stage: move data extents
+2025-11-06T16:13:43+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 9 extents, stage: update data pointers
+2025-11-06T16:13:50+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2775720132608 flags data
+2025-11-06T16:13:53+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 43 extents, stage: move data extents
+2025-11-06T16:14:11+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 43 extents, stage: update data pointers
+2025-11-06T16:14:18+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2771425165312 flags data
+2025-11-06T16:14:22+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 13 extents, stage: move data extents
+2025-11-06T16:14:31+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 13 extents, stage: update data pointers
+2025-11-06T16:14:36+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2756359225344 flags data
+2025-11-06T16:14:37+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 7 extents, stage: move data extents
+2025-11-06T16:14:46+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 7 extents, stage: update data pointers
+2025-11-06T16:14:49+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2754211741696 flags data
+2025-11-06T16:14:50+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 10 extents, stage: move data extents
+2025-11-06T16:15:00+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 10 extents, stage: update data pointers
+2025-11-06T16:15:05+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2743474323456 flags data
+2025-11-06T16:15:11+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 63 extents, stage: move data extents
+2025-11-06T16:15:28+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 63 extents, stage: update data pointers
+2025-11-06T16:15:35+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2689787232256 flags data
+2025-11-06T16:15:38+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 8 extents, stage: move data extents
+2025-11-06T16:15:49+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 8 extents, stage: update data pointers
+2025-11-06T16:15:55+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2684418523136 flags data
+2025-11-06T16:15:56+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 1 extents, stage: move data extents
+2025-11-06T16:15:58+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 1 extents, stage: update data pointers
+2025-11-06T16:15:59+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2682271039488 flags data
+2025-11-06T16:16:00+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 2 extents, stage: move data extents
+2025-11-06T16:16:03+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 2 extents, stage: update data pointers
+2025-11-06T16:16:04+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2675828588544 flags data
+2025-11-06T16:16:13+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 493 extents, stage: move data extents
+2025-11-06T16:16:50+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 493 extents, stage: update data pointers
+2025-11-06T16:16:56+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2665057615872 flags data
+2025-11-06T16:16:58+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 87 extents, stage: move data extents
+2025-11-06T16:17:13+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 87 extents, stage: update data pointers
+2025-11-06T16:17:18+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2632845361152 flags data
+2025-11-06T16:17:20+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 11 extents, stage: move data extents
+2025-11-06T16:17:32+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 11 extents, stage: update data pointers
+2025-11-06T16:17:37+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2626402910208 flags data
+2025-11-06T16:17:41+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 35 extents, stage: move data extents
+2025-11-06T16:17:48+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 35 extents, stage: update data pointers
+2025-11-06T16:17:52+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2621034201088 flags data
+2025-11-06T16:17:56+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 14 extents, stage: move data extents
+2025-11-06T16:18:10+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 14 extents, stage: update data pointers
+2025-11-06T16:18:16+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2615665491968 flags data
+2025-11-06T16:18:20+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 27 extents, stage: move data extents
+2025-11-06T16:18:27+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 27 extents, stage: update data pointers
+2025-11-06T16:18:30+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2607075557376 flags data
+2025-11-06T16:18:33+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 35 extents, stage: move data extents
+2025-11-06T16:18:48+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 35 extents, stage: update data pointers
+2025-11-06T16:18:55+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2606001815552 flags data
+2025-11-06T16:18:58+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 6 extents, stage: move data extents
+2025-11-06T16:19:04+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 6 extents, stage: update data pointers
+2025-11-06T16:19:08+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2582379495424 flags data
+2025-11-06T16:19:11+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 69 extents, stage: move data extents
+2025-11-06T16:19:24+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 69 extents, stage: update data pointers
+2025-11-06T16:19:30+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2573789560832 flags data
+2025-11-06T16:19:35+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 117 extents, stage: move data extents
+2025-11-06T16:19:59+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 117 extents, stage: update data pointers
+2025-11-06T16:20:05+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2570568335360 flags data
+2025-11-06T16:20:08+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 24 extents, stage: move data extents
+2025-11-06T16:20:29+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 24 extents, stage: update data pointers
+2025-11-06T16:20:38+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2551240982528 flags data
+2025-11-06T16:20:43+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 107 extents, stage: move data extents
+2025-11-06T16:21:05+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 107 extents, stage: update data pointers
+2025-11-06T16:21:11+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2548019757056 flags data
+2025-11-06T16:21:16+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 156 extents, stage: move data extents
+2025-11-06T16:21:34+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 156 extents, stage: update data pointers
+2025-11-06T16:21:42+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2178652569600 flags data
+2025-11-06T16:21:47+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 187 extents, stage: move data extents
+2025-11-06T16:22:13+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 187 extents, stage: update data pointers
+2025-11-06T16:22:20+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2138924122112 flags data
+2025-11-06T16:22:24+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 199 extents, stage: move data extents
+2025-11-06T16:23:10+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 199 extents, stage: update data pointers
+2025-11-06T16:23:20+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: ended with status: 0
+2025-11-06T16:23:22+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: start -dusage=20
+2025-11-06T16:23:22+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2902421667840 flags data
+2025-11-06T16:23:30+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 429 extents, stage: move data extents
+2025-11-06T16:24:05+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 429 extents, stage: update data pointers
+2025-11-06T16:24:14+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2898126700544 flags data
+2025-11-06T16:24:21+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 230 extents, stage: move data extents
+2025-11-06T16:24:58+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 230 extents, stage: update data pointers
+2025-11-06T16:25:10+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2894905475072 flags data
+2025-11-06T16:25:14+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 8 extents, stage: move data extents
+2025-11-06T16:25:23+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 8 extents, stage: update data pointers
+2025-11-06T16:25:28+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2892757991424 flags data
+2025-11-06T16:25:37+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 125 extents, stage: move data extents
+2025-11-06T16:26:05+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 125 extents, stage: update data pointers
+2025-11-06T16:26:13+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2883094315008 flags data
+2025-11-06T16:26:20+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 78 extents, stage: move data extents
+2025-11-06T16:26:37+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 78 extents, stage: update data pointers
+2025-11-06T16:26:43+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2876651864064 flags data
+2025-11-06T16:26:48+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 36 extents, stage: move data extents
+2025-11-06T16:27:01+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 36 extents, stage: update data pointers
+2025-11-06T16:27:06+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2870209413120 flags data
+2025-11-06T16:27:12+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 15 extents, stage: move data extents
+2025-11-06T16:27:18+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 15 extents, stage: update data pointers
+2025-11-06T16:27:21+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2868061929472 flags data
+2025-11-06T16:27:26+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 5 extents, stage: move data extents
+2025-11-06T16:27:29+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 5 extents, stage: update data pointers
+2025-11-06T16:27:33+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2858398253056 flags data
+2025-11-06T16:27:38+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 10 extents, stage: move data extents
+2025-11-06T16:27:41+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 10 extents, stage: update data pointers
+2025-11-06T16:27:45+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2855177027584 flags data
+2025-11-06T16:27:49+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 28 extents, stage: move data extents
+2025-11-06T16:28:01+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 28 extents, stage: update data pointers
+2025-11-06T16:28:08+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2844439609344 flags data
+2025-11-06T16:28:14+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 38 extents, stage: move data extents
+2025-11-06T16:28:32+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 38 extents, stage: update data pointers
+2025-11-06T16:28:39+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2841218383872 flags data
+2025-11-06T16:28:45+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 8 extents, stage: move data extents
+2025-11-06T16:28:52+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 8 extents, stage: update data pointers
+2025-11-06T16:28:56+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2792900001792 flags data
+2025-11-06T16:29:04+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 116 extents, stage: move data extents
+2025-11-06T16:29:32+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 116 extents, stage: update data pointers
+2025-11-06T16:29:42+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2791826259968 flags data
+2025-11-06T16:29:47+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 7 extents, stage: move data extents
+2025-11-06T16:29:54+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 7 extents, stage: update data pointers
+2025-11-06T16:29:57+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2790752518144 flags data
+2025-11-06T16:30:05+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 50 extents, stage: move data extents
+2025-11-06T16:30:22+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 50 extents, stage: update data pointers
+2025-11-06T16:30:28+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2789678776320 flags data
+2025-11-06T16:30:34+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 12 extents, stage: move data extents
+2025-11-06T16:30:45+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 12 extents, stage: update data pointers
+2025-11-06T16:30:51+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2788605034496 flags data
+2025-11-06T16:30:57+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 47 extents, stage: move data extents
+2025-11-06T16:31:12+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 47 extents, stage: update data pointers
+2025-11-06T16:31:20+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2769244127232 flags data
+2025-11-06T16:31:29+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 150 extents, stage: move data extents
+2025-11-06T16:31:49+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 150 extents, stage: update data pointers
+2025-11-06T16:31:55+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2763875418112 flags data
+2025-11-06T16:32:01+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 40 extents, stage: move data extents
+2025-11-06T16:32:18+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 40 extents, stage: update data pointers
+2025-11-06T16:32:24+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2762801676288 flags data
+2025-11-06T16:32:32+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 34 extents, stage: move data extents
+2025-11-06T16:32:46+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 34 extents, stage: update data pointers
+2025-11-06T16:32:53+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2693008457728 flags data
+2025-11-06T16:32:59+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 84 extents, stage: move data extents
+2025-11-06T16:33:25+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 84 extents, stage: update data pointers
+2025-11-06T16:33:33+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2691934715904 flags data
+2025-11-06T16:33:40+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 9 extents, stage: move data extents
+2025-11-06T16:33:45+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 9 extents, stage: update data pointers
+2025-11-06T16:33:47+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2690860974080 flags data
+2025-11-06T16:33:53+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 104 extents, stage: move data extents
+2025-11-06T16:34:19+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 104 extents, stage: update data pointers
+2025-11-06T16:34:27+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2676902330368 flags data
+2025-11-06T16:34:33+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 93 extents, stage: move data extents
+2025-11-06T16:34:52+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 93 extents, stage: update data pointers
+2025-11-06T16:34:58+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2674754846720 flags data
+2025-11-06T16:35:06+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 215 extents, stage: move data extents
+2025-11-06T16:35:18+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 215 extents, stage: update data pointers
+2025-11-06T16:35:22+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2672607363072 flags data
+2025-11-06T16:35:29+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 146 extents, stage: move data extents
+2025-11-06T16:35:36+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 146 extents, stage: update data pointers
+2025-11-06T16:35:39+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2667238653952 flags data
+2025-11-06T16:35:46+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 32 extents, stage: move data extents
+2025-11-06T16:36:02+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 32 extents, stage: update data pointers
+2025-11-06T16:36:07+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2627476652032 flags data
+2025-11-06T16:36:13+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 30 extents, stage: move data extents
+2025-11-06T16:36:22+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 30 extents, stage: update data pointers
+2025-11-06T16:36:25+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2617812975616 flags data
+2025-11-06T16:36:31+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 19 extents, stage: move data extents
+2025-11-06T16:36:43+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 19 extents, stage: update data pointers
+2025-11-06T16:36:49+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2608149299200 flags data
+2025-11-06T16:36:54+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 17 extents, stage: move data extents
+2025-11-06T16:37:04+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 17 extents, stage: update data pointers
+2025-11-06T16:37:09+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2597411880960 flags data
+2025-11-06T16:37:17+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 128 extents, stage: move data extents
+2025-11-06T16:37:40+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 128 extents, stage: update data pointers
+2025-11-06T16:37:45+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2595264397312 flags data
+2025-11-06T16:37:51+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 13 extents, stage: move data extents
+2025-11-06T16:37:55+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 13 extents, stage: update data pointers
+2025-11-06T16:37:58+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2593116913664 flags data
+2025-11-06T16:38:02+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 28 extents, stage: move data extents
+2025-11-06T16:38:16+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 28 extents, stage: update data pointers
+2025-11-06T16:38:24+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2589895688192 flags data
+2025-11-06T16:38:31+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 94 extents, stage: move data extents
+2025-11-06T16:39:05+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 94 extents, stage: update data pointers
+2025-11-06T16:39:14+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2588821946368 flags data
+2025-11-06T16:39:20+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 10 extents, stage: move data extents
+2025-11-06T16:39:27+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 10 extents, stage: update data pointers
+2025-11-06T16:39:31+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2587748204544 flags data
+2025-11-06T16:39:40+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 217 extents, stage: move data extents
+2025-11-06T16:39:59+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 217 extents, stage: update data pointers
+2025-11-06T16:40:07+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2561978400768 flags data
+2025-11-06T16:40:14+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 236 extents, stage: move data extents
+2025-11-06T16:40:42+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 236 extents, stage: update data pointers
+2025-11-06T16:40:53+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2559830917120 flags data
+2025-11-06T16:41:00+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 64 extents, stage: move data extents
+2025-11-06T16:41:12+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 64 extents, stage: update data pointers
+2025-11-06T16:41:19+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2545872273408 flags data
+2025-11-06T16:41:26+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 63 extents, stage: move data extents
+2025-11-06T16:41:42+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 63 extents, stage: update data pointers
+2025-11-06T16:41:48+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2539429822464 flags data
+2025-11-06T16:41:55+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 58 extents, stage: move data extents
+2025-11-06T16:42:06+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 58 extents, stage: update data pointers
+2025-11-06T16:42:12+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2534061113344 flags data
+2025-11-06T16:42:18+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 31 extents, stage: move data extents
+2025-11-06T16:42:31+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 31 extents, stage: update data pointers
+2025-11-06T16:42:36+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2524397436928 flags data
+2025-11-06T16:42:43+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 90 extents, stage: move data extents
+2025-11-06T16:43:08+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 90 extents, stage: update data pointers
+2025-11-06T16:43:15+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2496480149504 flags data
+2025-11-06T16:43:21+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 29 extents, stage: move data extents
+2025-11-06T16:43:50+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 29 extents, stage: update data pointers
+2025-11-06T16:44:02+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2494332665856 flags data
+2025-11-06T16:44:09+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 252 extents, stage: move data extents
+2025-11-06T16:44:52+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 252 extents, stage: update data pointers
+2025-11-06T16:45:03+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2479300280320 flags data
+2025-11-06T16:45:11+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 65 extents, stage: move data extents
+2025-11-06T16:45:40+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 65 extents, stage: update data pointers
+2025-11-06T16:45:49+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2419170738176 flags data
+2025-11-06T16:45:57+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 133 extents, stage: move data extents
+2025-11-06T16:46:46+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 133 extents, stage: update data pointers
+2025-11-06T16:46:55+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2215159791616 flags data
+2025-11-06T16:47:03+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 177 extents, stage: move data extents
+2025-11-06T16:47:37+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 177 extents, stage: update data pointers
+2025-11-06T16:47:46+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2175431344128 flags data
+2025-11-06T16:47:54+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 320 extents, stage: move data extents
+2025-11-06T16:48:31+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 320 extents, stage: update data pointers
+2025-11-06T16:48:41+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2170062635008 flags data
+2025-11-06T16:48:47+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 197 extents, stage: move data extents
+2025-11-06T16:49:13+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 197 extents, stage: update data pointers
+2025-11-06T16:49:21+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2153956507648 flags data
+2025-11-06T16:49:29+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 88 extents, stage: move data extents
+2025-11-06T16:49:50+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 88 extents, stage: update data pointers
+2025-11-06T16:49:56+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: ended with status: 0
+2025-11-06T16:49:58+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: start -dusage=30
+2025-11-06T16:49:58+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 3254676094976 flags data
+2025-11-06T16:50:06+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 161 extents, stage: move data extents
+2025-11-06T16:50:15+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 161 extents, stage: update data pointers
+2025-11-06T16:50:19+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2904569151488 flags data
+2025-11-06T16:50:28+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 30 extents, stage: move data extents
+2025-11-06T16:50:44+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 30 extents, stage: update data pointers
+2025-11-06T16:50:49+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2887389282304 flags data
+2025-11-06T16:50:56+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 41 extents, stage: move data extents
+2025-11-06T16:51:17+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 41 extents, stage: update data pointers
+2025-11-06T16:51:24+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2884168056832 flags data
+2025-11-06T16:51:32+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 28 extents, stage: move data extents
+2025-11-06T16:51:40+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 28 extents, stage: update data pointers
+2025-11-06T16:51:45+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2877725605888 flags data
+2025-11-06T16:51:52+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 14 extents, stage: move data extents
+2025-11-06T16:52:02+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 14 extents, stage: update data pointers
+2025-11-06T16:52:06+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2875578122240 flags data
+2025-11-06T16:52:12+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 8 extents, stage: move data extents
+2025-11-06T16:52:14+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 8 extents, stage: update data pointers
+2025-11-06T16:52:16+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2856250769408 flags data
+2025-11-06T16:52:26+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 293 extents, stage: move data extents
+2025-11-06T16:52:45+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 293 extents, stage: update data pointers
+2025-11-06T16:52:52+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2828333481984 flags data
+2025-11-06T16:52:59+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 39 extents, stage: move data extents
+2025-11-06T16:53:11+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 39 extents, stage: update data pointers
+2025-11-06T16:53:18+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2782162583552 flags data
+2025-11-06T16:53:26+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 31 extents, stage: move data extents
+2025-11-06T16:53:39+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 31 extents, stage: update data pointers
+2025-11-06T16:53:45+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2772498907136 flags data
+2025-11-06T16:53:53+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 47 extents, stage: move data extents
+2025-11-06T16:54:07+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 47 extents, stage: update data pointers
+2025-11-06T16:54:14+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2770317869056 flags data
+2025-11-06T16:54:25+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 63 extents, stage: move data extents
+2025-11-06T16:54:42+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 63 extents, stage: update data pointers
+2025-11-06T16:54:51+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2764949159936 flags data
+2025-11-06T16:55:00+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 87 extents, stage: move data extents
+2025-11-06T16:55:12+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 87 extents, stage: update data pointers
+2025-11-06T16:55:16+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2759580450816 flags data
+2025-11-06T16:55:25+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 82 extents, stage: move data extents
+2025-11-06T16:55:36+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 82 extents, stage: update data pointers
+2025-11-06T16:55:41+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2745621807104 flags data
+2025-11-06T16:55:49+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 57 extents, stage: move data extents
+2025-11-06T16:55:58+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 57 extents, stage: update data pointers
+2025-11-06T16:56:04+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2733810647040 flags data
+2025-11-06T16:56:10+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 17 extents, stage: move data extents
+2025-11-06T16:56:20+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 17 extents, stage: update data pointers
+2025-11-06T16:56:24+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2721999486976 flags data
+2025-11-06T16:56:32+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 18 extents, stage: move data extents
+2025-11-06T16:56:42+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 18 extents, stage: update data pointers
+2025-11-06T16:56:48+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2719852003328 flags data
+2025-11-06T16:56:55+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 49 extents, stage: move data extents
+2025-11-06T16:57:05+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 49 extents, stage: update data pointers
+2025-11-06T16:57:11+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2713409552384 flags data
+2025-11-06T16:57:18+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 11 extents, stage: move data extents
+2025-11-06T16:57:23+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 11 extents, stage: update data pointers
+2025-11-06T16:57:27+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2710188326912 flags data
+2025-11-06T16:57:35+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 154 extents, stage: move data extents
+2025-11-06T16:58:03+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 154 extents, stage: update data pointers
+2025-11-06T16:58:12+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2708040843264 flags data
+2025-11-06T16:58:20+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 34 extents, stage: move data extents
+2025-11-06T16:58:32+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 34 extents, stage: update data pointers
+2025-11-06T16:58:38+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2704819617792 flags data
+2025-11-06T16:58:46+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 34 extents, stage: move data extents
+2025-11-06T16:58:56+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 34 extents, stage: update data pointers
+2025-11-06T16:59:03+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2701598392320 flags data
+2025-11-06T16:59:12+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 115 extents, stage: move data extents
+2025-11-06T16:59:22+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 115 extents, stage: update data pointers
+2025-11-06T16:59:29+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2695155941376 flags data
+2025-11-06T16:59:38+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 129 extents, stage: move data extents
+2025-11-06T16:59:48+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 129 extents, stage: update data pointers
+2025-11-06T16:59:52+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2683344781312 flags data
+2025-11-06T17:00:01+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 86 extents, stage: move data extents
+2025-11-06T17:00:22+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 86 extents, stage: update data pointers
+2025-11-06T17:00:27+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2671533621248 flags data
+2025-11-06T17:00:37+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 171 extents, stage: move data extents
+2025-11-06T17:01:06+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 171 extents, stage: update data pointers
+2025-11-06T17:01:16+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2670459879424 flags data
+2025-11-06T17:01:24+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 18 extents, stage: move data extents
+2025-11-06T17:01:36+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 18 extents, stage: update data pointers
+2025-11-06T17:01:42+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2668312395776 flags data
+2025-11-06T17:01:49+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 81 extents, stage: move data extents
+2025-11-06T17:01:59+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 81 extents, stage: update data pointers
+2025-11-06T17:02:05+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2663983874048 flags data
+2025-11-06T17:02:12+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 39 extents, stage: move data extents
+2025-11-06T17:02:28+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 39 extents, stage: update data pointers
+2025-11-06T17:02:34+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2662910132224 flags data
+2025-11-06T17:02:41+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 17 extents, stage: move data extents
+2025-11-06T17:02:50+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 17 extents, stage: update data pointers
+2025-11-06T17:02:56+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2629624135680 flags data
+2025-11-06T17:03:03+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 85 extents, stage: move data extents
+2025-11-06T17:03:18+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 85 extents, stage: update data pointers
+2025-11-06T17:03:23+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2628550393856 flags data
+2025-11-06T17:03:30+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 67 extents, stage: move data extents
+2025-11-06T17:03:43+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 67 extents, stage: update data pointers
+2025-11-06T17:03:50+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2624255426560 flags data
+2025-11-06T17:03:57+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 55 extents, stage: move data extents
+2025-11-06T17:04:09+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 55 extents, stage: update data pointers
+2025-11-06T17:04:15+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2623181684736 flags data
+2025-11-06T17:04:23+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 61 extents, stage: move data extents
+2025-11-06T17:04:36+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 61 extents, stage: update data pointers
+2025-11-06T17:04:42+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2616739233792 flags data
+2025-11-06T17:04:48+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 11 extents, stage: move data extents
+2025-11-06T17:04:54+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 11 extents, stage: update data pointers
+2025-11-06T17:04:57+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2600633106432 flags data
+2025-11-06T17:05:05+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 232 extents, stage: move data extents
+2025-11-06T17:05:27+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 232 extents, stage: update data pointers
+2025-11-06T17:05:35+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2599559364608 flags data
+2025-11-06T17:05:43+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 96 extents, stage: move data extents
+2025-11-06T17:06:04+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 96 extents, stage: update data pointers
+2025-11-06T17:06:09+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2594190655488 flags data
+2025-11-06T17:06:17+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 310 extents, stage: move data extents
+2025-11-06T17:06:37+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 310 extents, stage: update data pointers
+2025-11-06T17:06:43+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2583453237248 flags data
+2025-11-06T17:06:51+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 72 extents, stage: move data extents
+2025-11-06T17:07:05+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 72 extents, stage: update data pointers
+2025-11-06T17:07:12+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2581305753600 flags data
+2025-11-06T17:07:23+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 262 extents, stage: move data extents
+2025-11-06T17:07:38+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 262 extents, stage: update data pointers
+2025-11-06T17:07:45+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2577010786304 flags data
+2025-11-06T17:07:54+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 100 extents, stage: move data extents
+2025-11-06T17:08:14+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 100 extents, stage: update data pointers
+2025-11-06T17:08:25+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2560904658944 flags data
+2025-11-06T17:08:35+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 85 extents, stage: move data extents
+2025-11-06T17:08:50+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 85 extents, stage: update data pointers
+2025-11-06T17:08:57+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2553388466176 flags data
+2025-11-06T17:09:04+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 37 extents, stage: move data extents
+2025-11-06T17:09:18+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 37 extents, stage: update data pointers
+2025-11-06T17:09:24+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2550167240704 flags data
+2025-11-06T17:09:33+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 925 extents, stage: move data extents
+2025-11-06T17:09:51+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 925 extents, stage: update data pointers
+2025-11-06T17:09:58+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2549093498880 flags data
+2025-11-06T17:10:06+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 288 extents, stage: move data extents
+2025-11-06T17:10:19+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 288 extents, stage: update data pointers
+2025-11-06T17:10:26+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2546946015232 flags data
+2025-11-06T17:10:34+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 250 extents, stage: move data extents
+2025-11-06T17:10:48+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 250 extents, stage: update data pointers
+2025-11-06T17:10:55+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2538356080640 flags data
+2025-11-06T17:11:04+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 122 extents, stage: move data extents
+2025-11-06T17:11:15+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 122 extents, stage: update data pointers
+2025-11-06T17:11:20+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2530839887872 flags data
+2025-11-06T17:11:27+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 185 extents, stage: move data extents
+2025-11-06T17:11:44+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 185 extents, stage: update data pointers
+2025-11-06T17:11:51+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2515807502336 flags data
+2025-11-06T17:12:00+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 583 extents, stage: move data extents
+2025-11-06T17:12:30+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 583 extents, stage: update data pointers
+2025-11-06T17:12:40+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2509365051392 flags data
+2025-11-06T17:12:49+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 129 extents, stage: move data extents
+2025-11-06T17:13:05+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 129 extents, stage: update data pointers
+2025-11-06T17:13:11+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2505070084096 flags data
+2025-11-06T17:13:17+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 6 extents, stage: move data extents
+2025-11-06T17:13:23+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 6 extents, stage: update data pointers
+2025-11-06T17:13:26+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2490037698560 flags data
+2025-11-06T17:13:36+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 177 extents, stage: move data extents
+2025-11-06T17:14:13+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 177 extents, stage: update data pointers
+2025-11-06T17:14:22+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2486816473088 flags data
+2025-11-06T17:14:31+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 80 extents, stage: move data extents
+2025-11-06T17:14:48+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 80 extents, stage: update data pointers
+2025-11-06T17:14:54+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2483595247616 flags data
+2025-11-06T17:15:02+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 14 extents, stage: move data extents
+2025-11-06T17:15:09+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 14 extents, stage: update data pointers
+2025-11-06T17:15:13+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2473931571200 flags data
+2025-11-06T17:15:21+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 135 extents, stage: move data extents
+2025-11-06T17:15:34+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 135 extents, stage: update data pointers
+2025-11-06T17:15:40+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2467489120256 flags data
+2025-11-06T17:15:49+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 139 extents, stage: move data extents
+2025-11-06T17:16:11+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 139 extents, stage: update data pointers
+2025-11-06T17:16:21+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2418096996352 flags data
+2025-11-06T17:16:28+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 161 extents, stage: move data extents
+2025-11-06T17:16:48+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 161 extents, stage: update data pointers
+2025-11-06T17:16:55+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2385884741632 flags data
+2025-11-06T17:17:03+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 61 extents, stage: move data extents
+2025-11-06T17:17:18+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 61 extents, stage: update data pointers
+2025-11-06T17:17:23+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2372999839744 flags data
+2025-11-06T17:17:30+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 297 extents, stage: move data extents
+2025-11-06T17:17:57+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 297 extents, stage: update data pointers
+2025-11-06T17:18:08+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2349377519616 flags data
+2025-11-06T17:18:18+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 163 extents, stage: move data extents
+2025-11-06T17:18:40+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 163 extents, stage: update data pointers
+2025-11-06T17:18:47+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2346156294144 flags data
+2025-11-06T17:18:53+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 43 extents, stage: move data extents
+2025-11-06T17:19:12+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 43 extents, stage: update data pointers
+2025-11-06T17:19:22+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2340787585024 flags data
+2025-11-06T17:19:31+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 121 extents, stage: move data extents
+2025-11-06T17:19:43+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 121 extents, stage: update data pointers
+2025-11-06T17:19:50+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2239855853568 flags data
+2025-11-06T17:19:58+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 59 extents, stage: move data extents
+2025-11-06T17:20:24+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 59 extents, stage: update data pointers
+2025-11-06T17:20:34+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2160398958592 flags data
+2025-11-06T17:20:47+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 240 extents, stage: move data extents
+2025-11-06T17:21:15+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 240 extents, stage: update data pointers
+2025-11-06T17:21:23+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: ended with status: 0
+2025-11-06T17:21:26+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: start -dusage=40
+2025-11-06T17:21:26+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 3361077198848 flags data
+2025-11-06T17:21:30+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 3 extents, stage: move data extents
+2025-11-06T17:21:33+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 3 extents, stage: update data pointers
+2025-11-06T17:21:35+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 3262192287744 flags data
+2025-11-06T17:21:45+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 163 extents, stage: move data extents
+2025-11-06T17:22:00+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 163 extents, stage: update data pointers
+2025-11-06T17:22:06+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2906716635136 flags data
+2025-11-06T17:22:15+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 33 extents, stage: move data extents
+2025-11-06T17:22:23+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 33 extents, stage: update data pointers
+2025-11-06T17:22:25+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2890610507776 flags data
+2025-11-06T17:22:35+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 40 extents, stage: move data extents
+2025-11-06T17:22:49+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 40 extents, stage: update data pointers
+2025-11-06T17:22:53+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2880946831360 flags data
+2025-11-06T17:23:03+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 185 extents, stage: move data extents
+2025-11-06T17:23:14+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 185 extents, stage: update data pointers
+2025-11-06T17:23:19+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2847660834816 flags data
+2025-11-06T17:23:28+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 65 extents, stage: move data extents
+2025-11-06T17:23:48+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 65 extents, stage: update data pointers
+2025-11-06T17:23:56+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2784310067200 flags data
+2025-11-06T17:24:05+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 72 extents, stage: move data extents
+2025-11-06T17:24:19+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 72 extents, stage: update data pointers
+2025-11-06T17:24:24+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2780015099904 flags data
+2025-11-06T17:24:34+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 87 extents, stage: move data extents
+2025-11-06T17:24:51+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 87 extents, stage: update data pointers
+2025-11-06T17:24:56+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2774646390784 flags data
+2025-11-06T17:25:06+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 50 extents, stage: move data extents
+2025-11-06T17:25:19+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 50 extents, stage: update data pointers
+2025-11-06T17:25:25+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2768170385408 flags data
+2025-11-06T17:25:35+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 172 extents, stage: move data extents
+2025-11-06T17:25:52+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 172 extents, stage: update data pointers
+2025-11-06T17:25:59+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2752064258048 flags data
+2025-11-06T17:26:11+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 352 extents, stage: move data extents
+2025-11-06T17:26:31+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 352 extents, stage: update data pointers
+2025-11-06T17:26:40+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2748843032576 flags data
+2025-11-06T17:26:49+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 45 extents, stage: move data extents
+2025-11-06T17:27:05+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 45 extents, stage: update data pointers
+2025-11-06T17:27:12+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2732736905216 flags data
+2025-11-06T17:27:23+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 37 extents, stage: move data extents
+2025-11-06T17:27:31+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 37 extents, stage: update data pointers
+2025-11-06T17:27:37+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2718778261504 flags data
+2025-11-06T17:27:46+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 27 extents, stage: move data extents
+2025-11-06T17:27:56+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 27 extents, stage: update data pointers
+2025-11-06T17:28:01+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2715557036032 flags data
+2025-11-06T17:28:10+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 51 extents, stage: move data extents
+2025-11-06T17:28:23+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 51 extents, stage: update data pointers
+2025-11-06T17:28:30+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2697303425024 flags data
+2025-11-06T17:28:40+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 170 extents, stage: move data extents
+2025-11-06T17:28:58+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 170 extents, stage: update data pointers
+2025-11-06T17:29:06+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2688713490432 flags data
+2025-11-06T17:29:30+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 606 extents, stage: move data extents
+2025-11-06T17:29:54+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 606 extents, stage: update data pointers
+2025-11-06T17:30:00+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2677976072192 flags data
+2025-11-06T17:30:10+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 94 extents, stage: move data extents
+2025-11-06T17:30:24+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 94 extents, stage: update data pointers
+2025-11-06T17:30:32+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2666131357696 flags data
+2025-11-06T17:30:41+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 95 extents, stage: move data extents
+2025-11-06T17:30:59+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 95 extents, stage: update data pointers
+2025-11-06T17:31:05+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2619960459264 flags data
+2025-11-06T17:31:13+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 16 extents, stage: move data extents
+2025-11-06T17:31:21+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 16 extents, stage: update data pointers
+2025-11-06T17:31:26+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2592043171840 flags data
+2025-11-06T17:31:36+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 63 extents, stage: move data extents
+2025-11-06T17:31:51+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 63 extents, stage: update data pointers
+2025-11-06T17:31:59+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2586674462720 flags data
+2025-11-06T17:32:07+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 358 extents, stage: move data extents
+2025-11-06T17:32:19+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 358 extents, stage: update data pointers
+2025-11-06T17:32:26+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2580232011776 flags data
+2025-11-06T17:32:38+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 257 extents, stage: move data extents
+2025-11-06T17:32:48+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 257 extents, stage: update data pointers
+2025-11-06T17:32:54+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2572715819008 flags data
+2025-11-06T17:33:04+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 274 extents, stage: move data extents
+2025-11-06T17:33:33+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 274 extents, stage: update data pointers
+2025-11-06T17:33:41+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2557683433472 flags data
+2025-11-06T17:33:54+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 264 extents, stage: move data extents
+2025-11-06T17:34:18+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 264 extents, stage: update data pointers
+2025-11-06T17:34:29+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2525471178752 flags data
+2025-11-06T17:34:40+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 73 extents, stage: move data extents
+2025-11-06T17:34:58+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 73 extents, stage: update data pointers
+2025-11-06T17:35:07+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2510438793216 flags data
+2025-11-06T17:35:18+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 35 extents, stage: move data extents
+2025-11-06T17:35:35+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 35 extents, stage: update data pointers
+2025-11-06T17:35:41+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2495406407680 flags data
+2025-11-06T17:35:51+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 221 extents, stage: move data extents
+2025-11-06T17:36:13+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 221 extents, stage: update data pointers
+2025-11-06T17:36:20+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2484668989440 flags data
+2025-11-06T17:36:28+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 19 extents, stage: move data extents
+2025-11-06T17:36:38+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 19 extents, stage: update data pointers
+2025-11-06T17:36:43+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2470710345728 flags data
+2025-11-06T17:36:53+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 590 extents, stage: move data extents
+2025-11-06T17:37:13+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 590 extents, stage: update data pointers
+2025-11-06T17:37:21+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2465341636608 flags data
+2025-11-06T17:37:30+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 84 extents, stage: move data extents
+2025-11-06T17:37:44+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 84 extents, stage: update data pointers
+2025-11-06T17:37:51+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2462120411136 flags data
+2025-11-06T17:38:01+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 31 extents, stage: move data extents
+2025-11-06T17:38:14+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 31 extents, stage: update data pointers
+2025-11-06T17:38:22+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2456751702016 flags data
+2025-11-06T17:38:32+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 75 extents, stage: move data extents
+2025-11-06T17:38:47+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 75 extents, stage: update data pointers
+2025-11-06T17:38:53+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2454604218368 flags data
+2025-11-06T17:39:10+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 505 extents, stage: move data extents
+2025-11-06T17:39:52+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 505 extents, stage: update data pointers
+2025-11-06T17:40:05+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2453530476544 flags data
+2025-11-06T17:40:17+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 121 extents, stage: move data extents
+2025-11-06T17:40:36+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 121 extents, stage: update data pointers
+2025-11-06T17:40:44+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2439571832832 flags data
+2025-11-06T17:41:02+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 610 extents, stage: move data extents
+2025-11-06T17:42:26+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 610 extents, stage: update data pointers
+2025-11-06T17:42:44+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2429908156416 flags data
+2025-11-06T17:42:55+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 218 extents, stage: move data extents
+2025-11-06T17:43:40+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 218 extents, stage: update data pointers
+2025-11-06T17:43:57+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2427760672768 flags data
+2025-11-06T17:44:09+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 649 extents, stage: move data extents
+2025-11-06T17:44:49+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 649 extents, stage: update data pointers
+2025-11-06T17:44:59+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2379442290688 flags data
+2025-11-06T17:45:11+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 293 extents, stage: move data extents
+2025-11-06T17:45:29+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 293 extents, stage: update data pointers
+2025-11-06T17:45:34+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2347230035968 flags data
+2025-11-06T17:45:43+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 74 extents, stage: move data extents
+2025-11-06T17:46:12+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 74 extents, stage: update data pointers
+2025-11-06T17:46:23+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2201201147904 flags data
+2025-11-06T17:46:38+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 270 extents, stage: move data extents
+2025-11-06T17:47:42+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 270 extents, stage: update data pointers
+2025-11-06T17:47:58+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2168988893184 flags data
+2025-11-06T17:48:09+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 154 extents, stage: move data extents
+2025-11-06T17:48:33+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 154 extents, stage: update data pointers
+2025-11-06T17:48:40+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2167915151360 flags data
+2025-11-06T17:48:56+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 255 extents, stage: move data extents
+2025-11-06T17:49:33+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 255 extents, stage: update data pointers
+2025-11-06T17:49:47+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2163620184064 flags data
+2025-11-06T17:49:58+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 641 extents, stage: move data extents
+2025-11-06T17:50:26+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 641 extents, stage: update data pointers
+2025-11-06T17:50:35+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2150735282176 flags data
+2025-11-06T17:50:47+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 145 extents, stage: move data extents
+2025-11-06T17:51:11+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 145 extents, stage: update data pointers
+2025-11-06T17:51:17+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2149661540352 flags data
+2025-11-06T17:51:29+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 240 extents, stage: move data extents
+2025-11-06T17:52:04+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 240 extents, stage: update data pointers
+2025-11-06T17:52:17+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2130334187520 flags data
+2025-11-06T17:52:27+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 141 extents, stage: move data extents
+2025-11-06T17:52:53+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 141 extents, stage: update data pointers
+2025-11-06T17:53:02+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2090605740032 flags data
+2025-11-06T17:53:12+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 234 extents, stage: move data extents
+2025-11-06T17:53:45+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 234 extents, stage: update data pointers
+2025-11-06T17:53:56+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: ended with status: 0
+2025-11-06T17:53:58+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: start -dusage=50
+2025-11-06T17:53:58+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 3375035842560 flags data
+2025-11-06T17:54:07+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 219 extents, stage: move data extents
+2025-11-06T17:54:27+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 219 extents, stage: update data pointers
+2025-11-06T17:54:35+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2907790376960 flags data
+2025-11-06T17:54:47+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 20 extents, stage: move data extents
+2025-11-06T17:54:52+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 20 extents, stage: update data pointers
+2025-11-06T17:54:56+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2905642893312 flags data
+2025-11-06T17:55:05+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 41 extents, stage: move data extents
+2025-11-06T17:55:19+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 41 extents, stage: update data pointers
+2025-11-06T17:55:26+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2872356896768 flags data
+2025-11-06T17:55:35+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 33 extents, stage: move data extents
+2025-11-06T17:55:54+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 33 extents, stage: update data pointers
+2025-11-06T17:56:02+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2793973743616 flags data
+2025-11-06T17:56:12+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 29 extents, stage: move data extents
+2025-11-06T17:56:22+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 29 extents, stage: update data pointers
+2025-11-06T17:56:28+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2761727934464 flags data
+2025-11-06T17:56:39+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 127 extents, stage: move data extents
+2025-11-06T17:57:04+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 127 extents, stage: update data pointers
+2025-11-06T17:57:13+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2734884388864 flags data
+2025-11-06T17:57:22+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 40 extents, stage: move data extents
+2025-11-06T17:57:36+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 40 extents, stage: update data pointers
+2025-11-06T17:57:43+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2717704519680 flags data
+2025-11-06T17:57:55+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 140 extents, stage: move data extents
+2025-11-06T17:58:21+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 140 extents, stage: update data pointers
+2025-11-06T17:58:28+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2685492264960 flags data
+2025-11-06T17:58:40+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 191 extents, stage: move data extents
+2025-11-06T17:59:05+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 191 extents, stage: update data pointers
+2025-11-06T17:59:13+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2614591750144 flags data
+2025-11-06T17:59:24+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 25 extents, stage: move data extents
+2025-11-06T17:59:38+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 25 extents, stage: update data pointers
+2025-11-06T17:59:42+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2611370524672 flags data
+2025-11-06T17:59:53+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 63 extents, stage: move data extents
+2025-11-06T18:00:14+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 63 extents, stage: update data pointers
+2025-11-06T18:00:25+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2567347109888 flags data
+2025-11-06T18:00:38+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 58 extents, stage: move data extents
+2025-11-06T18:01:02+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 58 extents, stage: update data pointers
+2025-11-06T18:01:12+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2566273368064 flags data
+2025-11-06T18:01:25+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 77 extents, stage: move data extents
+2025-11-06T18:01:42+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 77 extents, stage: update data pointers
+2025-11-06T18:01:49+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2564125884416 flags data
+2025-11-06T18:02:01+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 60 extents, stage: move data extents
+2025-11-06T18:02:17+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 60 extents, stage: update data pointers
+2025-11-06T18:02:25+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2552314724352 flags data
+2025-11-06T18:02:44+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 1606 extents, stage: move data extents
+2025-11-06T18:03:04+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 1606 extents, stage: update data pointers
+2025-11-06T18:03:10+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2543724789760 flags data
+2025-11-06T18:03:24+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 458 extents, stage: move data extents
+2025-11-06T18:03:43+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 458 extents, stage: update data pointers
+2025-11-06T18:03:51+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2540503564288 flags data
+2025-11-06T18:04:02+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 190 extents, stage: move data extents
+2025-11-06T18:04:19+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 190 extents, stage: update data pointers
+2025-11-06T18:04:27+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2532987371520 flags data
+2025-11-06T18:04:40+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 742 extents, stage: move data extents
+2025-11-06T18:04:58+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 742 extents, stage: update data pointers
+2025-11-06T18:05:07+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2527618662400 flags data
+2025-11-06T18:05:21+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 286 extents, stage: move data extents
+2025-11-06T18:05:41+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 286 extents, stage: update data pointers
+2025-11-06T18:05:48+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2516881244160 flags data
+2025-11-06T18:05:58+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 55 extents, stage: move data extents
+2025-11-06T18:06:15+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 55 extents, stage: update data pointers
+2025-11-06T18:06:24+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2502922600448 flags data
+2025-11-06T18:06:36+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 36 extents, stage: move data extents
+2025-11-06T18:06:57+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 36 extents, stage: update data pointers
+2025-11-06T18:07:07+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2395548418048 flags data
+2025-11-06T18:07:35+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 569 extents, stage: move data extents
+2025-11-06T18:08:01+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 569 extents, stage: update data pointers
+2025-11-06T18:08:08+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2378368548864 flags data
+2025-11-06T18:08:20+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 388 extents, stage: move data extents
+2025-11-06T18:08:55+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 388 extents, stage: update data pointers
+2025-11-06T18:09:06+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2345082552320 flags data
+2025-11-06T18:09:17+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 122 extents, stage: move data extents
+2025-11-06T18:09:42+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 122 extents, stage: update data pointers
+2025-11-06T18:09:50+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2337566359552 flags data
+2025-11-06T18:10:05+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 456 extents, stage: move data extents
+2025-11-06T18:10:33+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 456 extents, stage: update data pointers
+2025-11-06T18:10:42+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2255961980928 flags data
+2025-11-06T18:10:56+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 511 extents, stage: move data extents
+2025-11-06T18:11:34+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 511 extents, stage: update data pointers
+2025-11-06T18:11:44+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2243077079040 flags data
+2025-11-06T18:11:59+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 238 extents, stage: move data extents
+2025-11-06T18:12:46+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 238 extents, stage: update data pointers
+2025-11-06T18:13:01+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2234487144448 flags data
+2025-11-06T18:13:12+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 84 extents, stage: move data extents
+2025-11-06T18:13:41+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 84 extents, stage: update data pointers
+2025-11-06T18:13:55+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2229118435328 flags data
+2025-11-06T18:14:13+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 667 extents, stage: move data extents
+2025-11-06T18:15:23+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 667 extents, stage: update data pointers
+2025-11-06T18:15:39+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2174357602304 flags data
+2025-11-06T18:15:51+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 303 extents, stage: move data extents
+2025-11-06T18:16:14+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 303 extents, stage: update data pointers
+2025-11-06T18:16:24+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2157177733120 flags data
+2025-11-06T18:16:39+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 409 extents, stage: move data extents
+2025-11-06T18:17:15+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 409 extents, stage: update data pointers
+2025-11-06T18:17:25+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2136776638464 flags data
+2025-11-06T18:17:33+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 176 extents, stage: move data extents
+2025-11-06T18:18:02+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 176 extents, stage: update data pointers
+2025-11-06T18:18:12+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: ended with status: 0
+2025-11-06T18:18:15+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: start -dusage=60
+2025-11-06T18:18:15+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 3391141969920 flags data
+2025-11-06T18:18:25+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 18 extents, stage: move data extents
+2025-11-06T18:18:33+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 18 extents, stage: update data pointers
+2025-11-06T18:18:38+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2777867616256 flags data
+2025-11-06T18:18:51+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 60 extents, stage: move data extents
+2025-11-06T18:19:07+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 60 extents, stage: update data pointers
+2025-11-06T18:19:14+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2750990516224 flags data
+2025-11-06T18:19:27+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 99 extents, stage: move data extents
+2025-11-06T18:19:54+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 99 extents, stage: update data pointers
+2025-11-06T18:20:05+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2727368196096 flags data
+2025-11-06T18:20:21+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 107 extents, stage: move data extents
+2025-11-06T18:20:46+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 107 extents, stage: update data pointers
+2025-11-06T18:20:54+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2630697877504 flags data
+2025-11-06T18:21:15+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 482 extents, stage: move data extents
+2025-11-06T18:21:39+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 482 extents, stage: update data pointers
+2025-11-06T18:21:46+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2569494593536 flags data
+2025-11-06T18:21:59+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 326 extents, stage: move data extents
+2025-11-06T18:22:15+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 326 extents, stage: update data pointers
+2025-11-06T18:22:23+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2513660018688 flags data
+2025-11-06T18:22:39+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 513 extents, stage: move data extents
+2025-11-06T18:23:09+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 513 extents, stage: update data pointers
+2025-11-06T18:23:16+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2503996342272 flags data
+2025-11-06T18:23:29+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 238 extents, stage: move data extents
+2025-11-06T18:23:46+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 238 extents, stage: update data pointers
+2025-11-06T18:23:54+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2492185182208 flags data
+2025-11-06T18:24:05+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 59 extents, stage: move data extents
+2025-11-06T18:24:16+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 59 extents, stage: update data pointers
+2025-11-06T18:24:24+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2398769643520 flags data
+2025-11-06T18:24:38+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 152 extents, stage: move data extents
+2025-11-06T18:24:56+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 152 extents, stage: update data pointers
+2025-11-06T18:25:02+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2356893712384 flags data
+2025-11-06T18:25:16+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 387 extents, stage: move data extents
+2025-11-06T18:25:51+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 387 extents, stage: update data pointers
+2025-11-06T18:26:01+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2338640101376 flags data
+2025-11-06T18:26:16+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 168 extents, stage: move data extents
+2025-11-06T18:26:37+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 168 extents, stage: update data pointers
+2025-11-06T18:26:44+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2254888239104 flags data
+2025-11-06T18:27:05+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 724 extents, stage: move data extents
+2025-11-06T18:28:02+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 724 extents, stage: update data pointers
+2025-11-06T18:28:17+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2186168762368 flags data
+2025-11-06T18:28:34+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 212 extents, stage: move data extents
+2025-11-06T18:29:07+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 212 extents, stage: update data pointers
+2025-11-06T18:29:19+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2158251474944 flags data
+2025-11-06T18:29:42+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 1265 extents, stage: move data extents
+2025-11-06T18:30:19+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 1265 extents, stage: update data pointers
+2025-11-06T18:30:30+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2145366573056 flags data
+2025-11-06T18:30:45+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 487 extents, stage: move data extents
+2025-11-06T18:31:21+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 487 extents, stage: update data pointers
+2025-11-06T18:31:34+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2131407929344 flags data
+2025-11-06T18:31:48+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 341 extents, stage: move data extents
+2025-11-06T18:32:15+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 341 extents, stage: update data pointers
+2025-11-06T18:32:26+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: ended with status: 0
+2025-11-06T18:32:28+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: start -dusage=70
+2025-11-06T18:32:28+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 3401879388160 flags data
+2025-11-06T18:32:38+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 14 extents, stage: move data extents
+2025-11-06T18:32:39+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 14 extents, stage: update data pointers
+2025-11-06T18:32:41+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 3399731904512 flags data
+2025-11-06T18:32:45+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 99 extents, stage: move data extents
+2025-11-06T18:32:58+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 99 extents, stage: update data pointers
+2025-11-06T18:33:03+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2864840704000 flags data
+2025-11-06T18:33:18+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 101 extents, stage: move data extents
+2025-11-06T18:33:36+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 101 extents, stage: update data pointers
+2025-11-06T18:33:45+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2798268710912 flags data
+2025-11-06T18:34:01+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 156 extents, stage: move data extents
+2025-11-06T18:34:19+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 156 extents, stage: update data pointers
+2025-11-06T18:34:24+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2687639748608 flags data
+2025-11-06T18:34:57+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 3444 extents, stage: move data extents
+2025-11-06T18:35:13+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 3444 extents, stage: update data pointers
+2025-11-06T18:35:20+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2574863302656 flags data
+2025-11-06T18:35:37+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 676 extents, stage: move data extents
+2025-11-06T18:35:52+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 676 extents, stage: update data pointers
+2025-11-06T18:35:59+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2571642077184 flags data
+2025-11-06T18:36:14+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 19 extents, stage: move data extents
+2025-11-06T18:36:18+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 19 extents, stage: update data pointers
+2025-11-06T18:36:20+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2568420851712 flags data
+2025-11-06T18:36:34+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 37 extents, stage: move data extents
+2025-11-06T18:36:46+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 37 extents, stage: update data pointers
+2025-11-06T18:36:51+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2514733760512 flags data
+2025-11-06T18:37:22+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 11092 extents, stage: move data extents
+2025-11-06T18:38:17+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 11092 extents, stage: update data pointers
+2025-11-06T18:38:28+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2511512535040 flags data
+2025-11-06T18:38:42+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 115 extents, stage: move data extents
+2025-11-06T18:38:59+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 115 extents, stage: update data pointers
+2025-11-06T18:39:06+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2487890214912 flags data
+2025-11-06T18:39:19+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 214 extents, stage: move data extents
+2025-11-06T18:39:39+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 214 extents, stage: update data pointers
+2025-11-06T18:39:50+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2396622159872 flags data
+2025-11-06T18:40:05+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 235 extents, stage: move data extents
+2025-11-06T18:40:24+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 235 extents, stage: update data pointers
+2025-11-06T18:40:34+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2383737257984 flags data
+2025-11-06T18:41:25+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 18640 extents, stage: move data extents
+2025-11-06T18:42:01+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 18640 extents, stage: update data pointers
+2025-11-06T18:42:13+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2354746228736 flags data
+2025-11-06T18:42:34+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 475 extents, stage: move data extents
+2025-11-06T18:43:23+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 475 extents, stage: update data pointers
+2025-11-06T18:43:37+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2333271392256 flags data
+2025-11-06T18:43:55+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 677 extents, stage: move data extents
+2025-11-06T18:44:22+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 677 extents, stage: update data pointers
+2025-11-06T18:44:34+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2328976424960 flags data
+2025-11-06T18:44:51+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 335 extents, stage: move data extents
+2025-11-06T18:45:23+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 335 extents, stage: update data pointers
+2025-11-06T18:45:32+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2308575330304 flags data
+2025-11-06T18:45:50+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 816 extents, stage: move data extents
+2025-11-06T18:46:23+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 816 extents, stage: update data pointers
+2025-11-06T18:46:32+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: ended with status: 0
+2025-11-06T18:46:33+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: start -dusage=80
+2025-11-06T18:46:33+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 3412616806400 flags data
+2025-11-06T18:46:43+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 266 extents, stage: move data extents
+2025-11-06T18:46:55+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 266 extents, stage: update data pointers
+2025-11-06T18:47:03+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 3411543064576 flags data
+2025-11-06T18:47:14+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 20 extents, stage: move data extents
+2025-11-06T18:47:20+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 20 extents, stage: update data pointers
+2025-11-06T18:47:24+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2440645574656 flags data
+2025-11-06T18:47:48+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 615 extents, stage: move data extents
+2025-11-06T18:48:32+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 615 extents, stage: update data pointers
+2025-11-06T18:48:47+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2434203123712 flags data
+2025-11-06T18:49:09+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 922 extents, stage: move data extents
+2025-11-06T18:49:58+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 922 extents, stage: update data pointers
+2025-11-06T18:50:12+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2322533974016 flags data
+2025-11-06T18:50:34+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 535 extents, stage: move data extents
+2025-11-06T18:50:55+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 535 extents, stage: update data pointers
+2025-11-06T18:51:07+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: ended with status: 0
+2025-11-06T18:51:08+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: start -dusage=90
+2025-11-06T18:51:08+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 3416911773696 flags data
+2025-11-06T18:51:12+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 156 extents, stage: move data extents
+2025-11-06T18:51:23+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 156 extents, stage: update data pointers
+2025-11-06T18:51:30+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 3415838031872 flags data
+2025-11-06T18:51:46+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 20 extents, stage: move data extents
+2025-11-06T18:51:52+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 20 extents, stage: update data pointers
+2025-11-06T18:51:54+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2563052142592 flags data
+2025-11-06T18:52:12+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 420 extents, stage: move data extents
+2025-11-06T18:52:36+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 420 extents, stage: update data pointers
+2025-11-06T18:52:45+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2541577306112 flags data
+2025-11-06T18:53:06+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 871 extents, stage: move data extents
+2025-11-06T18:53:31+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 871 extents, stage: update data pointers
+2025-11-06T18:53:41+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2441719316480 flags data
+2025-11-06T18:54:05+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 480 extents, stage: move data extents
+2025-11-06T18:54:27+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 480 extents, stage: update data pointers
+2025-11-06T18:54:40+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2397695901696 flags data
+2025-11-06T18:55:00+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 801 extents, stage: move data extents
+2025-11-06T18:55:22+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 801 extents, stage: update data pointers
+2025-11-06T18:55:31+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2335418875904 flags data
+2025-11-06T18:55:52+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 290 extents, stage: move data extents
+2025-11-06T18:56:22+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 290 extents, stage: update data pointers
+2025-11-06T18:56:35+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2327902683136 flags data
+2025-11-06T18:57:05+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 788 extents, stage: move data extents
+2025-11-06T18:58:10+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 788 extents, stage: update data pointers
+2025-11-06T18:58:23+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2309649072128 flags data
+2025-11-06T18:58:44+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 116 extents, stage: move data extents
+2025-11-06T18:59:09+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 116 extents, stage: update data pointers
+2025-11-06T18:59:16+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2258109464576 flags data
+2025-11-06T18:59:44+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 4099 extents, stage: move data extents
+2025-11-06T19:00:20+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 4099 extents, stage: update data pointers
+2025-11-06T19:00:35+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2185095020544 flags data
+2025-11-06T19:00:57+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 2857 extents, stage: move data extents
+2025-11-06T19:01:53+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 2857 extents, stage: update data pointers
+2025-11-06T19:02:11+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2141071605760 flags data
+2025-11-06T19:02:31+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 1332 extents, stage: move data extents
+2025-11-06T19:03:28+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 1332 extents, stage: update data pointers
+2025-11-06T19:03:47+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: ended with status: 0
+2025-11-06T19:03:49+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: start -musage=0 -susage=0
+2025-11-06T19:03:49+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: ended with status: 0
+2025-11-06T19:03:50+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: start -musage=10 -susage=10
+2025-11-06T19:03:50+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 22020096 flags system|dup
+2025-11-06T19:03:53+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 19 extents, stage: move data extents
+2025-11-06T19:03:55+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: ended with status: 0
+2025-11-06T19:03:56+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: start -musage=20 -susage=20
+2025-11-06T19:03:56+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 3428722933760 flags system|dup
+2025-11-06T19:03:58+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 19 extents, stage: move data extents
+2025-11-06T19:04:00+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2694082199552 flags metadata|dup
+2025-11-06T19:06:11+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 12361 extents, stage: move data extents
+2025-11-06T19:06:43+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2565199626240 flags metadata|dup
+2025-11-06T19:08:29+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 10684 extents, stage: move data extents
+2025-11-06T19:09:03+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: ended with status: 0
+2025-11-06T19:09:05+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: start -musage=30 -susage=30
+2025-11-06T19:09:05+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 3428756488192 flags system|dup
+2025-11-06T19:09:06+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 19 extents, stage: move data extents
+2025-11-06T19:09:07+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2893831733248 flags metadata|dup
+2025-11-06T19:10:39+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 15378 extents, stage: move data extents
+2025-11-06T19:11:12+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2832628449280 flags metadata|dup
+2025-11-06T19:12:15+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 18999 extents, stage: move data extents
+2025-11-06T19:12:38+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2799342452736 flags metadata|dup
+2025-11-06T19:14:17+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 18747 extents, stage: move data extents
+2025-11-06T19:14:47+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2766022901760 flags metadata|dup
+2025-11-06T19:16:12+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 16369 extents, stage: move data extents
+2025-11-06T19:16:40+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2681197297664 flags metadata|dup
+2025-11-06T19:17:56+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 13450 extents, stage: move data extents
+2025-11-06T19:18:18+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2680123555840 flags metadata|dup
+2025-11-06T19:19:47+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 15197 extents, stage: move data extents
+2025-11-06T19:20:12+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2679049814016 flags metadata|dup
+2025-11-06T19:21:24+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 15572 extents, stage: move data extents
+2025-11-06T19:21:50+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2673681104896 flags metadata|dup
+2025-11-06T19:23:07+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 14969 extents, stage: move data extents
+2025-11-06T19:23:30+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2625329168384 flags metadata|dup
+2025-11-06T19:25:05+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 17346 extents, stage: move data extents
+2025-11-06T19:25:29+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2601706848256 flags metadata|dup
+2025-11-06T19:26:31+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 15396 extents, stage: move data extents
+2025-11-06T19:26:55+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2578084528128 flags metadata|dup
+2025-11-06T19:28:06+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 15377 extents, stage: move data extents
+2025-11-06T19:28:32+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2529766146048 flags metadata|dup
+2025-11-06T19:30:08+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 15235 extents, stage: move data extents
+2025-11-06T19:30:37+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: ended with status: 0
+2025-11-06T19:30:40+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: start -musage=40 -susage=40
+2025-11-06T19:30:40+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 3428790042624 flags system|dup
+2025-11-06T19:30:43+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 19 extents, stage: move data extents
+2025-11-06T19:30:45+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2901347926016 flags metadata|dup
+2025-11-06T19:32:40+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 21862 extents, stage: move data extents
+2025-11-06T19:33:04+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2878799347712 flags metadata|dup
+2025-11-06T19:34:08+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 26070 extents, stage: move data extents
+2025-11-06T19:34:30+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2863766962176 flags metadata|dup
+2025-11-06T19:35:54+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 25465 extents, stage: move data extents
+2025-11-06T19:36:20+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2795047485440 flags metadata|dup
+2025-11-06T19:37:46+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 20880 extents, stage: move data extents
+2025-11-06T19:38:09+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2712335810560 flags metadata|dup
+2025-11-06T19:39:49+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 19855 extents, stage: move data extents
+2025-11-06T19:40:21+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2579158269952 flags metadata|dup
+2025-11-06T19:42:15+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 23392 extents, stage: move data extents
+2025-11-06T19:42:43+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2452456734720 flags metadata|dup
+2025-11-06T19:44:11+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 25689 extents, stage: move data extents
+2025-11-06T19:44:31+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2438498091008 flags metadata|dup
+2025-11-06T19:46:13+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 23975 extents, stage: move data extents
+2025-11-06T19:46:42+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2415949512704 flags metadata|dup
+2025-11-06T19:48:10+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 25866 extents, stage: move data extents
+2025-11-06T19:48:37+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2390179708928 flags metadata|dup
+2025-11-06T19:49:59+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 25618 extents, stage: move data extents
+2025-11-06T19:50:22+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: ended with status: 0
+2025-11-06T19:50:24+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: start -musage=50 -susage=50
+2025-11-06T19:50:24+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 3428823597056 flags system|dup
+2025-11-06T19:50:26+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 19 extents, stage: move data extents
+2025-11-06T19:50:27+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2744548065280 flags metadata|dup
+2025-11-06T19:52:21+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 32479 extents, stage: move data extents
+2025-11-06T19:52:43+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2661836390400 flags metadata|dup
+2025-11-06T19:54:01+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 28606 extents, stage: move data extents
+2025-11-06T19:54:25+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2544798531584 flags metadata|dup
+2025-11-06T19:56:31+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 31938 extents, stage: move data extents
+2025-11-06T19:56:58+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2501848858624 flags metadata|dup
+2025-11-06T19:58:34+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 31450 extents, stage: move data extents
+2025-11-06T19:59:08+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2451382992896 flags metadata|dup
+2025-11-06T20:01:28+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 31883 extents, stage: move data extents
+2025-11-06T20:01:58+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2376221065216 flags metadata|dup
+2025-11-06T20:03:30+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 32648 extents, stage: move data extents
+2025-11-06T20:03:56+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: ended with status: 0
+2025-11-06T20:03:58+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: start -musage=60 -susage=60
+2025-11-06T20:03:58+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 3428857151488 flags system|dup
+2025-11-06T20:04:00+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 19 extents, stage: move data extents
+2025-11-06T20:04:01+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2848734576640 flags metadata|dup
+2025-11-06T20:05:58+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 33625 extents, stage: move data extents
+2025-11-06T20:06:23+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2528692404224 flags metadata|dup
+2025-11-06T20:08:23+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 35614 extents, stage: move data extents
+2025-11-06T20:08:54+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2330050166784 flags metadata|dup
+2025-11-06T20:11:09+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 34220 extents, stage: move data extents
+2025-11-06T20:11:45+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2200127406080 flags metadata|dup
+2025-11-06T20:13:36+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 27062 extents, stage: move data extents
+2025-11-06T20:14:06+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2091679481856 flags metadata|dup
+2025-11-06T20:16:08+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 38539 extents, stage: move data extents
+2025-11-06T20:16:40+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: ended with status: 0
+2025-11-06T20:16:42+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: start -musage=70 -susage=70
+2025-11-06T20:16:42+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 3428890705920 flags system|dup
+2025-11-06T20:16:46+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 19 extents, stage: move data extents
+2025-11-06T20:16:49+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2137850380288 flags metadata|dup
+2025-11-06T20:19:12+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 45715 extents, stage: move data extents
+2025-11-06T20:19:46+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2032623681536 flags metadata|dup
+2025-11-06T20:22:49+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 44227 extents, stage: move data extents
+2025-11-06T20:22:58+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: ended with status: 0
+2025-11-06T20:23:00+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: start -musage=80 -susage=80
+2025-11-06T20:23:00+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 3430031556608 flags metadata|dup
+2025-11-06T20:23:03+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 3428957814784 flags metadata|dup
+2025-11-06T20:23:56+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 33550 extents, stage: move data extents
+2025-11-06T20:24:21+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 3428924260352 flags system|dup
+2025-11-06T20:24:22+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 21 extents, stage: move data extents
+2025-11-06T20:24:23+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: ended with status: 0
+2025-11-06T20:24:24+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: start -musage=90 -susage=90
+2025-11-06T20:24:24+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 3431105298432 flags system|dup
+2025-11-06T20:24:25+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 19 extents, stage: move data extents
+2025-11-06T20:24:26+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 3430031556608 flags metadata|dup
+2025-11-06T20:24:38+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 2924 extents, stage: move data extents
+2025-11-06T20:24:41+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2491111440384 flags metadata|dup
+2025-11-06T20:27:27+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 57374 extents, stage: move data extents
+2025-11-06T20:27:38+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 2417023254528 flags metadata|dup
+2025-11-06T20:31:24+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 57942 extents, stage: move data extents
+2025-11-06T20:31:39+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: ended with status: 0
+2025-11-06T20:31:41+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: start -dusage=0
+2025-11-06T20:31:41+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: ended with status: 0
+2025-11-06T20:31:41+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: start -dusage=10
+2025-11-06T20:31:41+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: ended with status: 0
+2025-11-06T20:31:41+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: start -dusage=20
+2025-11-06T20:31:41+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 291218915328 flags data
+2025-11-06T20:31:46+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 46 extents, stage: move data extents
+2025-11-06T20:31:49+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 46 extents, stage: update data pointers
+2025-11-06T20:31:50+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: ended with status: 0
+2025-11-06T20:31:50+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: start -dusage=30
+2025-11-06T20:31:50+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 294574358528 flags data
+2025-11-06T20:31:55+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 46 extents, stage: move data extents
+2025-11-06T20:31:56+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 46 extents, stage: update data pointers
+2025-11-06T20:31:57+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: ended with status: 0
+2025-11-06T20:31:58+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: start -dusage=40
+2025-11-06T20:31:58+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 295580991488 flags data
+2025-11-06T20:32:03+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 46 extents, stage: move data extents
+2025-11-06T20:32:04+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 46 extents, stage: update data pointers
+2025-11-06T20:32:05+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 290145173504 flags data
+2025-11-06T20:32:15+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 19 extents, stage: move data extents
+2025-11-06T20:32:16+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 19 extents, stage: update data pointers
+2025-11-06T20:32:17+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: ended with status: 0
+2025-11-06T20:32:17+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: start -dusage=50
+2025-11-06T20:32:17+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 297661366272 flags data
+2025-11-06T20:32:28+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 19 extents, stage: move data extents
+2025-11-06T20:32:31+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 19 extents, stage: update data pointers
+2025-11-06T20:32:33+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 296654733312 flags data
+2025-11-06T20:32:40+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 46 extents, stage: move data extents
+2025-11-06T20:32:43+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 46 extents, stage: update data pointers
+2025-11-06T20:32:44+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: ended with status: 0
+2025-11-06T20:32:44+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: start -dusage=60
+2025-11-06T20:32:44+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 299808849920 flags data
+2025-11-06T20:32:49+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 46 extents, stage: move data extents
+2025-11-06T20:32:50+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 46 extents, stage: update data pointers
+2025-11-06T20:32:51+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 298735108096 flags data
+2025-11-06T20:33:01+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 19 extents, stage: move data extents
+2025-11-06T20:33:02+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 19 extents, stage: update data pointers
+2025-11-06T20:33:03+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: ended with status: 0
+2025-11-06T20:33:04+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: start -dusage=70
+2025-11-06T20:33:04+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 301889224704 flags data
+2025-11-06T20:33:14+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 19 extents, stage: move data extents
+2025-11-06T20:33:15+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 19 extents, stage: update data pointers
+2025-11-06T20:33:16+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 300882591744 flags data
+2025-11-06T20:33:21+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 46 extents, stage: move data extents
+2025-11-06T20:33:22+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 46 extents, stage: update data pointers
+2025-11-06T20:33:23+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: ended with status: 0
+2025-11-06T20:33:23+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: start -dusage=80
+2025-11-06T20:33:23+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 304036708352 flags data
+2025-11-06T20:33:28+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 46 extents, stage: move data extents
+2025-11-06T20:33:30+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 46 extents, stage: update data pointers
+2025-11-06T20:33:30+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 302962966528 flags data
+2025-11-06T20:33:40+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 19 extents, stage: move data extents
+2025-11-06T20:33:41+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 19 extents, stage: update data pointers
+2025-11-06T20:33:42+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: ended with status: 0
+2025-11-06T20:33:42+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: start -dusage=90
+2025-11-06T20:33:42+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 306117083136 flags data
+2025-11-06T20:33:53+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 19 extents, stage: move data extents
+2025-11-06T20:33:53+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 19 extents, stage: update data pointers
+2025-11-06T20:33:54+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 305110450176 flags data
+2025-11-06T20:33:59+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 46 extents, stage: move data extents
+2025-11-06T20:34:01+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 46 extents, stage: update data pointers
+2025-11-06T20:34:02+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: ended with status: 0
+2025-11-06T20:34:02+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: start -musage=0 -susage=0
+2025-11-06T20:34:02+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: ended with status: 0
+2025-11-06T20:34:02+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: start -musage=10 -susage=10
+2025-11-06T20:34:02+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 293500616704 flags metadata|dup
+2025-11-06T20:34:22+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 3546 extents, stage: move data extents
+2025-11-06T20:34:28+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 292426874880 flags system|dup
+2025-11-06T20:34:29+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 3 extents, stage: move data extents
+2025-11-06T20:34:30+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: ended with status: 0
+2025-11-06T20:34:31+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: start -musage=20 -susage=20
+2025-11-06T20:34:31+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 309875179520 flags system|dup
+2025-11-06T20:34:33+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 309841625088 flags metadata|dup
+2025-11-06T20:34:34+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 309338308608 flags metadata|dup
+2025-11-06T20:34:36+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: ended with status: 0
+2025-11-06T20:34:37+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: start -musage=30 -susage=30
+2025-11-06T20:34:37+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 309917122560 flags metadata|dup
+2025-11-06T20:34:38+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 309883568128 flags system|dup
+2025-11-06T20:34:40+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 3 extents, stage: move data extents
+2025-11-06T20:34:41+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: ended with status: 0
+2025-11-06T20:34:42+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: start -musage=40 -susage=40
+2025-11-06T20:34:42+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 311494180864 flags system|dup
+2025-11-06T20:34:43+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 310990864384 flags metadata|dup
+2025-11-06T20:34:45+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: ended with status: 0
+2025-11-06T20:34:45+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: start -musage=50 -susage=50
+2025-11-06T20:34:45+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 311561289728 flags metadata|dup
+2025-11-06T20:34:47+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 311527735296 flags system|dup
+2025-11-06T20:34:48+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 3 extents, stage: move data extents
+2025-11-06T20:34:50+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: ended with status: 0
+2025-11-06T20:34:50+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: start -musage=60 -susage=60
+2025-11-06T20:34:50+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 313138348032 flags system|dup
+2025-11-06T20:34:52+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 312635031552 flags metadata|dup
+2025-11-06T20:34:53+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: ended with status: 0
+2025-11-06T20:34:54+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: start -musage=70 -susage=70
+2025-11-06T20:34:54+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 313205456896 flags metadata|dup
+2025-11-06T20:34:55+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 313171902464 flags system|dup
+2025-11-06T20:34:57+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 3 extents, stage: move data extents
+2025-11-06T20:34:58+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: ended with status: 0
+2025-11-06T20:34:59+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: start -musage=80 -susage=80
+2025-11-06T20:34:59+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 314782515200 flags system|dup
+2025-11-06T20:35:00+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 314279198720 flags metadata|dup
+2025-11-06T20:35:02+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 292460429312 flags metadata|dup
+2025-11-06T20:36:16+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 24466 extents, stage: move data extents
+2025-11-06T20:36:22+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: ended with status: 0
+2025-11-06T20:36:22+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: start -musage=90 -susage=90
+2025-11-06T20:36:22+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 314849624064 flags metadata|dup
+2025-11-06T20:37:34+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 18152 extents, stage: move data extents
+2025-11-06T20:37:40+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 314816069632 flags system|dup
+2025-11-06T20:37:40+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 3 extents, stage: move data extents
+2025-11-06T20:37:41+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: ended with status: 0
+2025-11-08T21:48:01+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: start -dusage=0
+2025-11-08T21:48:01+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: ended with status: 0
+2025-11-08T21:48:02+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: start -dusage=10
+2025-11-08T21:48:02+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: ended with status: 0
+2025-11-08T21:48:03+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: start -dusage=20
+2025-11-08T21:48:03+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: ended with status: 0
+2025-11-08T21:48:04+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: start -dusage=30
+2025-11-08T21:48:04+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 3438688600064 flags data
+2025-11-08T21:48:14+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 12063 extents, stage: move data extents
+2025-11-08T21:48:25+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 12063 extents, stage: update data pointers
+2025-11-08T21:48:27+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: ended with status: 0
+2025-11-08T21:48:27+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: start -dusage=40
+2025-11-08T21:48:27+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 3441909825536 flags data
+2025-11-08T21:48:32+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 11868 extents, stage: move data extents
+2025-11-08T21:48:35+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 11868 extents, stage: update data pointers
+2025-11-08T21:48:36+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: ended with status: 0
+2025-11-08T21:48:37+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: start -dusage=50
+2025-11-08T21:48:37+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 3442983567360 flags data
+2025-11-08T21:48:41+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 11868 extents, stage: move data extents
+2025-11-08T21:48:43+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 11868 extents, stage: update data pointers
+2025-11-08T21:48:44+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: ended with status: 0
+2025-11-08T21:48:45+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: start -dusage=60
+2025-11-08T21:48:45+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 3444057309184 flags data
+2025-11-08T21:48:50+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 11868 extents, stage: move data extents
+2025-11-08T21:48:52+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 11868 extents, stage: update data pointers
+2025-11-08T21:48:53+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: ended with status: 0
+2025-11-08T21:48:54+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: start -dusage=70
+2025-11-08T21:48:54+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 3445131051008 flags data
+2025-11-08T21:48:58+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 11868 extents, stage: move data extents
+2025-11-08T21:49:00+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 11868 extents, stage: update data pointers
+2025-11-08T21:49:02+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 3295478284288 flags data
+2025-11-08T21:49:17+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 16 extents, stage: move data extents
+2025-11-08T21:49:36+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 16 extents, stage: update data pointers
+2025-11-08T21:49:41+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: ended with status: 0
+2025-11-08T21:49:42+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: start -dusage=80
+2025-11-08T21:49:42+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 3447278534656 flags data
+2025-11-08T21:49:52+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 14 extents, stage: move data extents
+2025-11-08T21:49:57+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 14 extents, stage: update data pointers
+2025-11-08T21:50:00+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 3446204792832 flags data
+2025-11-08T21:50:04+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 11868 extents, stage: move data extents
+2025-11-08T21:50:06+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 11868 extents, stage: update data pointers
+2025-11-08T21:50:07+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 3436541116416 flags data
+2025-11-08T21:50:22+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 465 extents, stage: move data extents
+2025-11-08T21:50:27+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 465 extents, stage: update data pointers
+2025-11-08T21:50:29+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: ended with status: 0
+2025-11-08T21:50:29+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: start -dusage=90
+2025-11-08T21:50:29+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 3450499760128 flags data
+2025-11-08T21:50:43+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 434 extents, stage: move data extents
+2025-11-08T21:50:45+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 434 extents, stage: update data pointers
+2025-11-08T21:50:47+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 3449426018304 flags data
+2025-11-08T21:50:52+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 11868 extents, stage: move data extents
+2025-11-08T21:50:54+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 11868 extents, stage: update data pointers
+2025-11-08T21:50:55+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 3448352276480 flags data
+2025-11-08T21:51:05+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 14 extents, stage: move data extents
+2025-11-08T21:51:16+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 14 extents, stage: update data pointers
+2025-11-08T21:51:26+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: ended with status: 0
+2025-11-08T21:51:28+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: start -musage=0 -susage=0
+2025-11-08T21:51:28+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: ended with status: 0
+2025-11-08T21:51:28+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: start -musage=10 -susage=10
+2025-11-08T21:51:28+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 3431138852864 flags system|dup
+2025-11-08T21:51:30+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 19 extents, stage: move data extents
+2025-11-08T21:51:32+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: ended with status: 0
+2025-11-08T21:51:33+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: start -musage=20 -susage=20
+2025-11-08T21:51:33+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 3454794727424 flags system|dup
+2025-11-08T21:51:35+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 19 extents, stage: move data extents
+2025-11-08T21:51:36+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: ended with status: 0
+2025-11-08T21:51:37+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: start -musage=30 -susage=30
+2025-11-08T21:51:37+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 3454828281856 flags system|dup
+2025-11-08T21:51:39+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 19 extents, stage: move data extents
+2025-11-08T21:51:41+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: ended with status: 0
+2025-11-08T21:51:42+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: start -musage=40 -susage=40
+2025-11-08T21:51:42+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 3454861836288 flags system|dup
+2025-11-08T21:51:44+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 19 extents, stage: move data extents
+2025-11-08T21:51:45+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: ended with status: 0
+2025-11-08T21:51:46+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: start -musage=50 -susage=50
+2025-11-08T21:51:46+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 3454895390720 flags system|dup
+2025-11-08T21:51:48+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 19 extents, stage: move data extents
+2025-11-08T21:51:50+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: ended with status: 0
+2025-11-08T21:51:51+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: start -musage=60 -susage=60
+2025-11-08T21:51:51+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 3454928945152 flags system|dup
+2025-11-08T21:51:53+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 19 extents, stage: move data extents
+2025-11-08T21:51:54+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 3433319890944 flags metadata|dup
+2025-11-08T21:55:07+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 31656 extents, stage: move data extents
+2025-11-08T21:55:35+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: ended with status: 0
+2025-11-08T21:55:37+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: start -musage=70 -susage=70
+2025-11-08T21:55:37+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 3454996054016 flags metadata|dup
+2025-11-08T21:56:50+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 33182 extents, stage: move data extents
+2025-11-08T21:57:02+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 3454962499584 flags system|dup
+2025-11-08T21:57:03+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 21 extents, stage: move data extents
+2025-11-08T21:57:03+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: ended with status: 0
+2025-11-08T21:57:04+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: start -musage=80 -susage=80
+2025-11-08T21:57:04+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 3457143537664 flags system|dup
+2025-11-08T21:57:04+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 19 extents, stage: move data extents
+2025-11-08T21:57:05+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 3456069795840 flags metadata|dup
+2025-11-08T21:57:40+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 23810 extents, stage: move data extents
+2025-11-08T21:57:42+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: ended with status: 0
+2025-11-08T21:57:43+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: start -musage=90 -susage=90
+2025-11-08T21:57:43+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 3457210646528 flags metadata|dup
+2025-11-08T21:57:53+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 9836 extents, stage: move data extents
+2025-11-08T21:57:55+01:00 tonellinoble kernel: BTRFS info (device sdh1): relocating block group 3457177092096 flags system|dup
+2025-11-08T21:57:55+01:00 tonellinoble kernel: BTRFS info (device sdh1): found 21 extents, stage: move data extents
+2025-11-08T21:57:56+01:00 tonellinoble kernel: BTRFS info (device sdh1): balance: ended with status: 0
+2025-11-08T21:57:58+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: start -dusage=0
+2025-11-08T21:57:58+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: ended with status: 0
+2025-11-08T21:57:59+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: start -dusage=10
+2025-11-08T21:57:59+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 268670337024 flags data
+2025-11-08T21:58:01+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 5 extents, stage: move data extents
+2025-11-08T21:58:04+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 5 extents, stage: update data pointers
+2025-11-08T21:58:05+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 208482074624 flags data
+2025-11-08T21:58:09+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 51 extents, stage: move data extents
+2025-11-08T21:58:21+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 51 extents, stage: update data pointers
+2025-11-08T21:58:23+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: ended with status: 0
+2025-11-08T21:58:24+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: start -dusage=20
+2025-11-08T21:58:24+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 308264566784 flags data
+2025-11-08T21:58:29+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 37 extents, stage: move data extents
+2025-11-08T21:58:32+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 37 extents, stage: update data pointers
+2025-11-08T21:58:33+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: ended with status: 0
+2025-11-08T21:58:33+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: start -dusage=30
+2025-11-08T21:58:33+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: ended with status: 0
+2025-11-08T21:58:34+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: start -dusage=40
+2025-11-08T21:58:34+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: ended with status: 0
+2025-11-08T21:58:34+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: start -dusage=50
+2025-11-08T21:58:34+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: ended with status: 0
+2025-11-08T21:58:35+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: start -dusage=60
+2025-11-08T21:58:35+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: ended with status: 0
+2025-11-08T21:58:35+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: start -dusage=70
+2025-11-08T21:58:36+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: ended with status: 0
+2025-11-08T21:58:36+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: start -dusage=80
+2025-11-08T21:58:36+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 259207987200 flags data
+2025-11-08T21:59:02+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 1022 extents, stage: move data extents
+2025-11-08T21:59:29+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 1022 extents, stage: update data pointers
+2025-11-08T21:59:34+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: ended with status: 0
+2025-11-08T21:59:35+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: start -dusage=90
+2025-11-08T21:59:35+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 319119425536 flags data
+2025-11-08T21:59:57+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 895 extents, stage: move data extents
+2025-11-08T22:00:09+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 895 extents, stage: update data pointers
+2025-11-08T22:00:13+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 318112792576 flags data
+2025-11-08T22:00:34+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 47 extents, stage: move data extents
+2025-11-08T22:00:35+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 47 extents, stage: update data pointers
+2025-11-08T22:00:36+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: ended with status: 0
+2025-11-08T22:00:37+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: start -musage=0 -susage=0
+2025-11-08T22:00:37+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: ended with status: 0
+2025-11-08T22:00:37+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: start -musage=10 -susage=10
+2025-11-08T22:00:37+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 317005496320 flags system|dup
+2025-11-08T22:00:37+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: ended with status: 0
+2025-11-08T22:00:38+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: start -musage=20 -susage=20
+2025-11-08T22:00:38+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 322340651008 flags system|dup
+2025-11-08T22:00:38+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: ended with status: 0
+2025-11-08T22:00:38+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: start -musage=30 -susage=30
+2025-11-08T22:00:38+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 322374205440 flags system|dup
+2025-11-08T22:00:39+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: ended with status: 0
+2025-11-08T22:00:39+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: start -musage=40 -susage=40
+2025-11-08T22:00:39+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 322407759872 flags system|dup
+2025-11-08T22:00:40+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 315923365888 flags metadata|dup
+2025-11-08T22:01:47+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 11188 extents, stage: move data extents
+2025-11-08T22:01:53+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: ended with status: 0
+2025-11-08T22:01:54+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: start -musage=50 -susage=50
+2025-11-08T22:01:54+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 323011739648 flags metadata|dup
+2025-11-08T22:01:54+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 322441314304 flags system|dup
+2025-11-08T22:01:55+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 3 extents, stage: move data extents
+2025-11-08T22:01:56+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: ended with status: 0
+2025-11-08T22:01:56+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: start -musage=60 -susage=60
+2025-11-08T22:01:56+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 323011739648 flags system|dup
+2025-11-08T22:01:57+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 322474868736 flags metadata|dup
+2025-11-08T22:03:09+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 12995 extents, stage: move data extents
+2025-11-08T22:03:20+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: ended with status: 0
+2025-11-08T22:03:20+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: start -musage=70 -susage=70
+2025-11-08T22:03:20+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 323615719424 flags metadata|dup
+2025-11-08T22:03:21+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 323078848512 flags metadata|dup
+2025-11-08T22:03:26+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 645 extents, stage: move data extents
+2025-11-08T22:03:32+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 323045294080 flags system|dup
+2025-11-08T22:03:36+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 3 extents, stage: move data extents
+2025-11-08T22:03:38+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: ended with status: 0
+2025-11-08T22:03:39+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: start -musage=80 -susage=80
+2025-11-08T22:03:39+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 324152590336 flags system|dup
+2025-11-08T22:03:39+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 323615719424 flags metadata|dup
+2025-11-08T22:03:41+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: ended with status: 0
+2025-11-08T22:03:41+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: start -musage=90 -susage=90
+2025-11-08T22:03:41+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 324219699200 flags metadata|dup
+2025-11-08T22:03:42+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 324186144768 flags system|dup
+2025-11-08T22:03:44+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 3 extents, stage: move data extents
+2025-11-08T22:03:45+01:00 tonellinoble kernel: BTRFS info (device dm-7): relocating block group 316460236800 flags metadata|dup
+2025-11-08T22:05:19+01:00 tonellinoble kernel: BTRFS info (device dm-7): found 22988 extents, stage: move data extents
+2025-11-08T22:05:25+01:00 tonellinoble kernel: BTRFS info (device dm-7): balance: ended with status: 0

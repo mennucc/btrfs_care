@@ -1,0 +1,8 @@
+Overall:
+    Device size:                   3.63TiB
+    Device allocated:              3.45TiB
+    Device unallocated:            0.18TiB
+
+Data, SINGLE: Size:3984588800.00KiB, Used:2977953792.00KiB
+Metadata,DUP: Size:30310400.00KiB, Used:29548544.00KiB
+System,DUP: Size:32768.00KiB, Used:16.00KiB

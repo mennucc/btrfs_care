@@ -1,0 +1,6 @@
+2025-11-07T14:11:11+01:00 arietty kernel: Btrfs loaded, zoned=yes, fsverity=yes
+2025-11-07T14:11:11+01:00 arietty kernel: BTRFS: device label UBUNTU devid 1 transid 2217998 /dev/nvme0n1p5 (259:5) scanned by mount (396)
+2025-11-07T14:11:11+01:00 arietty kernel: BTRFS info (device nvme0n1p5): first mount of filesystem 5555f991-db31-45a1-b146-7e0f386aa59e
+2025-11-07T14:11:11+01:00 arietty kernel: BTRFS info (device nvme0n1p5): using crc32c (crc32c-x86) checksum algorithm
+2025-11-07T14:11:11+01:00 arietty kernel: BTRFS info (device nvme0n1p5): disk space caching is enabled
+2025-11-07T14:11:11+01:00 arietty kernel: BTRFS warning (device nvme0n1p5): space cache v1 is being deprecated and will be removed in a future release, please use -o space_cache=v2

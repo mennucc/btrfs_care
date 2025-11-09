@@ -1,0 +1,6 @@
+scrub status for /media/allext:
+    scrub started:    Mon Oct 20 20:08:59 2025
+    status:           finished
+    total bytes scrubbed:  3.63TiB
+    rate:             220.00MiB/s
+    error summary:    no errors found

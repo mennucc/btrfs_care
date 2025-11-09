@@ -1,0 +1,138 @@
+#!/bin/bash
+
+set -euo pipefail
+
+dir=$(cd "$(dirname "$0")" && pwd)
+
+fail() {
+    echo "fake btrfs: $*" >&2
+    exit 1
+}
+
+classify_target() {
+    case "$1" in
+        /|/home|/var/snap/*|/var/lib/*)
+            echo root
+            ;;
+        /media/allext*|/media/backups*|/media/backup_cells*|/media/mirrors*|/media/home*)
+            echo allext
+            ;;
+        *)
+            echo root
+            ;;
+    esac
+}
+
+if [ $# -lt 1 ]; then
+    fail "missing subcommand"
+fi
+
+subcmd="$1"
+shift || true
+
+case "$subcmd" in
+  subvolume)
+    action=${1:-}
+    [ "$action" = "list" ] || fail "unsupported subvolume action $action"
+    shift || true
+    target=${1:-/}
+    case "$target" in
+      /)
+        cat "$dir/btrfs_subvol_root.txt"
+        ;;
+      /media/allext)
+        cat "$dir/btrfs_subvol_allext.txt"
+        ;;
+      *)
+        fail "unknown subvolume list target $target"
+        ;;
+    esac
+    ;;
+  filesystem)
+    action=${1:-}
+    [ -n "$action" ] || fail "missing filesystem action"
+    shift || true
+    case "$action" in
+      usage)
+        target=""
+        while [ $# -gt 0 ]; do
+            case "$1" in
+                -k|--kbytes)
+                    shift
+                    ;;
+                --*)
+                    fail "unsupported filesystem usage option $1"
+                    ;;
+                *)
+                    target="$1"
+                    shift
+                    ;;
+            esac
+        done
+        [ -n "$target" ] || fail "missing filesystem usage target"
+        case "$(classify_target "$target")" in
+          root)
+            fixture="$dir/btrfs_usage_root.txt"
+            ;;
+          allext)
+            fixture="$dir/btrfs_usage_allext.txt"
+            ;;
+          *)
+            fail "unknown filesystem usage target $target"
+            ;;
+        esac
+        cat "$fixture"
+        ;;
+      show)
+        target=${@: -1}
+        [ -n "$target" ] || fail "missing filesystem show target"
+        case "$(classify_target "$target")" in
+          root)
+            fixture="$dir/btrfs_show_root.txt"
+            ;;
+          allext)
+            fixture="$dir/btrfs_show_allext.txt"
+            ;;
+          *)
+            fail "unknown filesystem show target $target"
+            ;;
+        esac
+        cat "$fixture"
+        ;;
+      *)
+        fail "unsupported filesystem action $action"
+        ;;
+    esac
+    ;;
+  scrub)
+    action=${1:-}
+    [ -n "$action" ] || fail "missing scrub action"
+    shift || true
+    target=${@: -1}
+    case "$action" in
+      status)
+        case "$(classify_target "$target")" in
+          root)
+            fixture="$dir/btrfs_scrub_status_root.txt"
+            ;;
+          allext)
+            fixture="$dir/btrfs_scrub_status_allext.txt"
+            ;;
+          *)
+            fail "unknown scrub status target $target"
+            ;;
+        esac
+        cat "$fixture"
+        ;;
+      start|resume)
+        echo "scrub $action completed on $target (fake)"
+        ;;
+      *)
+        fail "unsupported scrub action $action"
+        ;;
+    esac
+    ;;
+  *)
+    fail "TODO not handled ($subcmd $*)"
+    ;;
+esac

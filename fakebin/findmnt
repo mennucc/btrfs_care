@@ -1,0 +1,6 @@
+#!/bin/bash
+
+dir=$(dirname "$0")
+
+cat "$dir"/findmnt.txt
+
