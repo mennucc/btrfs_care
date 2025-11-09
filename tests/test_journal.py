@@ -67,7 +67,8 @@ class TestJournalParsing(unittest.TestCase):
         summary = BC._summarize_btrfs_entry(entry, {7533: "snapshots/home"})
         self.assertIn("root 7533 (snapshots/home)", summary)
         self.assertIn("foo/bar", summary)
-        self.assertIn("2025-11-08T13:47:01+01:00 host", summary)
+        self.assertIn("WARNING nvme0n1p5 (UUID ?)", summary)
+        self.assertIn("root 7533 (snapshots/home)", summary)
 
 
 if __name__ == "__main__":

@@ -17,6 +17,7 @@ import json
 import time
 import os
 import threading
+import socket
 from datetime import datetime, timedelta
 
 # Configuration
@@ -45,6 +46,12 @@ def _parse_size(value):
         return int(float(s))
     except (ValueError, TypeError):
         raise argparse.ArgumentTypeError(f"Invalid size: {value}")
+
+
+def _now_host():
+    stamp = datetime.now().astimezone().replace(microsecond=0).isoformat()
+    host = socket.gethostname()
+    return stamp, host
 
 
 def parse_args():
@@ -200,9 +207,10 @@ def parse_btrfs_usage_k(mountpoint, uuid):
         data_free_kib = data_size_kib - data_used_kib
         data_free_ratio = (data_free_kib / data_size_kib) if data_size_kib > 0 else 0.0
 
-    now = datetime.now().isoformat()
+    now, hostname = _now_host()
     return {
         "timestamp" : now, 
+        "host" : hostname,
         "device" : mountpoint,
         "uuid" : uuid,
         'type': 'metadata', 
@@ -213,6 +221,7 @@ def parse_btrfs_usage_k(mountpoint, uuid):
         "free_ratio": free_ratio,
     }, {
         "timestamp" : now, 
+        "host" : hostname,
         "device" : mountpoint,
         'type': 'data', 
         "uuid" : uuid,
@@ -269,7 +278,7 @@ def metadata_allocation_info(target,
         )
     )
     print(output)
-    _log_error_entry(entry=info, summary='# '+output + '\n', log=log, log_format=log_format, rotate_size=log_rotate)
+    _log_error_entry(entry=info, summary=output.strip(), log=log, log_format=log_format, rotate_size=log_rotate)
 
     data_size = (data_info or {}).get("size_kib")
     if data_size:
@@ -286,7 +295,7 @@ def metadata_allocation_info(target,
     else:
         output = (f"   ⓘ Data profile={data_profile}")
     print(output)
-    _log_error_entry(entry=data_info, summary='# '+output + '\n', log=log, log_format=log_format, rotate_size=log_rotate)
+    _log_error_entry(entry=data_info, summary=output.strip(), log=log, log_format=log_format, rotate_size=log_rotate)
 
     # Critical case
     if ratio < 0.05:
@@ -459,11 +468,10 @@ def _summarize_btrfs_entry(entry, subvol_map):
     if subvol_desc:
         root_info = f"{root_info} ({subvol_desc})"
     rel_path = entry['rel_path'] or "-"
-    ts_parts = [entry['timestamp']]
-    if entry.get('host'):
-        ts_parts.append(entry['host'])
+    mount_desc = entry.get('mountpoint') or entry.get('device') or '?'
+    uuid = entry.get('uuid') or '?'
     summary = (
-        f"      - [{' '.join(filter(None, ts_parts))}] {entry['level']} {root_info}, "
+        f"{entry['level']} {mount_desc} (UUID {uuid}) {root_info}, "
         f"inode {entry['inode'] or '?'}, path {rel_path}"
     )
     detail_bits = []
@@ -485,11 +493,25 @@ def _summarize_btrfs_entry(entry, subvol_map):
 def _log_error_entry(entry, summary, log, log_format, rotate_size=None):
     if not log:
         return
+    entry = entry or {}
+    timestamp = entry.get('timestamp')
+    host = entry.get('host')
+    if not timestamp or not host:
+        stamp, hostname = _now_host()
+        timestamp = timestamp or stamp
+        host = host or hostname
+        entry.setdefault('timestamp', timestamp)
+        entry.setdefault('host', host)
+    prefix = f"{timestamp} {host}"
     if log_format == 'json':
+        _append_log(log, f"{prefix} JSON", rotate_size)
         payload = "## JSON START\n" + json.dumps(entry, indent=2) + "\n## JSON END"
         _append_log(log, payload, rotate_size)
     else:
-        _append_log(log, summary, rotate_size)
+        message = (summary or '').strip()
+        if message.startswith('- [') and '] ' in message:
+            message = message.split('] ', 1)[1]
+        _append_log(log, f"{prefix} {message}", rotate_size)
 
 
 class BtrfsJournalMonitor:
@@ -557,13 +579,8 @@ class BtrfsJournalMonitor:
                 entry = _parse_btrfs_line(line, self.device_markers, self.device_token)
                 if not entry:
                     continue
-                if not self.header_written:
-                    _append_log(
-                        self.log,
-                        f"# Errors on {self.device_token} ({self.mp_info.get('target')})",
-                        self.log_rotate
-                    )
-                    self.header_written = True
+                entry['mountpoint'] = self.mp_info.get('target')
+                entry['uuid'] = self.mp_info.get('uuid')
                 summary = _summarize_btrfs_entry(entry, self.subvol_map)
                 print(f"   ⚠️  Live kernel event on {self.device_token}:")
                 print(summary)
@@ -608,12 +625,9 @@ def report_btrfs_kernel_errors(mp_info, journal_text, log=None, log_format=None,
         subvol_map = parse_subvolume_paths(mp_info['target'])
 
     print(f"   ⚠️  Kernel reported {len(entries)} Btrfs event(s) on {device_token}:")
-    _append_log(
-        log,
-        f"# Errors on {device_token} ({mp_info.get('target')})",
-        log_rotate,
-    )
     for entry in entries:
+        entry['mountpoint'] = mp_info.get('target')
+        entry['uuid'] = mp_info.get('uuid')
         summary = _summarize_btrfs_entry(entry, subvol_map)
         print(summary)
         _log_error_entry(entry, summary, log, log_format, log_rotate)
@@ -1014,6 +1028,7 @@ def main():
         # or disks have a problem... let's wait a bit
         if not scrub_ok:
             time.sleep(5)
+        now, host = _now_host()
 
         mountpoint = mp_info['target']
         uuid = mp_info.get('uuid', 'unknown')
@@ -1024,6 +1039,20 @@ def main():
         print(f"Working on: {target}")
         print(f"Device: {source}")
         print(f"UUID: {uuid}")
+        _log_error_entry(
+            entry={
+                "timestamp": now,
+                "host": host,
+                "device": target,
+                "source": source,
+                "uuid": uuid,
+                "type": "start",
+            },
+            summary=f"Starting maintenance on {target} ({source}) UUID {uuid}",
+            log=log,
+            log_format=args.log_format,
+            rotate_size=args.log_rotate,
+        )
             
         metadata_allocation_info(target,
                                  uuid=uuid, 
@@ -1050,15 +1079,40 @@ def main():
             
             # Run scrub
             scrub_ok = run_scrub(mp_info, max_age_days=scrub_max_age_days)
-            
             # If scrub is ok, run balance
             # If scrub returned 'skip', don't run balance
             if scrub_ok == 'skip':
-                print(f"\n⚠️  Skipping balance for {mp_info['target']} (scrub is running)")
+                message = f"Skipping balance for {target} (scrub in progress)"
+                print(f"\n⚠️  {message}")
+                now, host = _now_host()
+                _log_error_entry(
+                    entry={"timestamp": now, "host": host, "device": target, "type": "skip"},
+                    summary=message,
+                    log=log,
+                    log_format=args.log_format,
+                    rotate_size=args.log_rotate,
+                )
             elif scrub_ok:
                 run_balance(mp_info)
+                now, host = _now_host()
+                _log_error_entry(
+                    entry={"timestamp": now, "host": host, "device": target, "type": "done"},
+                    summary=f"Maintenance completed for {target}",
+                    log=log,
+                    log_format=args.log_format,
+                    rotate_size=args.log_rotate,
+                )
             else:
-                print(f"\n⚠️  Balance skipped for {mp_info['target']} due to scrub errors")
+                message = f"Balance skipped for {target} due to scrub errors"
+                print(f"\n⚠️  {message}")
+                now, host = _now_host()
+                _log_error_entry(
+                    entry={"timestamp": now, "host": host, "device": target, "type": "error"},
+                    summary=message,
+                    log=log,
+                    log_format=args.log_format,
+                    rotate_size=args.log_rotate,
+                )
         finally:
             monitor.stop()
     
