@@ -65,22 +65,22 @@ def parse_args():
         help=f'Skip scrub if last run was newer than DAYS (default {SCRUB_MAX_AGE_DAYS}).'
     )
     parser.add_argument(
-        '--error-log',
-        dest='error_log',
+        '--log',
+        dest='log',
         metavar='PATH',
         help='If set, append parsed Btrfs errors from journalctl to PATH in addition to printing them.'
     )
     parser.add_argument(
-        '--error-log-format',
-        dest='error_log_format',
+        '--log-format',
+        dest='log_format',
         metavar='FORMAT',
         choices=('text', 'json'),
         default='text',
         help='format for error log: text (default) or json'
     )
     parser.add_argument(
-        '--error-log-rotate',
-        dest='error_log_rotate',
+        '--log-rotate',
+        dest='log_rotate',
         metavar='BYTES',
         type=_parse_size,
         help='If set, rotate the error log after it exceeds this size (accepts suffixes like 10MiB, 500k, etc.; single backup PATH.1).'
@@ -334,7 +334,7 @@ def _normalize_block_device(source):
     return device, token, markers
 
 
-def _append_error_log(path, line, rotate_size=None):
+def _append_log(path, line, rotate_size=None):
     if not path:
         return
     try:
@@ -461,24 +461,24 @@ def _summarize_btrfs_entry(entry, subvol_map):
     return summary
 
 
-def _log_error_entry(entry, summary, error_log, error_log_format, rotate_size=None):
-    if not error_log:
+def _log_error_entry(entry, summary, log, log_format, rotate_size=None):
+    if not log:
         return
-    if error_log_format == 'json':
+    if log_format == 'json':
         payload = "## JSON START\n" + json.dumps(entry, indent=2) + "\n## JSON END"
-        _append_error_log(error_log, payload, rotate_size)
+        _append_log(log, payload, rotate_size)
     else:
-        _append_error_log(error_log, summary, rotate_size)
+        _append_log(log, summary, rotate_size)
 
 
 class BtrfsJournalMonitor:
     """Background journalctl follower for a single device."""
 
-    def __init__(self, mp_info, error_log, error_log_format, error_log_rotate):
+    def __init__(self, mp_info, log, log_format, log_rotate):
         self.mp_info = mp_info
-        self.error_log = error_log
-        self.error_log_format = error_log_format
-        self.error_log_rotate = error_log_rotate
+        self.log = log
+        self.log_format = log_format
+        self.log_rotate = log_rotate
         self.device_path, self.device_token, self.device_markers = _normalize_block_device(
             mp_info.get('source')
         )
@@ -537,10 +537,10 @@ class BtrfsJournalMonitor:
                 if not entry:
                     continue
                 if not self.header_written:
-                    _append_error_log(
-                        self.error_log,
+                    _append_log(
+                        self.log,
                         f"# Errors on {self.device_token} ({self.mp_info.get('target')})",
-                        self.error_log_rotate
+                        self.log_rotate
                     )
                     self.header_written = True
                 summary = _summarize_btrfs_entry(entry, self.subvol_map)
@@ -549,9 +549,9 @@ class BtrfsJournalMonitor:
                 _log_error_entry(
                     entry,
                     summary,
-                    self.error_log,
-                    self.error_log_format,
-                    self.error_log_rotate,
+                    self.log,
+                    self.log_format,
+                    self.log_rotate,
                 )
                 if self.stop_event.is_set():
                     break
@@ -563,7 +563,7 @@ class BtrfsJournalMonitor:
                     pass
 
 
-def report_btrfs_kernel_errors(mp_info, journal_text, error_log=None, error_log_format=None, error_log_rotate=None):
+def report_btrfs_kernel_errors(mp_info, journal_text, log=None, log_format=None, log_rotate=None):
     """Scan journalctl output for Btrfs errors related to this mount's device."""
     if not journal_text:
         return
@@ -587,15 +587,15 @@ def report_btrfs_kernel_errors(mp_info, journal_text, error_log=None, error_log_
         subvol_map = parse_subvolume_paths(mp_info['target'])
 
     print(f"   ⚠️  Kernel reported {len(entries)} Btrfs event(s) on {device_token}:")
-    _append_error_log(
-        error_log,
+    _append_log(
+        log,
         f"# Errors on {device_token} ({mp_info.get('target')})",
-        error_log_rotate,
+        log_rotate,
     )
     for entry in entries:
         summary = _summarize_btrfs_entry(entry, subvol_map)
         print(summary)
-        _log_error_entry(entry, summary, error_log, error_log_format, error_log_rotate)
+        _log_error_entry(entry, summary, log, log_format, log_rotate)
 
 
 
@@ -956,7 +956,7 @@ def main():
     NOACT = ['echo'] if args.no_act else []
 
     scrub_max_age_days = args.scrub_max_age_days
-    error_log = args.error_log
+    log = args.log
 
     print("Btrfs Maintenance Script")
     print("="*60)
@@ -1008,18 +1008,18 @@ def main():
 
         monitor = BtrfsJournalMonitor(
             mp_info,
-            error_log,
-            args.error_log_format,
-            args.error_log_rotate,
+            log,
+            args.log_format,
+            args.log_rotate,
         )
         monitor.start()
         try:
             report_btrfs_kernel_errors(
                 mp_info,
                 journal_text,
-                error_log,
-                args.error_log_format,
-                args.error_log_rotate,
+                log,
+                args.log_format,
+                args.log_rotate,
             )
             
             # Run scrub
