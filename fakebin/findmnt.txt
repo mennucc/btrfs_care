@@ -45,5 +45,12 @@
          "fstype": "btrfs",
          "options": "rw,nosuid,nodev,noexec,relatime,space_cache,subvolid=5,subvol=/"
       }
+     ,
+     {
+        "target": "/dataBtrfs",
+        "source": "/dev/sdc2",
+        "fstype": "btrfs",
+        "options": "rw,noatime,space_cache=v2,subvolid=5,subvol=/"
+     }
    ]
 }

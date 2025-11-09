@@ -17,6 +17,9 @@ classify_target() {
         /media/allext*|/media/backups*|/media/backup_cells*|/media/mirrors*|/media/home*)
             echo allext
             ;;
+        /dataBtrfs*|/media/dataBtrfs*)
+            echo data
+            ;;
         *)
             echo root
             ;;
@@ -77,6 +80,9 @@ case "$subcmd" in
           allext)
             fixture="$dir/btrfs_usage_allext.txt"
             ;;
+          data)
+            fixture="$dir/btrfs_usage_dataBtrfs.txt"
+            ;;
           *)
             fail "unknown filesystem usage target $target"
             ;;
@@ -92,6 +98,9 @@ case "$subcmd" in
             ;;
           allext)
             fixture="$dir/btrfs_show_allext.txt"
+            ;;
+          data)
+            fixture="$dir/btrfs_show_dataBtrfs.txt"
             ;;
           *)
             fail "unknown filesystem show target $target"
@@ -117,6 +126,9 @@ case "$subcmd" in
             ;;
           allext)
             fixture="$dir/btrfs_scrub_status_allext.txt"
+            ;;
+          data)
+            fixture="$dir/btrfs_scrub_status_dataBtrfs.txt"
             ;;
           *)
             fail "unknown scrub status target $target"

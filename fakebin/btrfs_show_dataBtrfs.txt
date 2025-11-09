@@ -1,0 +1,4 @@
+Label: 'dataBtrfs'  uuid: 4e252947-b70f-4f5c-b77a-8303b2fc19b4
+	Total devices 2 FS bytes used 2.19TiB
+	devid    1 size 2.67TiB used 2.20TiB path /dev/sdc2
+	devid    2 size 2.67TiB used 2.20TiB path /dev/sdb2
