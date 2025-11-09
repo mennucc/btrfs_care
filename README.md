@@ -104,13 +104,13 @@ Every run scans recent kernel logs for Btrfs warnings/errors on each device, map
 
 ### Tests
 
-A growing set of unit tests exercises the journal-parsing helpers. Run them with:
+A growing test suite covers both the parser helpers and an end-to-end CLI run against the `fakebin/` fixtures. Run everything with:
 
 ```bash
-python3 -m unittest tests.test_journal
+python3 -m unittest tests.test_journal tests.test_cli
 ```
 
-Please add more tests next to this file whenever you touch parsing, logging, or other logic that doesn’t require root privileges.
+The CLI tests invoke `python3 btrfs_care --test-debug` under the hood, so they don’t need sudo or live disks. Add more cases alongside these whenever you touch logging, argument parsing, or fixture behavior.
 
 ## How It Works
 
