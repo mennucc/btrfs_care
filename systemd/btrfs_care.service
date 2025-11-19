@@ -4,6 +4,6 @@ After=local-fs.target
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/btrfs_care --log /var/log/btrfs_care.log --log-format json --log-rotate 10MiB
+ExecStart=/usr/bin/btrfs_care --log /var/log/btrfs_care.log  --log-rotate 10MiB
 StandardOutput=journal
 StandardError=journal
