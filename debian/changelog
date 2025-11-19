@@ -1,4 +1,10 @@
-btrfs-care (0.1.0) unstable; urgency=medium
+btrfs-care (0.2) unstable; urgency=medium
+
+  * add --balance option
+
+ -- A Mennucc1 <mennucc1@debian.org>  Wed, 19 Nov 2025 21:43:51 +0100
+
+btrfs-care (0.1) unstable; urgency=medium
 
   * Initial packaging for Debian/Ubuntu.
     - install CLI, systemd units, fakebin fixtures, and man page.
