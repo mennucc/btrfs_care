@@ -15,7 +15,7 @@ pre-recorded fixtures.
 .BR --no-act
 Echo every \(lqbtrfs\(rq command instead of running it.
 .TP
-.BR --scrub-max-age-days " " \fIDAYS\fP
+.BR --scrub-max-age-days ", " --SMAD " " \fIDAYS\fP
 Skip scrubs that completed more recently than \fIDAYS\fP (default 50).
 .TP
 .BR --log " " \fIPATH\fP
@@ -32,6 +32,17 @@ Rotate the log when it exceeds \fISIZE\fP bytes (accepts suffixes such as
 Force \fB--no-act\fP, prepend the bundled \fIfakebin/\fP directory to PATH, and
 skip root checks so you can exercise the workflow without touching
 real disks.
+.TP
+.BR --balance ", " -B " " \fImode\fP
+Select how aggressively to rebalance after a successful scrub. \fImode\fP may be
+\fIauto\fP (default), \fIsoft\fP, \fIfull\fP, or \fIno\fP. Auto runs 0/5/10/15 usage
+passes only when either metadata or data free space drops below the configured
+threshold. Soft always runs 0/5/10/20/30 passes, full runs 0/5/10/.../90, and no
+skips balance entirely.
+.TP
+.BR --auto-balance-threshold ", " --ABT " " \fIPCT\fP
+Percentage of free space that triggers \fB--balance auto\fP (default 15%). Values
+must be between 0 and 100. Ignored when a non-auto balance mode is selected.
 .SH FILES
 .TP
 .I /usr/lib/btrfs_care/fakebin
