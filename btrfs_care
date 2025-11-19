@@ -81,7 +81,7 @@ def parse_args():
         help='Echo btrfs commands instead of executing them (dry-run).'
     )
     parser.add_argument(
-        '--scrub-max-age-days',
+        '--scrub-max-age-days','--SMAD', 
         type=int,
         default=SCRUB_MAX_AGE_DAYS,
         metavar='DAYS',
@@ -114,7 +114,7 @@ def parse_args():
         help='Run in test mode: enable --no-act, use fakebin/ commands, and bypass root checks.'
     )
     parser.add_argument(
-        '--balance',
+        '--balance', '-B', 
         choices=('no', 'auto', 'soft', 'full'),
         default='auto',
         help=(f"Balance strategy: 'auto' runs only when free space is below "
@@ -123,7 +123,7 @@ def parse_args():
               "and 'no' disables balance (default: auto).")
     )
     parser.add_argument(
-        '--auto-balance-threshold',
+        '--auto-balance-threshold', '--ABT', 
         type=float,
         metavar='PCT',
         default=None,
