@@ -10,7 +10,7 @@ A Python script for automated maintenance of Btrfs filesystems. Performs scrub a
   - Detects and resumes interrupted scrubs
   - Skips filesystems with running scrubs
   - Detects and reports errors
-- ⚖️ **Incremental balance**: Performs gradual balance operations (0-90% usage levels for both data and metadata)
+- ⚖️ **Incremental balance modes**: Default auto mode runs only when free space falls below a tunable threshold, plus `--balance soft/full/no` toggles for different usage sweeps
 - 🚫 **Duplicate detection**: Uses filesystem UUID to avoid processing the same filesystem twice (e.g., when mounted in multiple locations)
 - 🛑 **Shutdown detection**: Gracefully exits if system shutdown is in progress
 - 🧪 **Dry-run mode**: Test the script without making actual changes
@@ -87,6 +87,19 @@ sudo ./btrfs_care --scrub-max-age-days 30
 
 That example reruns scrubs whenever the previous pass is 30+ days old (default is 50 days).
 
+### Customize Balance Strategy
+
+Balance runs can be tuned per invocation with `--balance {auto,soft,full,no}` and the optional `--auto-balance-threshold PCT`:
+
+- `auto` (default): Inspect metadata/data free space and run balance only when either drops below the threshold (default 15%), using usage passes `0/5/10/15`. Adjust the trigger with `--auto-balance-threshold 12.5`.
+- `soft`: Always run incremental passes at `0/5/10/20/30` usage for both data and metadata—lighter than a full sweep but still proactive.
+- `full`: Keep the original 0-90% passes in 10% steps (plus the 5% pass) for the most aggressive rebalancing.
+- `no`: Skip balance entirely (scrubs still run according to `--scrub-max-age-days`).
+
+`--auto-balance-threshold` only has an effect when `--balance=auto`; other modes always follow their fixed pass sets.
+
+Pair this flag with `--no-act` or `--test-debug` when you want to validate the control flow without touching live disks.
+
 ### Configuration
 
 Edit these defaults near the top of the script if you want different baseline behavior:
@@ -96,6 +109,8 @@ Edit these defaults near the top of the script if you want different baseline be
 SCRUB_MAX_AGE_DAYS = 50
 
 # Dry-run mode is now controlled via --no-act / --noact CLI flag
+# Default threshold for --balance=auto (percentage of free space)
+AUTO_BALANCE_THRESHOLD_DEFAULT = 15.0
 ```
 
 `SCRUB_MAX_AGE_DAYS` only defines the default for the CLI; you can override it dynamically with `--scrub-max-age-days DAYS` as shown above.
@@ -151,11 +166,14 @@ For each filesystem, the script:
 
 ### 3. Balance Operation
 
-If scrub completes successfully without errors, the script performs incremental balance:
+If scrub completes successfully without errors, the script consults `--balance` to decide how aggressively to run incremental balance:
 
-- **Data balance**: Processes chunks with usage from 0% to 90% in 10% increments
-- **Metadata balance**: Same approach for metadata chunks
-- **Incremental approach**: Reduces impact on system performance, avoids "out of disk space" errors.
+- **`auto` (default)**: Checks metadata/data free space from `btrfs filesystem usage` and only runs when either side drops below the configured threshold (default 15%), issuing `0/5/10/15` passes.
+- **`soft`**: Always performs the lighter `0/5/10/20/30` passes for both data and metadata.
+- **`full`**: Matches the legacy behavior with passes at `0, 5, 10, 20, ..., 90`.
+- **`no`**: Skips balance entirely; useful when you only want monitoring and scrubs.
+
+Each run still balances data chunks first, then metadata chunks, to limit IO bursts and avoid out-of-space failures.
 
 ### 4. Shutdown Detection
 
@@ -173,6 +191,8 @@ If shutdown is detected, the script exits gracefully.
 Btrfs Maintenance Script
 ============================================================
 Configuration: Skip scrub if last run was < 50 days ago
+Balance mode: auto
+Auto balance threshold: 15.00% free
 Mode: Live execution
 ============================================================
 
@@ -196,6 +216,7 @@ UUID: 5555f991-db31-45a1-b146-7e0f386aa59e
 ============================================================
 ℹ️  Last scrub: 2025-10-18 11:40:32 (21 days ago)
 ✓ Scrub is recent (< 50 days), skipping...
+   ℹ️  Auto balance triggered (threshold 15.00%): data free 1.63%
 
 ============================================================
 Starting balance on: /
@@ -255,7 +276,7 @@ sudo systemctl start btrfs_care.timer
 
 1. **Regular execution**: Run monthly or bi-monthly for optimal filesystem health
 2. **Monitor logs**: Check output for errors or warnings
-3. **Free space**: Aim for 10‑20 % free before maintenance; when that isn’t possible, free at least a few GiB so the `-dusage=0` / `-musage=0` passes have breathing room
+3. **Free space**: Aim for 10‑20 % free before maintenance; auto mode only kicks in below its threshold (default 15%, adjustable via `--auto-balance-threshold`), but the initial `-dusage=0` / `-musage=0` passes (auto/soft/full) still need a few GiB of slack
 4. **Test first**: Use dry-run mode on new systems
 5. **Backup important data**: Always maintain backups before maintenance operations
 
@@ -276,7 +297,7 @@ Check free space:
 ```bash
 sudo btrfs filesystem usage /mountpoint
 ```
-If it still fails, free some space and rerun the script—its `-dusage=0` / `-musage=0` passes already target low-usage chunks automatically.
+If it still fails, free some space and rerun the script—each balance mode starts with `-dusage=0` / `-musage=0` passes to target low-usage chunks automatically.
 
 ### Script exits during shutdown
 This is intentional behavior to prevent data corruption. The script will resume on next execution.
