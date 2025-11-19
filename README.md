@@ -37,6 +37,8 @@ cd btrfs_care
 chmod +x btrfs_care
 ```
 
+Then you can create a Debian/Ubuntu package with `dpkg-buildpackage.sh -us -uc`
+
 ## Usage
 
 ### Basic Usage
